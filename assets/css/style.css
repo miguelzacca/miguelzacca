@@ -425,7 +425,7 @@ footer p:last-child {
 
 #main-contact {
   margin-top: var(--header-height);
-  padding: 10rem;
+  padding: 10rem 2rem;
   gap: 10rem;
 }
 
@@ -463,7 +463,7 @@ footer p:last-child {
 }
 
 #main-contact form input {
-  width: 30rem;
+  flex: 1;
   height: 6rem;
 }
 
@@ -477,6 +477,7 @@ footer p:last-child {
 #main-contact form button {
   width: fit-content;
   margin: 0 auto;
+  background-color: transparent;
   padding-inline: 5rem;
 }
 
@@ -522,6 +523,10 @@ footer p:last-child {
     text-align: center;
     max-width: calc(100vw - 4rem) !important;
   }
+
+  #main-contact form {
+    width: 43rem;
+  }
 }
 
 @media screen and (max-width: 530px) {
@@ -543,5 +548,14 @@ footer p:last-child {
 
   #works .container {
     max-width: calc(100vw - 4rem);
+  }
+
+  #main-contact form {
+    width: 35rem;
+  }
+
+  #main-contact form input,
+  #main-contact form textarea {
+    width: 100%;
   }
 }
