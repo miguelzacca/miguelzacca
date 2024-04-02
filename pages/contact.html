@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../assets/img/window-logo.webp" type="image/webp" />
+    <title>Miguel Zacca | Web developer & Software engineer</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body>
+    <header id="header-contact" class="flex-center">
+      <nav class="flex">
+        <a href="/">
+          <img src="../assets/img/logo.webp" alt="Portfolio logo" />
+        </a>
+        <img
+          src="../assets/img/profile-avatar.webp"
+          alt="My avatar"
+          class="avatar"
+        />
+        <ul class="flex-center">
+          <li><a href="../index.html" class="btn">Home</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="flex-center col" id="main-contact">
+      <h2 class="subtitle light">
+        Thanks for taking the time to reach out. How can I help you today?
+      </h2>
+      <form
+        action="https://formsubmit.co/miguelzacca.dev@gmail.com"
+        method="POST"
+        class="flex col"
+      >
+        <div class="container flex-center wrap">
+          <div class="flex col">
+            <label for="name" class="text">Name:</label>
+            <input type="text" id="name" name="Name" required />
+          </div>
+          <div class="flex col">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="Email" required />
+          </div>
+        </div>
+        <div class="flex col">
+          <label for="message">Message:</label>
+          <textarea id="message" name="Message" required></textarea>
+        </div>
+        <button type="submit" class="btn">Submit</button>
+      </form>
+    </main>
+  </body>
+</html>

@@ -108,6 +108,10 @@ ul li {
   list-style: none;
 }
 
+button {
+  cursor: pointer;
+}
+
 a {
   text-decoration: none;
 }
@@ -407,6 +411,75 @@ footer p:last-child {
   color: #4d0909;
 }
 
+#header-contact {
+  border-bottom: 0.15rem solid #00000020;
+}
+
+#header-contact nav .avatar {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, -50%);
+  aspect-ratio: 1;
+}
+
+#main-contact {
+  margin-top: var(--header-height);
+  padding: 10rem;
+  gap: 10rem;
+}
+
+#main-contact h2 {
+  max-width: 70rem;
+  text-align: center;
+}
+
+#main-contact form {
+  gap: 4rem;
+}
+
+#main-contact form .container {
+  width: 100%;
+  gap: 2rem;
+}
+
+#main-contact form div:not(.container) {
+  gap: 1rem;
+}
+
+#main-contact form input,
+#main-contact form textarea {
+  border: 0.15rem solid #00000020;
+  outline: none;
+  font-size: 2rem;
+  color: #333;
+  padding: 1rem 2rem;
+}
+
+#main-contact label {
+  font-size: 1.7rem;
+  text-align: start;
+  color: #888888;
+}
+
+#main-contact form input {
+  width: 30rem;
+  height: 6rem;
+}
+
+#main-contact form textarea {
+  resize: none;
+  width: 100%;
+  padding: 2rem;
+  height: 25rem;
+}
+
+#main-contact form button {
+  width: fit-content;
+  margin: 0 auto;
+  padding-inline: 5rem;
+}
+
 @media screen and (max-width: 1020px) {
   #skills {
     flex-direction: column;
@@ -422,11 +495,11 @@ footer p:last-child {
   }
 
   #skills .container:nth-child(1) {
-    border-bottom: 0;
+    border-bottom: 0 !important;
   }
 
   #skills .container:nth-child(3) {
-    border-top: 0;
+    border-top: 0 !important;
   }
 
   html {
