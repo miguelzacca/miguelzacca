@@ -289,7 +289,7 @@ section {
 
 #works div .container:first-child img {
   width: 20rem;
-  aspect-ratio: 3.5/1;
+  aspect-ratio: 4/1;
 }
 
 #works div .container:last-child img {
@@ -417,7 +417,7 @@ footer p:last-child {
   #skills .container {
     border-radius: 0 !important;
     border: 0.15rem solid #00000020 !important;
-    width: 40rem;
+    width: 20vw;
     max-width: 40rem;
   }
 
@@ -454,6 +454,14 @@ footer p:last-child {
 @media screen and (max-width: 530px) {
   header ul li:not(ul li:last-child) {
     display: none;
+  }
+
+  html {
+    font-size: 9.5px;
+  }
+
+  #skills .container {
+    width: calc(100vw - 6rem);
   }
 
   section {
