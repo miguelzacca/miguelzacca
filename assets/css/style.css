@@ -10,7 +10,6 @@
 html {
   font-size: 10px;
   scroll-behavior: smooth;
-  padding-bottom: 50rem;
 }
 
 :root {
@@ -129,7 +128,7 @@ header nav {
 
 header ul {
   margin-left: auto;
-  gap: 2rem;
+  gap: 0.5rem;
 }
 
 header ul li a {
@@ -143,7 +142,7 @@ header ul li a:hover {
 }
 
 header ul li .btn {
-  margin-left: 1rem;
+  margin-left: 1.5rem;
   font-size: 1.8rem;
 }
 
@@ -178,7 +177,7 @@ section {
 }
 
 #home .img-container {
-  gap: 5rem;
+  gap: 7rem;
 }
 
 #home .img-container img:first-child {
@@ -250,4 +249,159 @@ section {
   justify-content: start;
   width: 100%;
   aspect-ratio: 1/0.4;
+}
+
+#works {
+  gap: 1.5rem;
+  padding: 15rem 0;
+  /* border-bottom: 0.15rem solid #00000020; */
+}
+
+#works .subtitle {
+  font-weight: 400;
+}
+
+#works .display {
+  gap: 5rem;
+  margin-top: 7rem;
+}
+
+#works div .container {
+  width: 45rem;
+  aspect-ratio: 1.75/1;
+  position: relative;
+  border-radius: 1rem;
+}
+
+#works div .container:first-child {
+  background-color: #ee8c0c;
+}
+
+#works div .container:last-child {
+  background-color: #444444;
+}
+
+#works div .container img {
+  transition: scale 0.5s, opacity 0.1s;
+}
+
+#works div .container:first-child img {
+  width: 20rem;
+  aspect-ratio: 3.5/1;
+}
+
+#works div .container:last-child img {
+  width: 10rem;
+  aspect-ratio: 1;
+}
+
+#works div .container div p {
+  color: #bbbbbb;
+  margin-bottom: 2rem;
+}
+
+#works div .container div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: all 0.4s ease;
+  cursor: default;
+  background-color: #141c3a;
+  z-index: 3;
+  border-radius: 1rem;
+}
+
+#works div .container div:hover {
+  opacity: 1;
+}
+
+#works div .container div:hover ~ img {
+  scale: 1.1;
+  opacity: 0.5;
+}
+
+#works .github {
+  scale: 1.1;
+  padding: 1rem 2rem;
+  margin-top: 10rem;
+}
+
+footer {
+  padding: 5rem 5rem;
+  gap: 5rem;
+  margin-top: 5rem;
+  background-color: var(--identity-red);
+}
+
+footer .container {
+  width: 100%;
+  max-width: var(--content-limit);
+  background-color: #4d0909;
+  padding: 6rem 2rem;
+  justify-content: space-around;
+  border-radius: 2rem;
+  margin-top: -13rem;
+}
+
+footer .container h2 {
+  width: max-content;
+  text-align: center;
+}
+
+footer .container p {
+  width: fit-content;
+  max-width: 30rem;
+}
+
+footer .container a {
+  border-color: #eeb90c;
+  scale: 1.1;
+  padding: 1rem 2rem;
+}
+
+footer .container a:hover {
+  background-color: #eeb90c;
+  color: var(--title-black);
+}
+
+footer img[alt="Portfolio logo"] {
+  width: 8rem;
+  aspect-ratio: 1.5/1;
+  filter: grayscale(1) brightness(0) invert(1);
+}
+
+footer .message {
+  color: #eeeeee;
+  font-weight: 500;
+  font-size: 2.2rem;
+  max-width: 30rem;
+}
+
+footer .contact {
+  gap: 2rem;
+}
+
+footer .contact a {
+  width: 5rem;
+  aspect-ratio: 1;
+  border: 0.3rem solid #dddddd;
+  border-radius: 50%;
+}
+
+footer .contact a:hover {
+  filter: brightness(2);
+  scale: 1.1;
+}
+
+footer .contact a img {
+  width: 3rem;
+  aspect-ratio: 1;
+  filter: invert(0.9);
+}
+
+footer p:last-child {
+  color: #eeeeee;
 }
