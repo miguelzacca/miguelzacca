@@ -65,22 +65,26 @@ html {
   color: var(--white);
 }
 
-.h1 {
+.title {
   color: var(--title-black);
   font-size: 4.2rem;
 }
 
-.h2 {
+.subtitle {
   color: var(--title-black);
   font-size: 3.2rem;
 }
 
-.h3 {
+.light {
+  font-weight: 400;
+}
+
+.smalltitle {
   font-size: 2rem;
   color: var(--text-gray);
 }
 
-.p {
+.text {
   color: var(--text-black);
   width: 100%;
   text-align: center;
@@ -90,7 +94,7 @@ html {
   color: var(--identity-red);
 }
 
-.p,
+.text,
 .btn,
 .span {
   font-size: 1.7rem;
@@ -257,10 +261,6 @@ section {
 #works {
   gap: 1.5rem;
   padding: 15rem 5rem;
-}
-
-#works .subtitle {
-  font-weight: 400;
 }
 
 #works .display {

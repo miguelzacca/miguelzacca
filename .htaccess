@@ -1,0 +1,4 @@
+Options +FollowSymlinks
+RewriteEngine on
+rewritecond %{http_host} ^seudominio.com.br [NC]
+rewriterule ^(.*)$ http://www.seudominio.com.br/$1 [r=301,NC]
