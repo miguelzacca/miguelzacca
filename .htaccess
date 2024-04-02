@@ -1,4 +1,4 @@
 Options +FollowSymlinks
 RewriteEngine on
-rewritecond %{http_host} ^miguelzacca.netlify.app [NC]
-rewriterule ^(.*)$ http://www.miguelzacca.netlify.app/$1 [r=301,NC]
+RewriteCond %{HTTP_HOST} ^www\.miguelzacca\.netlify\.app [NC]
+RewriteRule ^(.*)$ http://miguelzacca.netlify.app/$1 [R=301,L]
