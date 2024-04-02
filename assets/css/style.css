@@ -481,6 +481,10 @@ footer p:last-child {
   padding-inline: 5rem;
 }
 
+#main-contact form button:hover {
+  background-color: var(--identity-red);
+}
+
 @media screen and (max-width: 1020px) {
   #skills {
     flex-direction: column;
