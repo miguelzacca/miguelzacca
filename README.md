@@ -1,1 +1,1 @@
-netlify: https://miguelzacca.netlify.app/
+netlify: https://miguelzacca.netlify.app
