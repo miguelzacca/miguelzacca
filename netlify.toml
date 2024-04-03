@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "https://www.miguelzacca.netlify.app"
-  to = "https://miguelzacca.netlify.app"
+  from = "https://www.miguelzacca.netlify.app/*"
+  to = "https://miguelzacca.netlify.app/:splat"
   status = 301
   force = true
