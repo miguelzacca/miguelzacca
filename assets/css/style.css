@@ -534,7 +534,7 @@ footer p:last-child {
 }
 
 @media screen and (max-width: 530px) {
-  header ul li:not(ul li:last-child) {
+  header ul li:not(li:last-child) {
     display: none;
   }
 
