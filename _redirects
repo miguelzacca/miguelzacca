@@ -1,1 +1,5 @@
-www.miguelzacca.netlify.app/* https://miguelzacca.netlify.app/:splat 301!
+# Redirecionamento de www para não-www
+www.miguelzacca.netlify.app.com/* https://miguelzacca.netlify.app/:splat 301!
+
+# Redirecionamento de não-www para www
+miguelzacca.netlify.app/* https://www.miguelzacca.netlify.app/:splat 301!
