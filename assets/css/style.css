@@ -558,6 +558,10 @@ footer p:last-child {
     width: 35rem;
   }
 
+  .title {
+    font-size: 3.5rem;
+  }
+
   #main-contact form input,
   #main-contact form textarea {
     width: 100%;
