@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "https://www.miguelzacca.netlify.app"
+  to = "https://miguelzacca.netlify.app"
+  status = 301
+  force = true
