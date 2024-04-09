@@ -490,7 +490,8 @@ h1,
 h2,
 h3,
 p,
-span {
+span,
+img:not(#header-contact img) {
   animation: view 1ms ease-in-out forwards;
   animation-range: cover 0% cover 12.5%;
   animation-timeline: view();
@@ -578,7 +579,8 @@ header,
   h2,
   h3,
   p,
-  span {
+  span,
+  img:not(#header-contact img) {
     animation-range: cover 0% cover 9%;
   }
 }
