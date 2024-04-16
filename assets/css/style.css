@@ -449,7 +449,7 @@ footer p:last-child {
 
 #main-contact form input,
 #main-contact form textarea {
-  border: 0.15rem solid #00000020;
+  border: 0.15rem solid #00000025;
   outline: 0;
   font-size: 2rem;
   color: #333;
@@ -485,7 +485,7 @@ footer p:last-child {
   background-color: var(--identity-red);
 }
 
-div,
+div:not(.display, .display *),
 h1,
 h2,
 h3,
@@ -501,11 +501,6 @@ img:not(#header-contact img) {
   from {
     transform: translateX(-10rem);
     opacity: 0;
-  }
-
-  to {
-    transform: translateX(0);
-    opacity: 1;
   }
 }
 
