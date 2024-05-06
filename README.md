@@ -1,6 +1,6 @@
 # Web deveoper and Software engineer
 
-Hello, I'm Miguel Zacca, currently studying systems development at SESI Senai, and Web Development at HarvardX.
+Hello, I'm Miguel Zacca, currently studying systems development at SESI Senai, and Web Development at Harvard.
 
 ## Languages
 
