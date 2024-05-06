@@ -1,6 +1,6 @@
 # Web deveoper and Software engineer
 
-Hello, I'm Miguel Zacca, currently studying systems development at SESI Senai, and CS50x 2024 at Harvard.
+Hello, I'm Miguel Zacca, currently studying systems development at SESI Senai, and CS50x 2024 at Harvard. My current operating system is Debian.  
 
 ## Languages
 
