@@ -1,28 +1,24 @@
-# Web deveoper and Software engineer
+# Web developer and Software engineer
 
 Hello, I'm Miguel Zacca, currently studying systems development at SESI Senai, and CS50x 2024 at Harvard. My current operating system is Debian.  
 
 ## Languages
 
-My main languages ​​and the ones I'm learning.
-
-### Main
+Main:
 
 - HTML
 - CSS
 - Javascript
 - SQL
 
-### Learning
+Learning:
 
 - C++
 - Python
 
 ## Skills
 
-My skills in the development and database area.
-
-### Development
+Development:
 
 - Node.js
 - JWT (Json Web Token)
@@ -37,7 +33,7 @@ My skills in the development and database area.
 - Linux
 - Cyber security
 
-### Database
+Database:
 
 - MongoDB Cloud
 - PostgreSQL
