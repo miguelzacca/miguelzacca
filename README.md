@@ -1,8 +1,10 @@
 # Web developer and Software engineer
 
-Hello, I'm Miguel Zacca, currently studying systems development at SESI Senai. My current operating system is Debian.
+Hello, I'm Miguel Zacca, currently studying systems development at SESI Senai. My current operating system is Debian. 
 
 [![miguelzacca github streak](https://github-readme-streak-stats.herokuapp.com/?user=miguelzacca&theme=blue-green)](https://github.com/DenverCoder1/github-readme-streak-stats)
+
+[![](https://visitcount.itsvg.in/api?id=miguelzacca&label=Profile%20Views&pretty=false)](https://visitcount.itsvg.in)
 
 ## Languages
 
