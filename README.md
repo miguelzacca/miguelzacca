@@ -4,7 +4,7 @@ Hello, I'm Miguel Zacca, currently studying systems development at SESI Senai. M
 
 [![miguelzacca github streak](https://github-readme-streak-stats.herokuapp.com/?user=miguelzacca&theme=blue-green)](https://github.com/DenverCoder1/github-readme-streak-stats)
 
-[![](https://visitcount.itsvg.in/api?id=miguelzacca&label=Profile%20Views&pretty=false)](https://visitcount.itsvg.in)
+<img id="viewer" src="https://visitcount.itsvg.in/api?id=miguelzacca&label=Profile%20Views&pretty=false">
 
 ## Languages
 
