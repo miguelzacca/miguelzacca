@@ -10,14 +10,10 @@ Hello, I'm Miguel Zacca, currently studying systems development at SESI Senai. M
 
 ### Main:
 
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
 ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
-
 
 ## Skills
 
@@ -33,17 +29,22 @@ Hello, I'm Miguel Zacca, currently studying systems development at SESI Senai. M
 
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white)
-![Zod](https://img.shields.io/badge/zod-%233068b7.svg?style=for-the-badge&logo=zod&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
-
 
 ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
 
 #### - React
+#### - Next
 #### - CI / CD
 #### - REST API
+#### - Nest
+#### - POO
+#### - DI
+#### - SOLID
+#### - Nginx
+#### - Docker
 #### - Authentication
 #### - SEO (Search Engine Optimization)
 #### - UI / UX
@@ -65,4 +66,14 @@ Hello, I'm Miguel Zacca, currently studying systems development at SESI Senai. M
 
 https://miguelzacca.netlify.app
 
-![](https://view2me.onrender.com/)
+![](https://developstore.vercel.app)
+![](https://developstore.vercel.app)
+![](https://developstore.vercel.app)
+![](https://developstore.vercel.app)
+![](https://developstore.vercel.app)
+![](https://developstore.vercel.app)
+![](https://developstore.vercel.app)
+![](https://developstore.vercel.app)
+![](https://developstore.vercel.app)
+![](https://developstore.vercel.app)
+
