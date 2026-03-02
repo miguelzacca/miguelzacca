@@ -2,5 +2,5 @@
 
 ## Temporary portfolio
 
-https://miguelzportfolio.vercel.app
+https://miguelzaccalab.vercel.app
 
