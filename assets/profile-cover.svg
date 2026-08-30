@@ -1,0 +1,79 @@
+<svg width="1440" height="560" viewBox="0 0 1440 560" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Miguel Zacca — software products, built end to end</title>
+  <desc id="desc">Dark graphite editorial cover with gold accents, Miguel Zacca's name and an abstract product system diagram.</desc>
+  <defs>
+    <linearGradient id="surface" x1="92" y1="44" x2="1348" y2="532" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#151518"/>
+      <stop offset="1" stop-color="#09090B"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="1040" y1="112" x2="1230" y2="412" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D8C8A5"/>
+      <stop offset="1" stop-color="#927B50"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1112 275) rotate(90) scale(274 324)">
+      <stop stop-color="#B09C76" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#B09C76" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" stroke="#F3F3F5" stroke-opacity="0.045"/>
+    </pattern>
+    <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="26" flood-color="#000000" flood-opacity="0.34"/>
+    </filter>
+  </defs>
+
+  <rect width="1440" height="560" rx="28" fill="url(#surface)"/>
+  <rect x="1" y="1" width="1438" height="558" rx="27" stroke="#FFFFFF" stroke-opacity="0.09"/>
+  <rect width="1440" height="560" rx="28" fill="url(#grid)"/>
+  <rect x="814" width="626" height="560" rx="28" fill="url(#glow)"/>
+
+  <g transform="translate(88 76)">
+    <rect width="42" height="42" rx="11" fill="#09090B" stroke="#FFFFFF" stroke-opacity="0.18"/>
+    <path d="M25 8H34V17C29.0294 17 25 12.9706 25 8Z" fill="#B09C76"/>
+    <path d="M9 32H33" stroke="#F3F3F5" stroke-opacity="0.72" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <text x="150" y="106" fill="#D9D9DE" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="21" font-weight="600" letter-spacing="5">MIGUEL ZACCA</text>
+  <text x="88" y="215" fill="#F7F7F8" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="72" font-weight="620" letter-spacing="-2.4">Software products,</text>
+  <text x="88" y="297" fill="#F7F7F8" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="72" font-weight="620" letter-spacing="-2.4">built end to end.</text>
+  <text x="92" y="356" fill="#B6B6BE" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="23" font-weight="400" letter-spacing="0.2">Interfaces · data · automation · operations</text>
+
+  <g transform="translate(88 433)">
+    <rect width="310" height="48" rx="24" fill="#B09C76" fill-opacity="0.11" stroke="#B09C76" stroke-opacity="0.42"/>
+    <circle cx="25" cy="24" r="5" fill="#B09C76"/>
+    <text x="44" y="31" fill="#D8C8A5" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" letter-spacing="2.1">FLAGSHIP · CONECTEI</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="878" y="92" width="456" height="376" rx="28" fill="#101013" stroke="#FFFFFF" stroke-opacity="0.12"/>
+    <path d="M926 153H1286" stroke="#FFFFFF" stroke-opacity="0.08"/>
+    <circle cx="925" cy="123" r="5" fill="#B09C76"/>
+    <text x="944" y="130" fill="#A9A9B1" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" letter-spacing="2">PRODUCT SYSTEM</text>
+
+    <path d="M966 226H1086" stroke="#B09C76" stroke-opacity="0.48" stroke-width="1.5"/>
+    <path d="M1174 226H1248" stroke="#B09C76" stroke-opacity="0.48" stroke-width="1.5"/>
+    <path d="M1130 270V338" stroke="#B09C76" stroke-opacity="0.48" stroke-width="1.5"/>
+    <path d="M1010 382H1086" stroke="#B09C76" stroke-opacity="0.48" stroke-width="1.5"/>
+    <path d="M1174 382H1248" stroke="#B09C76" stroke-opacity="0.48" stroke-width="1.5"/>
+
+    <rect x="914" y="202" width="104" height="48" rx="12" fill="#18181C" stroke="#FFFFFF" stroke-opacity="0.12"/>
+    <text x="966" y="231" text-anchor="middle" fill="#D8D8DD" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="500">INTERFACE</text>
+
+    <circle cx="1130" cy="226" r="44" fill="#B09C76" fill-opacity="0.09" stroke="url(#gold)" stroke-width="1.5"/>
+    <circle cx="1130" cy="226" r="15" fill="#B09C76"/>
+    <path d="M1130 216V236M1120 226H1140" stroke="#09090B" stroke-width="2" stroke-linecap="round"/>
+
+    <rect x="1248" y="202" width="54" height="48" rx="12" fill="#18181C" stroke="#FFFFFF" stroke-opacity="0.12"/>
+    <path d="M1265 218H1286M1265 226H1286M1265 234H1278" stroke="#D8D8DD" stroke-opacity="0.78" stroke-width="2" stroke-linecap="round"/>
+
+    <rect x="1086" y="338" width="88" height="88" rx="20" fill="#18181C" stroke="#B09C76" stroke-opacity="0.38"/>
+    <path d="M1110 368H1150M1110 382H1142M1110 396H1132" stroke="#D8C8A5" stroke-width="3" stroke-linecap="round"/>
+
+    <rect x="926" y="358" width="84" height="48" rx="12" fill="#18181C" stroke="#FFFFFF" stroke-opacity="0.12"/>
+    <text x="968" y="387" text-anchor="middle" fill="#D8D8DD" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="500">DATA</text>
+
+    <rect x="1248" y="358" width="54" height="48" rx="12" fill="#18181C" stroke="#FFFFFF" stroke-opacity="0.12"/>
+    <circle cx="1275" cy="382" r="10" stroke="#D8D8DD" stroke-opacity="0.78" stroke-width="2"/>
+    <path d="M1275 368V374M1275 390V396M1261 382H1267M1283 382H1289" stroke="#D8D8DD" stroke-opacity="0.78" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg>
