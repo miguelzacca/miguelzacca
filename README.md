@@ -22,11 +22,15 @@ Building it has meant treating the interface, data, security, search visibility,
 
 <table align="center">
   <tr>
-    <td align="center" width="50%">
+    <td align="center" width="33%">
       <strong>500K+ effective LOC</strong><br>
       <sub>Product, platform, tests, styles and delivery tooling</sub>
     </td>
-    <td align="center" width="50%">
+    <td align="center" width="33%">
+      <strong>1,500+ source files</strong><br>
+      <sub>Structured across domains, platform and tests</sub>
+    </td>
+    <td align="center" width="33%">
       <strong>200+ SQL tables</strong><br>
       <sub>A data model built for real-world operations</sub>
     </td>
