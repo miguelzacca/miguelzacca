@@ -20,7 +20,20 @@ The project that best represents that work is **Conectei**.
 
 Building it has meant treating the interface, data, security, search visibility, integrations, background work and day-to-day operation as parts of the same system.
 
-> **Codebase scale:** approximately **386,000 tracked source lines** across product, platform, tests, styles and delivery tooling. Snapshot from August 2026; dependencies and generated output excluded.
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <strong>500K+ effective LOC</strong><br>
+      <sub>Product, platform, tests, styles and delivery tooling</sub>
+    </td>
+    <td align="center" width="50%">
+      <strong>150+ SQL tables</strong><br>
+      <sub>A data model built for real-world operations</sub>
+    </td>
+  </tr>
+</table>
+
+<p align="center"><sub>Production codebase snapshot · August 2026 · dependencies and generated output excluded</sub></p>
 
 <p align="center">
   <img src="./assets/conectei-dashboard.png" alt="Conectei authenticated workspace showing its main property workflows with demonstration data" width="100%">
