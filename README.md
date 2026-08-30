@@ -27,7 +27,7 @@ Building it has meant treating the interface, data, security, search visibility,
       <sub>Product, platform, tests, styles and delivery tooling</sub>
     </td>
     <td align="center" width="50%">
-      <strong>150+ SQL tables</strong><br>
+      <strong>200+ SQL tables</strong><br>
       <sub>A data model built for real-world operations</sub>
     </td>
   </tr>
