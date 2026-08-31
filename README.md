@@ -1,5 +1,12 @@
 <p align="center">
-  <img src="./assets/profile-cover.svg" alt="Miguel Zacca — software products, built end to end" width="100%">
+  <img src="./assets/conectei-icon.svg" alt="Ícone da Conectei" width="64" height="64">
+</p>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/conectei-logo-dark.svg">
+    <img src="./assets/conectei-logo.svg" alt="Conectei" width="300">
+  </picture>
 </p>
 
 <p align="center">
@@ -39,11 +46,20 @@ Building it has meant treating the interface, data, security, search visibility,
 
 <p align="center"><sub>Production codebase snapshot · August 2026 · dependencies and generated output excluded</sub></p>
 
-<p align="center">
-  <img src="./assets/conectei-dashboard.png" alt="Conectei authenticated workspace showing its main property workflows with demonstration data" width="100%">
-</p>
-
-<p align="center"><sub>Authenticated workspace · demonstration data</sub></p>
+<table>
+  <tr>
+    <td width="66%">
+      <img src="./assets/product-dashboard.webp" alt="Conectei authenticated workspace overview on desktop using demonstration data" width="100%">
+    </td>
+    <td width="34%">
+      <img src="./assets/product-dashboard-mobile.webp" alt="Conectei authenticated workspace overview on mobile using demonstration data" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td><sub>Authenticated workspace overview on desktop.</sub></td>
+    <td><sub>The same workspace on mobile.</sub></td>
+  </tr>
+</table>
 
 ### Product at a glance
 
@@ -111,15 +127,30 @@ The same workflow is designed to remain clear across desktop and mobile. These i
 <table>
   <tr>
     <td width="66%">
-      <img src="./assets/conectei-search-desktop.png" alt="Conectei property research workflow on desktop using demonstration data" width="100%">
+      <img src="./assets/product-search.webp" alt="Conectei property research workflow on desktop using demonstration data" width="100%">
     </td>
     <td width="34%">
-      <img src="./assets/conectei-search-mobile.png" alt="Conectei property research workflow on mobile using demonstration data" width="100%">
+      <img src="./assets/product-search-mobile.webp" alt="Conectei property research workflow on mobile using demonstration data" width="100%">
     </td>
   </tr>
   <tr>
     <td><sub>Structured property research on desktop.</sub></td>
     <td><sub>The same workflow on mobile.</sub></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td width="66%">
+      <img src="./assets/product-valuation-report.webp" alt="Conectei property valuation report on desktop using demonstration data" width="100%">
+    </td>
+    <td width="34%">
+      <img src="./assets/product-valuation-report-mobile.webp" alt="Conectei property valuation report on mobile using demonstration data" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td><sub>Property valuation report on desktop.</sub></td>
+    <td><sub>The report adapted for mobile.</sub></td>
   </tr>
 </table>
 

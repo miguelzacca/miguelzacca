@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <style>
+    .symbol-c { fill: #0B0B0C; }
+    .symbol-i { fill: #B09C76; }
+    @media (prefers-color-scheme: dark) {
+      .symbol-c { fill: #F4F0E7; }
+    }
+  </style>
+  <path class="symbol-c" d="M82 18H48C27.5 18 18 27.5 18 48v32c0 20.5 9.5 30 30 30h52V87H52c-7.5 0-11-3.5-11-11V52c0-7.5 3.5-11 11-11h30V18Z"/>
+  <rect class="symbol-i" x="94" y="18" width="16" height="16" rx="2"/>
+  <path class="symbol-i" d="M94 48h16v62H94z"/>
+</svg>
