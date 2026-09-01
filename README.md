@@ -315,5 +315,5 @@ O projeto representa trabalho de ponta a ponta em produto, experiência, aplica�
 <p align="center">
   <a href="https://conecteimob.com.br">Conectei</a>
   &nbsp;&nbsp;·&nbsp;&nbsp;
-  <a href="https://github.com/miguelzacca">github.com/miguelzacca</a>
+  <a href="https://github.com/conecteimob">github.com/conecteimob</a>
 </p>
