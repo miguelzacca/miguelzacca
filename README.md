@@ -283,14 +283,37 @@ O projeto representa trabalho de ponta a ponta em produto, experiência, aplica�
 ---
 
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./assets/conectei-logo-dark.svg">
-    <img src="./assets/conectei-logo.svg" alt="Conectei" width="220">
-  </picture>
+  <sub><strong>POR TRÁS DA CONECTEI</strong></sub>
 </p>
 
+<h2 align="center">Não é só código.<br>É produto de ponta a ponta.</h2>
+
 <p align="center">
-  <a href="https://conecteimob.com.br">conecteimob.com.br</a>
+  Conheça a visão, o processo e a engenharia por trás da plataforma —<br>
+  da estratégia e experiência à entrega, aos dados, à IA e à operação.
+</p>
+
+<br>
+
+<p align="center">
+  <a href="https://miguelzacca.dev" title="Conhecer o portfólio profissional de Miguel Zacca">
+    <img src="./assets/profile-cover.svg" alt="Miguel Zacca — Product Engineer. Produtos digitais construídos de ponta a ponta." width="100%">
+  </a>
+</p>
+
+<h3 align="center">
+  <a href="https://miguelzacca.dev">EXPLORAR O PORTFÓLIO PROFISSIONAL ↗</a>
+</h3>
+
+<p align="center">
+  <strong>miguelzacca.dev</strong><br>
+  <sub>PRODUCT ENGINEER &nbsp;·&nbsp; CREATOR OF CONECTEI</sub>
+</p>
+
+<br>
+
+<p align="center">
+  <a href="https://conecteimob.com.br">Conectei</a>
   &nbsp;&nbsp;·&nbsp;&nbsp;
   <a href="https://github.com/miguelzacca">github.com/miguelzacca</a>
 </p>
