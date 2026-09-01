@@ -3598,6 +3598,15 @@ kbd {
   button {
     cursor: none;
   }
+
+  .command-menu {
+    cursor: default;
+  }
+
+  .command-menu a,
+  .command-menu button {
+    cursor: pointer;
+  }
 }
 
 @media (max-width: 780px) {

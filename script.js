@@ -141,6 +141,10 @@
       );
     });
 
+    if (chapters && chapters.length) {
+      updateStoryScene();
+    }
+
     scrollTicking = false;
   }
 
@@ -207,9 +211,13 @@
   var storyImages = Array.from(document.querySelectorAll("[data-story-image]"));
   var storyCounter = document.querySelector("[data-story-counter]");
   var storyLabel = document.querySelector("[data-story-label]");
+  var activeStoryIndex = -1;
   var storyLabels = ["Descoberta", "Inteligência", "Operação"];
 
   function setStoryScene(index) {
+    if (index === activeStoryIndex) return;
+    activeStoryIndex = index;
+
     chapters.forEach(function (chapter, chapterIndex) {
       chapter.classList.toggle("is-active", chapterIndex === index);
     });
@@ -227,23 +235,21 @@
     }
   }
 
-  if (chapters.length && "IntersectionObserver" in window) {
-    var storyObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          setStoryScene(Number(entry.target.dataset.storyChapter));
-        });
-      },
-      {
-        threshold: 0.3,
-        rootMargin: "-28% 0px -42% 0px",
-      },
-    );
+  function updateStoryScene() {
+    var activationPoint = window.innerHeight * 0.5;
+    var activeIndex = 0;
 
-    chapters.forEach(function (chapter) {
-      storyObserver.observe(chapter);
+    chapters.forEach(function (chapter, chapterIndex) {
+      if (chapter.getBoundingClientRect().top <= activationPoint) {
+        activeIndex = chapterIndex;
+      }
     });
+
+    setStoryScene(activeIndex);
+  }
+
+  if (chapters.length) {
+    requestScrollUpdate();
   }
 
   /* --------------------------------------------------------------------------
