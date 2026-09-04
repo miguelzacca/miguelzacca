@@ -32,11 +32,11 @@ Ela pode ser usada por um corretor autônomo ou compartilhada por uma imobiliár
 <table align="center">
   <tr>
     <td align="center" width="33%">
-      <strong>600K+ linhas</strong><br>
+      <strong>600K+ linhas efetivas</strong><br>
       <sub>Produto, plataforma, testes e entrega</sub>
     </td>
     <td align="center" width="33%">
-      <strong>1.500+ arquivos</strong><br>
+      <strong>1.700+ arquivos</strong><br>
       <sub>Organizados por domínios de negócio</sub>
     </td>
     <td align="center" width="33%">
