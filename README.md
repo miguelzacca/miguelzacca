@@ -229,11 +229,11 @@ A Conectei é o produto principal, mas algumas capacidades ficam em serviços e 
 | Repositório / serviço | Papel no ecossistema |
 | --------------------- | -------------------- |
 | **`conecteimob/conecteimob`** | Aplicação principal: produto web/PWA, APIs, domínio de negócio, sites públicos, CRM, imóveis, crédito, assinaturas, antifraude, SEO e operação. |
-| **`miguelzacca/evo.conecteimob`** | Runtime dedicado à conectividade de WhatsApp usada pelas campanhas. Empacota a Evolution API em imagem própria e mantém compatibilidade da camada de sessão/pareamento necessária ao fluxo da Conectei. |
-| **`miguelzacca/mailer.conecteimob`** | Serviço auxiliar de e-mail e APIs de suporte. No produto principal, a entrega transacional é consumida por uma fronteira HTTP separada para fluxos como acesso por link e notificações de assinatura. |
-| **`miguelzacca/task.conecteimob`** | Microapp/PWA de lembretes e tarefas do ecossistema, mantido separado do produto principal e com persistência local no navegador. |
+| **`conecteimob/evo`** | Runtime dedicado à conectividade de WhatsApp usada pelas campanhas. Empacota a Evolution API em imagem própria e mantém compatibilidade da camada de sessão/pareamento necessária ao fluxo da Conectei. |
+| **`conecteimob/mailer`** | Serviço auxiliar de e-mail e APIs de suporte. No produto principal, a entrega transacional é consumida por uma fronteira HTTP separada para fluxos como acesso por link e notificações de assinatura. |
+| **`conecteimob/task`** | Microapp/PWA de lembretes e tarefas do ecossistema, mantido separado do produto principal e com persistência local no navegador. |
 
-O repositório `task.conecteimob` mantém uma implementação pequena e independente; `evo.conecteimob` e `mailer.conecteimob` representam serviços auxiliares com responsabilidades mais específicas. Nem todo repositório listado é uma dependência obrigatória do mesmo runtime ou possui o mesmo ciclo de release da aplicação principal.
+O repositório `task` mantém uma implementação pequena e independente; `evo` e `mailer` representam serviços auxiliares com responsabilidades mais específicas. Nem todo repositório listado é uma dependência obrigatória do mesmo runtime ou possui o mesmo ciclo de release da aplicação principal.
 
 ## Facilidades pensadas para o trabalho real
 
