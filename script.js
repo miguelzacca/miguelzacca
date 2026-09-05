@@ -60,6 +60,7 @@
     Array.from(text).forEach(function (character, index) {
       var span = document.createElement("span");
       span.className = "char";
+      if (/\s/.test(character)) span.classList.add("char--space");
       span.setAttribute("aria-hidden", "true");
       span.textContent = character === " " ? "\u00A0" : character;
       span.style.transitionDelay = String(index * 55) + "ms";
@@ -212,7 +213,11 @@
   var storyCounter = document.querySelector("[data-story-counter]");
   var storyLabel = document.querySelector("[data-story-label]");
   var activeStoryIndex = -1;
-  var storyLabels = ["Descoberta", "Inteligência", "Operação"];
+  var storyLabels = [
+    "Descoberta",
+    "Abordagem + decisão",
+    "Operação + presença",
+  ];
 
   function setStoryScene(index) {
     if (index === activeStoryIndex) return;
