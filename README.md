@@ -163,17 +163,17 @@ O Antifraude usa KBA (Knowledge-Based Authentication) como uma camada adicional 
 
 ### 04 · Presença digital e geração de demanda — publique, receba e entenda o interesse
 
-| Área                                   | O que entrega                                                                                                                                                                                                                     |
-| -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Site imobiliário próprio**           | Editor de marca, cores, tipografia, hero, conteúdo institucional, catálogo, equipe, contato, redes sociais, localização, imagens e endereço público personalizado.                                                                |
-| **Catálogo público**                   | Busca, filtros, ordenação, imóveis em destaque, páginas individuais, CTAs de WhatsApp e e-mail e experiência responsiva.                                                                                                          |
-| **Sites por subdomínio/domínio**       | Vitrines públicas por identidade própria, com hostname principal, canonical e isolamento do catálogo; suporte a subdomínios da plataforma e domínios personalizados quando configurados.                                         |
-| **Assistant no site**                  | Assistente voltado exclusivamente ao catálogo publicado para ajudar visitantes a encontrar imóveis compatíveis com sua intenção.                                                                                                  |
-| **Leads e distribuição**               | Formulários e conversas convertidos em demanda comercial, com responsável do imóvel, regras de distribuição e acompanhamento de pendências.                                                                                       |
-| **SEO, AEO e descoberta por agentes**  | Renderização indexável, metadata, canonical, sitemap, dados estruturados, páginas editoriais, Markdown alternativo, `llms.txt`, instruções para agentes e controles de crawling; conteúdo público e produto permanecem sincronizados. |
-| **Indexação e compartilhamento**       | Imagens sociais, páginas indexáveis somente quando atingem critérios mínimos de qualidade e notificações de atualização por mecanismos compatíveis.                                                                              |
-| **Analytics imobiliário**              | Visualizações, leads, conversão, interações com IA, imóveis com melhor desempenho, origem da demanda, intenção dos visitantes e leitura por corretor.                                                                             |
-| **Avaliações e conteúdo público**      | Páginas de avaliações, guias editoriais, páginas de recursos e presença pública preparada para busca e compartilhamento.                                                                                                          |
+| Área                                  | O que entrega                                                                                                                                                                                                                         |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Site imobiliário próprio**          | Editor de marca, cores, tipografia, hero, conteúdo institucional, catálogo, equipe, contato, redes sociais, localização, imagens e endereço público personalizado.                                                                    |
+| **Catálogo público**                  | Busca, filtros, ordenação, imóveis em destaque, páginas individuais, CTAs de WhatsApp e e-mail e experiência responsiva.                                                                                                              |
+| **Sites por subdomínio/domínio**      | Vitrines públicas por identidade própria, com hostname principal, canonical e isolamento do catálogo; suporte a subdomínios da plataforma e domínios personalizados quando configurados.                                              |
+| **Assistant no site**                 | Assistente voltado exclusivamente ao catálogo publicado para ajudar visitantes a encontrar imóveis compatíveis com sua intenção.                                                                                                      |
+| **Leads e distribuição**              | Formulários e conversas convertidos em demanda comercial, com responsável do imóvel, regras de distribuição e acompanhamento de pendências.                                                                                           |
+| **SEO, AEO e descoberta por agentes** | Renderização indexável, metadata, canonical, sitemap, dados estruturados, páginas editoriais, Markdown alternativo, `llms.txt`, instruções para agentes e controles de crawling; conteúdo público e produto permanecem sincronizados. |
+| **Indexação e compartilhamento**      | Imagens sociais, páginas indexáveis somente quando atingem critérios mínimos de qualidade e notificações de atualização por mecanismos compatíveis.                                                                                   |
+| **Analytics imobiliário**             | Visualizações, leads, conversão, interações com IA, imóveis com melhor desempenho, origem da demanda, intenção dos visitantes e leitura por corretor.                                                                                 |
+| **Avaliações e conteúdo público**     | Páginas de avaliações, guias editoriais, páginas de recursos e presença pública preparada para busca e compartilhamento.                                                                                                              |
 
 ### 05 · Rotina, engajamento e suporte — mantenha a operação em movimento
 
@@ -226,12 +226,12 @@ Os provedores, contratos, credenciais e detalhes de integração ficam atrás de
 
 A Conectei é o produto principal, mas algumas capacidades ficam em serviços e projetos auxiliares com ciclos de entrega próprios. A separação reduz acoplamento operacional e permite evoluir componentes específicos sem transformar o README público em documentação de infraestrutura privada.
 
-| Repositório / serviço | Papel no ecossistema |
-| --------------------- | -------------------- |
-| **`conecteimob/conecteimob`** | Aplicação principal: produto web/PWA, APIs, domínio de negócio, sites públicos, CRM, imóveis, crédito, assinaturas, antifraude, SEO e operação. |
-| **`conecteimob/evo`** | Runtime dedicado à conectividade de WhatsApp usada pelas campanhas. Empacota a Evolution API em imagem própria e mantém compatibilidade da camada de sessão/pareamento necessária ao fluxo da Conectei. |
-| **`conecteimob/mailer`** | Serviço auxiliar de e-mail e APIs de suporte. No produto principal, a entrega transacional é consumida por uma fronteira HTTP separada para fluxos como acesso por link e notificações de assinatura. |
-| **`conecteimob/task`** | Microapp/PWA de lembretes e tarefas do ecossistema, mantido separado do produto principal e com persistência local no navegador. |
+| Repositório / serviço         | Papel no ecossistema                                                                                                                                                                                    |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`conecteimob/conecteimob`** | Aplicação principal: produto web/PWA, APIs, domínio de negócio, sites públicos, CRM, imóveis, crédito, assinaturas, antifraude, SEO e operação.                                                         |
+| **`conecteimob/evo`**         | Runtime dedicado à conectividade de WhatsApp usada pelas campanhas. Empacota a Evolution API em imagem própria e mantém compatibilidade da camada de sessão/pareamento necessária ao fluxo da Conectei. |
+| **`conecteimob/mailer`**      | Serviço auxiliar de e-mail e APIs de suporte. No produto principal, a entrega transacional é consumida por uma fronteira HTTP separada para fluxos como acesso por link e notificações de assinatura.   |
+| **`conecteimob/task`**        | Microapp/PWA de lembretes e tarefas do ecossistema, mantido separado do produto principal e com persistência local no navegador.                                                                        |
 
 O repositório `task` mantém uma implementação pequena e independente; `evo` e `mailer` representam serviços auxiliares com responsabilidades mais específicas. Nem todo repositório listado é uma dependência obrigatória do mesmo runtime ou possui o mesmo ciclo de release da aplicação principal.
 
@@ -251,16 +251,16 @@ O repositório `task` mantém uma implementação pequena e independente; `evo` 
 
 A Conectei foi construída como um produto único com superfícies públicas, autenticadas e operacionais coordenadas. A arquitetura detalhada é privada; este é o recorte seguro do que sustenta a experiência.
 
-| Camada              | Tecnologias e práticas                                                                                                     |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| **Interface**       | React 19, Vite 8, design responsivo, Framer Motion, Lucide e componentes acessíveis                                        |
-| **Visualização**    | Recharts, mapas interativos, dashboards e relatórios adaptáveis                                                            |
-| **Aplicação**       | Node.js, funções serverless, contratos de aplicação, validação de entrada e processamento assíncrono                      |
-| **Dados**           | PostgreSQL, migrações versionadas, transações, idempotência e isolamento por organização                                   |
-| **Comunicação**     | Serviço de e-mail separado e runtime dedicado para campanhas de WhatsApp                                                   |
-| **Entrega pública** | Renderização pública, prerenderização, SEO técnico, AEO/GEO, Markdown para agentes, PWA e distribuição global              |
-| **Qualidade**       | Testes unitários, integração com banco, fluxos completos, regressões de segurança e auditorias visuais com Playwright      |
-| **Operação**        | Logs estruturados, observabilidade, health checks, alertas, jobs monitorados e ferramentas internas de suporte             |
+| Camada              | Tecnologias e práticas                                                                                                |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| **Interface**       | React 19, Vite 8, design responsivo, Framer Motion, Lucide e componentes acessíveis                                   |
+| **Visualização**    | Recharts, mapas interativos, dashboards e relatórios adaptáveis                                                       |
+| **Aplicação**       | Node.js, funções serverless, contratos de aplicação, validação de entrada e processamento assíncrono                  |
+| **Dados**           | PostgreSQL, migrações versionadas, transações, idempotência e isolamento por organização                              |
+| **Comunicação**     | Serviço de e-mail separado e runtime dedicado para campanhas de WhatsApp                                              |
+| **Entrega pública** | Renderização pública, prerenderização, SEO técnico, AEO/GEO, Markdown para agentes, PWA e distribuição global         |
+| **Qualidade**       | Testes unitários, integração com banco, fluxos completos, regressões de segurança e auditorias visuais com Playwright |
+| **Operação**        | Logs estruturados, observabilidade, health checks, alertas, jobs monitorados e ferramentas internas de suporte        |
 
 ### Qualidade, segurança e privacidade por padrão
 

@@ -1,0 +1,26 @@
+{
+  "name": "miguel-zacca-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Miguel Zacca — Product Engineer e criador da Conectei",
+  "scripts": {
+    "dev": "node tools/serve.mjs",
+    "preview": "node tools/serve.mjs --dist",
+    "build:scene": "node tools/build.mjs --scene-only",
+    "build": "node tools/build.mjs",
+    "lint": "eslint .",
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "check": "npm run lint && npm run build && npm test"
+  },
+  "dependencies": {
+    "three": "0.185.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.63.0",
+    "esbuild": "0.28.2",
+    "eslint": "10.10.0"
+  }
+}
