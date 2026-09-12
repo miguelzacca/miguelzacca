@@ -4,7 +4,7 @@ umask 022
 export PATH=/opt/miguelzacca-onion/node/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 die() { printf 'Erro: %s\n' "$*" >&2; exit 1; }
-(( EUID == 0 )) || die 'Use sudo bash deploy/tor/deploy.sh [--rollback RELEASE].'
+(( EUID == 0 )) || die 'Use sudo bash deploy/tor/deploy.sh [--if-needed | --rollback RELEASE].'
 [[ $(uname -s) == Linux && -r /etc/os-release ]] || die 'Execute no Ubuntu Server.'
 # shellcheck disable=SC1091
 . /etc/os-release
@@ -14,23 +14,34 @@ readonly SOURCE=$BASE/source
 readonly WEB=/var/www/miguelzacca-onion
 readonly RELEASES=$WEB/releases
 readonly CURRENT=$WEB/current
+readonly REVISIONS=$WEB/revisions
 readonly DEPLOY_USER=miguelzacca-onion
 readonly RELEASE_PATTERN='^[0-9]{8}T[0-9]{6}\.[0-9]{9}Z$'
 mode=deploy
+automatic=0
 target=
-if [[ $# == 2 && $1 == --rollback ]]; then
+if [[ $# == 1 && $1 == --if-needed ]]; then
+    automatic=1
+elif [[ $# == 2 && $1 == --rollback ]]; then
     mode=rollback
     [[ $2 =~ $RELEASE_PATTERN ]] || die 'Informe apenas o nome timestamp da release.'
     target=$RELEASES/$2
 elif (( $# )); then
-    die 'Uso: sudo bash deploy/tor/deploy.sh [--rollback RELEASE]'
+    die 'Uso: sudo bash deploy/tor/deploy.sh [--if-needed | --rollback RELEASE]'
 fi
 
 exec 9>/run/lock/miguelzacca-onion.lock
-flock -n 9 || die 'Outro bootstrap/deploy/rollback está em andamento.'
-for path in "$BASE" "$SOURCE" "$WEB" "$RELEASES"; do
+if ! flock -n 9; then
+    if (( automatic )); then
+        printf 'Outro bootstrap/deploy/rollback está em andamento; nova tentativa no próximo ciclo.\n'
+        exit 0
+    fi
+    die 'Outro bootstrap/deploy/rollback está em andamento.'
+fi
+for path in "$BASE" "$BASE/home" "$SOURCE" "$WEB" "$RELEASES"; do
     [[ -d $path && ! -L $path ]] || die "Execute bootstrap.sh; diretório inválido: $path"
 done
+[[ ! -L $REVISIONS && ( ! -e $REVISIONS || -d $REVISIONS ) ]] || die 'Diretório de revisões inválido.'
 systemctl is-active --quiet miguelzacca-onion-nginx.service || die 'Nginx do projeto não está ativo.'
 
 validate_release() {
@@ -49,6 +60,8 @@ fi
 # The temporary link lives beside current, guaranteeing same-filesystem rename.
 temporary_link=$WEB/.current.$$
 response=$(mktemp "$WEB/.health.XXXXXXXX")
+revision_temporary=
+build_work=
 switched=0
 committed=0
 atomic_link() {
@@ -83,6 +96,10 @@ cleanup() {
         result=1
     fi
     rm -f -- "$temporary_link" "$response"
+    [[ -z $revision_temporary ]] || rm -f -- "$revision_temporary"
+    if [[ -n $build_work && $build_work == "$BASE/home"/build.* && ! -L $build_work ]]; then
+        rm -rf --one-file-system -- "$build_work"
+    fi
     exit "$result"
 }
 trap cleanup EXIT
@@ -98,19 +115,40 @@ if [[ $mode == deploy ]]; then
     [[ $(as_builder git -C "$SOURCE" branch --show-current) == main ]] || die 'O checkout precisa estar em main.'
     [[ -z $(as_builder git -C "$SOURCE" status --porcelain) ]] || die 'Checkout possui alterações locais; revise sem usar reset --hard.'
     as_builder git -C "$SOURCE" fetch --prune origin main
-    as_builder git -C "$SOURCE" merge-base --is-ancestor HEAD origin/main \
+    revision=$(as_builder git -C "$SOURCE" rev-parse --verify 'refs/remotes/origin/main^{commit}')
+    deployed_revision=
+    if [[ -n $previous ]]; then
+        metadata=$REVISIONS/${previous##*/}
+        [[ ! -L $metadata ]] || die 'Metadado de revisão não pode ser symlink.'
+        if [[ -f $metadata ]]; then
+            deployed_revision=$(< "$metadata")
+            [[ $deployed_revision =~ ^[0-9a-f]{40}$ ]] || die 'SHA implantado inválido.'
+        fi
+    fi
+    printf 'origin/main=%s; implantado=%s\n' "$revision" "${deployed_revision:-desconhecido}"
+    if (( automatic )) && [[ $revision == "$deployed_revision" ]]; then
+        printf 'Sem alteração: nenhum npm ci, build ou nova release.\n'
+        exit 0
+    fi
+    # Pin this deployment to the fetched commit, including its metadata.
+    as_builder git -C "$SOURCE" merge-base --is-ancestor HEAD "$revision" \
         || die 'main divergiu ou contém commits locais; o site atual foi preservado.'
-    as_builder git -C "$SOURCE" merge --ff-only origin/main
+    as_builder git -C "$SOURCE" merge --ff-only "$revision"
+    # The normal build regenerates tracked assets. Build an exact Git snapshot
+    # so those generated files cannot dirty source and block the next update.
+    build_work=$(as_builder mktemp -d "$BASE/home/build.XXXXXXXX")
+    as_builder git -C "$SOURCE" archive --format=tar "$revision" \
+        | as_builder tar -xf - -C "$build_work"
     (
-        cd "$SOURCE"
+        cd "$build_work"
         as_builder npm ci --include=dev
         as_builder npm run build
     )
-    [[ -d $SOURCE/dist && ! -L $SOURCE/dist && -s $SOURCE/dist/index.html ]] || die 'Build não gerou dist/index.html.'
-    [[ -z $(find "$SOURCE/dist" -type l -print -quit) ]] || die 'dist não pode conter symlinks.'
+    [[ -d $build_work/dist && ! -L $build_work/dist && -s $build_work/dist/index.html ]] || die 'Build não gerou dist/index.html.'
+    [[ -z $(find "$build_work/dist" -type l -print -quit) ]] || die 'dist não pode conter symlinks.'
     target=$RELEASES/$(date -u +%Y%m%dT%H%M%S.%NZ)
     mkdir -m 0755 -- "$target"
-    rsync -rlt --chmod=D755,F644 -- "$SOURCE/dist/" "$target/"
+    rsync -rlt --chmod=D755,F644 -- "$build_work/dist/" "$target/"
 fi
 validate_release "$target" || die 'Release alvo inválida ou sem index.html.'
 [[ $target != "$previous" ]] || die 'Esta release já está ativa.'
@@ -119,6 +157,16 @@ validate_release "$target" || die 'Release alvo inválida ou sem index.html.'
 switched=1
 atomic_link "$target"
 health_check "$target" || die 'A nova release falhou na verificação HTTP.'
+if [[ $mode == deploy ]]; then
+    # Record only a healthy release. The current symlink also selects its SHA,
+    # so rollbacks do not depend on a second independently updated state file.
+    install -d -m 0755 "$REVISIONS"
+    revision_temporary=$(mktemp "$REVISIONS/.commit.XXXXXXXX")
+    printf '%s\n' "$revision" > "$revision_temporary"
+    chmod 0644 "$revision_temporary"
+    mv -Tf -- "$revision_temporary" "$REVISIONS/${target##*/}"
+    revision_temporary=
+fi
 committed=1
 printf 'Release ativa: %s\n' "${target##*/}"
 
@@ -133,6 +181,7 @@ if [[ $mode == deploy ]]; then
         candidate=$RELEASES/$name
         if (( count > 3 )) && [[ $candidate != "$target" && $candidate != "$previous" && ! -L $candidate ]]; then
             rm -rf --one-file-system -- "$candidate"
+            rm -f -- "$REVISIONS/$name"
         fi
     done
 fi

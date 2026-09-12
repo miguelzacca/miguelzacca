@@ -25,7 +25,7 @@ readonly TOR_SERVICE=miguelzacca-onion-tor.service
 
 exec 9>/run/lock/miguelzacca-onion.lock
 flock -n 9 || die 'Outro bootstrap/deploy/rollback está em andamento.'
-for path in "$BASE" "$SOURCE" "$WEB" "$WEB/releases" \
+for path in "$BASE" "$BASE/bin" "$BASE/home" "$SOURCE" "$WEB" "$WEB/releases" "$WEB/revisions" \
     /var/lib/tor/miguelzacca-onion /var/lib/tor/miguelzacca-onion-data; do
     [[ ! -L $path ]] || die "Diretório não pode ser symlink: $path"
 done
@@ -60,7 +60,7 @@ if (( ${#packages[@]} )); then
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends "${packages[@]}"
 fi
 
-install -d -m 0755 "$BASE" "$WEB" "$WEB/releases"
+install -d -m 0755 "$BASE" "$WEB" "$WEB/releases" "$WEB/revisions"
 work=$(mktemp -d "$BASE/.bootstrap.XXXXXXXX")
 trap 'rm -rf -- "$work"' EXIT
 
@@ -184,5 +184,18 @@ systemctl enable "$NGINX_SERVICE" "$TOR_SERVICE"
 systemctl reload-or-restart "$NGINX_SERVICE"
 systemctl reload-or-restart "$TOR_SERVICE"
 systemctl is-active --quiet "$NGINX_SERVICE" "$TOR_SERVICE"
-printf 'Bootstrap concluído. Execute sudo bash deploy/tor/deploy.sh para publicar dist/.\n'
+# Install reviewed scripts outside the writable Git checkout. The timer never
+# executes freshly fetched repository infrastructure as root.
+install -d -m 0755 -o root -g root "$BASE/bin"
+for script in deploy.sh update-if-needed.sh; do
+    bash -n "$SCRIPT_DIR/$script"
+    install -m 0755 -o root -g root "$SCRIPT_DIR/$script" "$BASE/bin/$script.new"
+    mv -Tf -- "$BASE/bin/$script.new" "$BASE/bin/$script"
+done
+install -m 0644 "$SCRIPT_DIR/miguelzacca-onion-deploy.service" \
+    "$SCRIPT_DIR/miguelzacca-onion-deploy.timer" /etc/systemd/system/
+systemctl daemon-reload
+systemctl enable --now miguelzacca-onion-deploy.timer
+printf 'Bootstrap concluído. Timer habilitado; main será verificada a cada minuto.\n'
+printf 'Para publicar imediatamente: sudo bash /opt/miguelzacca-onion/bin/update-if-needed.sh\n'
 printf 'Endereço (quando Tor gerar a identidade): sudo cat /var/lib/tor/miguelzacca-onion/hostname\n'

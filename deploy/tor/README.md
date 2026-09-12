@@ -6,7 +6,7 @@ as URLs, o SEO e o canonical `https://miguelzacca.dev/` permanecem intactos.
 Os links externos existentes continuam levando aos seus destinos originais.
 
 ```text
-GitHub/main → npm ci → npm run build → dist/
+GitHub/main → timer (verifica SHA a cada minuto) → npm ci → npm run build → dist/
                                       ↓ cópia completa
                   /var/www/miguelzacca-onion/releases/<timestamp>
                                       ↑ current (symlink atômico)
@@ -64,7 +64,8 @@ command -v git >/dev/null || sudo apt-get install -y git
 git clone --branch main --single-branch https://github.com/miguelzacca/miguelzacca.git
 cd miguelzacca
 sudo bash deploy/tor/bootstrap.sh
-sudo bash deploy/tor/deploy.sh
+# Opcional: publicar agora, sem aguardar o primeiro ciclo do timer.
+sudo bash /opt/miguelzacca-onion/bin/update-if-needed.sh
 ```
 
 Use `bash` explicitamente; não é necessário mudar permissões dos scripts. O
@@ -88,8 +89,11 @@ Serviços e configurações exclusivos instalados na VPS:
 | Nginx | `/etc/nginx/miguelzacca-onion.conf` |
 | Tor | `/etc/tor/miguelzacca-onion.conf` |
 | Units systemd | `/etc/systemd/system/miguelzacca-onion-{nginx,tor}.service` |
+| Auto-deploy | `miguelzacca-onion-deploy.service` e `.timer` |
+| Scripts instalados, controlados por root | `/opt/miguelzacca-onion/bin/` |
 | Releases | `/var/www/miguelzacca-onion/releases/` |
 | Symlink ativo | `/var/www/miguelzacca-onion/current` |
+| SHA de cada release, fora da raiz HTTP | `/var/www/miguelzacca-onion/revisions/<timestamp>` |
 | Identidade permanente | `/var/lib/tor/miguelzacca-onion/` |
 | Estado de conexão Tor | `/var/lib/tor/miguelzacca-onion-data/` |
 
@@ -147,20 +151,74 @@ preservados, sem CSP ou outros headers novos interferindo no site.
 
 ## 4. Atualizar no futuro
 
+Depois do bootstrap, basta fazer commit/push para `main` no GitHub. A Vercel
+continua seu fluxo normal. A VPS consulta `origin/main` aproximadamente a cada
+minuto por conexões de saída, sem webhook, novas portas ou alterações na Vercel.
+
+`update-if-needed.sh` chama o modo `--if-needed` do deploy existente. O mesmo
+processo mantém `/run/lock/miguelzacca-onion.lock` durante fetch, comparação,
+build, troca, validação e gravação do SHA; não há locks aninhados ou uma janela
+sem lock entre a checagem e o deploy. Se houver operação em andamento, a
+checagem encerra com sucesso e tenta novamente no próximo ciclo.
+
+O SHA implantado vem de `revisions/<nome da release apontada por current>`.
+Ele só é gravado após o HTTP da nova release passar. **HEAD do checkout não é
+o SHA implantado**: um build pode falhar depois do fast-forward. Nesse caso,
+`current` e seu SHA continuam anteriores e o timer tenta novamente. Uma release
+antiga sem metadado é reconstruída uma vez para estabelecer um SHA comprovado;
+o script nunca presume que ela corresponde ao HEAD atual. O deploy usa o commit
+exato obtido no fetch, mesmo se outro push acontecer durante o build.
+
+Se o SHA remoto já estiver implantado, só há operações Git e a comparação:
+nenhum `npm ci`, build ou nova release. Logs de sucesso, ausência de mudança,
+lock ocupado e falhas ficam no journal. Uma falha não interrompe o site anterior.
+
+O bootstrap instala cópias revisadas dos scripts em `/opt/miguelzacca-onion/bin`,
+controladas por root, e executa:
+
 ```bash
-cd ~/miguelzacca
-git pull --ff-only origin main
-sudo bash deploy/tor/deploy.sh
+sudo systemctl daemon-reload
+sudo systemctl enable --now miguelzacca-onion-deploy.timer
 ```
 
-O deploy atualiza o checkout de produção com `git fetch` e `git merge --ff-only
-origin/main`, executa `npm ci --include=dev` e o `npm run build` original. Recusa
+O timer inicia após cerca de um minuto de boot e espera um minuto após cada
+execução terminar (`OnUnitInactiveSec=1min`, `AccuracySec=1s`). Não sobrepõe
+execuções; o timeout do serviço é 30 minutos. O serviço executa Git/npm/build
+como o usuário sem privilégios já existente e **não tem acesso a `/var/lib/tor`**.
+Scripts de infraestrutura recém-baixados do Git não são executados como root.
+Referência: [timers no systemd do Ubuntu](https://manpages.ubuntu.com/manpages/noble/man5/systemd.timer.5.html).
+
+Verificar ou disparar uma checagem imediatamente:
+
+```bash
+sudo systemctl status miguelzacca-onion-deploy.timer --no-pager
+sudo systemctl list-timers --all miguelzacca-onion-deploy.timer
+sudo journalctl -u miguelzacca-onion-deploy.service --no-pager -n 50
+sudo systemctl start miguelzacca-onion-deploy.service
+
+# Comparar o último fetch com o commit da release atual:
+sudo -u miguelzacca-onion git -C /opt/miguelzacca-onion/source rev-parse origin/main
+release=$(basename "$(readlink -f /var/www/miguelzacca-onion/current)")
+cat "/var/www/miguelzacca-onion/revisions/$release"
+```
+
+Para forçar um rebuild manual, independentemente do SHA:
+
+```bash
+sudo bash /opt/miguelzacca-onion/bin/deploy.sh
+```
+
+O deploy atualiza o checkout de produção com `git fetch` e `git merge --ff-only`
+do commit obtido de `origin/main`, executa `npm ci --include=dev` e o `npm run build` original. Recusa
 checkout sujo, branch incorreta, origin inesperado ou commits locais divergentes.
 Se houver alterações locais, revise-as; não use `reset --hard` automaticamente.
-O build existente também regenera `assets/signature.js` e seu arquivo de licença
-no checkout de produção. Se esses arquivos aparecerem como modificados em um
-update futuro, confira se são apenas os resultados gerados antes de restaurá-los
-manualmente. Nenhuma mudança é enviada ao GitHub pelo script.
+O build existente também regenera `assets/signature.js` e seu arquivo de licença.
+Para que isso não suje o checkout nem bloqueie a próxima atualização, o deploy
+extrai o commit exato com `git archive` para uma pasta temporária
+`/opt/miguelzacca-onion/home/build.*` e executa ali os mesmos comandos npm.
+O conteúdo servido é diretamente o `dist/` normal gerado nessa cópia; nenhum
+arquivo ou comando do frontend é modificado. A pasta temporária é removida ao
+terminar, inclusive em falhas capturáveis. Nenhuma mudança é enviada ao GitHub.
 
 Após conferir `dist/index.html`, copia todo `dist/` para uma release UTC como
 `20260912T153000.123456789Z`. Só então renomeia atomicamente um symlink temporário
@@ -171,7 +229,7 @@ ou build deixa o site anterior intacto. Falha HTTP ou interrupção capturável
 durante a troca restaura `current` e verifica a release anterior; no primeiro
 deploy, remove apenas o symlink, pois não existe release anterior.
 
-Somente depois do sucesso são removidas releases além das três mais recentes;
+Somente depois do sucesso são removidas releases e seus metadados além das três mais recentes;
 a ativa e a predecessora também são preservadas mesmo quando mais antigas.
 Releases de tentativas malsucedidas podem permanecer para inspeção até um deploy
 bem-sucedido posterior. Rollback manual não faz limpeza. Falta de energia ou
@@ -181,19 +239,28 @@ substituído, mas não é uma promessa de recuperação automática de falhas de
 
 Deploys de conteúdo não recarregam Nginx/Tor e nunca acessam as chaves. Se alterar
 esta infraestrutura no futuro, atualize seu clone administrativo e execute
-`bootstrap.sh` novamente antes de `deploy.sh`.
+`bootstrap.sh` novamente para instalar as cópias revisadas e as units. Isso só
+é necessário para mudanças da infraestrutura, não para atualizações do portfolio.
 
 ## 5. Rollback manual
 
 ```bash
+# Pause a automação para ela não republicar main após seu rollback manual.
+sudo systemctl disable --now miguelzacca-onion-deploy.timer
+# Aguarde qualquer checagem/deploy já iniciado terminar antes do rollback.
+while sudo systemctl is-active --quiet miguelzacca-onion-deploy.service; do sleep 2; done
 readlink -f /var/www/miguelzacca-onion/current
 ls -1 /var/www/miguelzacca-onion/releases
 # Substitua pelo nome exato de uma release existente que você deseja restaurar:
-sudo bash deploy/tor/deploy.sh --rollback 20260912T153000.123456789Z
+sudo bash /opt/miguelzacca-onion/bin/deploy.sh --rollback 20260912T153000.123456789Z
 ```
 
 Usa o mesmo lock, troca atômica e teste HTTP; se o alvo falhar, volta ao symlink
 que estava ativo antes do rollback. Não altera checkout, build ou endereço Onion.
+O SHA observado acompanha `current`, inclusive após rollback. Após corrigir ou
+reverter o problema em `main`, reative com
+`sudo systemctl enable --now miguelzacca-onion-deploy.timer`. A próxima checagem
+publicará a `main` se ela diferir da release restaurada.
 
 ## 6. Backup da identidade (segredo permanente)
 
