@@ -32,7 +32,7 @@ Ela pode ser usada por um corretor autônomo ou compartilhada por uma imobiliár
 <table align="center">
   <tr>
     <td align="center" width="33%">
-      <strong>600K+ linhas efetivas</strong><br>
+      <strong>750K+ linhas efetivas</strong><br>
       <sub>Produto, plataforma, testes e entrega</sub>
     </td>
     <td align="center" width="33%">
