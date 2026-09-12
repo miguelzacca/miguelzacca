@@ -1,11 +1,19 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-const sections = ["inicio", "conectei", "capacidades", "sobre", "contato"];
+const sections = [
+  "inicio",
+  "conectei",
+  "engenharia",
+  "capacidades",
+  "sobre",
+  "contato",
+];
 const viewports = [
   { name: "wide-desktop", width: 1920, height: 1080 },
   { name: "desktop", width: 1440, height: 1000 },
-  { name: "notebook", width: 1280, height: 800 },
+  { name: "notebook", width: 1366, height: 768 },
+  { name: "short-window", width: 1366, height: 600 },
   { name: "tablet", width: 834, height: 1112 },
   { name: "mobile", width: 390, height: 844 },
   { name: "small-mobile", width: 320, height: 740 },
@@ -136,13 +144,25 @@ test("local resources, semantic content, and runtime load without errors", async
   for (const id of sections) {
     await page.locator(`#${id}`).scrollIntoViewIfNeeded();
   }
+  for (const step of await page.locator(".story-step").all()) {
+    await step.scrollIntoViewIfNeeded();
+    const index = await step.getAttribute("data-step");
+    await expect(page.locator(`[data-screen="${index}"]`)).toBeVisible();
+    await expect
+      .poll(() =>
+        page
+          .locator(`[data-screen="${index}"] img`)
+          .evaluate((image) => image.naturalWidth),
+      )
+      .toBeGreaterThan(0);
+  }
   for (const image of await page.locator("main img").all()) {
     if (await image.isVisible()) await image.scrollIntoViewIfNeeded();
   }
   await expect
     .poll(() =>
       page
-        .locator("img")
+        .locator("main img")
         .evaluateAll((images) =>
           images
             .filter((image) => !image.complete || image.naturalWidth === 0)
@@ -210,7 +230,7 @@ test("anchors, scroll reversal, restored position and resizing preserve the scen
   page,
 }, testInfo) => {
   await page.goto("/#conectei");
-  await expect(page.locator('[data-ready="true"]')).toBeAttached();
+  await expect(page.locator(".story-copy").first()).toBeVisible();
   await expect(page.locator("#conectei h2").first()).toBeInViewport();
   for (const id of ["contato", "sobre", "conectei", "inicio"]) {
     await page.locator(`#${id}`).scrollIntoViewIfNeeded();
@@ -240,7 +260,7 @@ test("anchors, scroll reversal, restored position and resizing preserve the scen
     });
   }
   await page.reload();
-  await expect(page.locator('[data-ready="true"]')).toBeAttached();
+  await expect(page.locator("h1")).toBeVisible();
   await page.setViewportSize({ width: 834, height: 1112 });
   await checkHorizontalOverflow(page);
 });
@@ -267,12 +287,11 @@ test("without JavaScript the title, facts, navigation and product remain availab
   expect(values.every((value) => Number(value.replace(/[^\d]/g, "")) > 0)).toBe(
     true,
   );
-  await expect(page.locator(".product-facts dd")).toHaveText([
-    "01",
-    "06",
-    "1.700+",
-    "600K+",
-  ]);
+  await expect(page.locator(".scale-number")).toHaveText("750mil+");
+  await expect(page.locator("[data-detail]")).toHaveCount(4);
+  for (const detail of await page.locator("[data-detail]").all()) {
+    await expect(detail).toBeVisible();
+  }
   await expect(
     page.locator('a[href="https://github.com/miguelzacca"]').first(),
   ).toBeVisible();
@@ -375,7 +394,9 @@ test("reduced motion can be changed during the visit without hiding content", as
   await expect(page.locator("h1")).toBeVisible();
 });
 
-for (const viewport of [viewports[1], viewports[4]]) {
+for (const viewport of viewports.filter((viewport) =>
+  ["desktop", "mobile"].includes(viewport.name),
+)) {
   test(`WCAG A/AA automated audit: ${viewport.name}`, async ({
     page,
   }, testInfo) => {

@@ -1,7 +1,12 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
+    <script>
+      // Before first paint: the static assembled mark must not precede its assembly.
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches)
+        document.documentElement.classList.add("signature-pending");
+    </script>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
@@ -31,7 +36,7 @@
     <meta property="og:site_name" content="Miguel Zacca" />
     <meta
       property="og:title"
-      content="Miguel Zacca — Produtos digitais, de ponta a ponta"
+      content="Miguel Zacca — Engenharia de produto, por inteiro"
     />
     <meta
       property="og:description"
@@ -40,13 +45,13 @@
     <meta property="og:url" content="https://miguelzacca.dev/" />
     <meta
       property="og:image"
-      content="https://miguelzacca.dev/assets/conectei-social-1200x630.png"
+      content="https://miguelzacca.dev/assets/portfolio-social.png"
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="Conectei, principal produto criado por Miguel Zacca"
+      content="Miguel Zacca — Produto, experiência e engenharia"
     />
 
     <meta name="twitter:card" content="summary_large_image" />
@@ -57,7 +62,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://miguelzacca.dev/assets/conectei-social-1200x630.png"
+      content="https://miguelzacca.dev/assets/portfolio-social.png"
     />
 
     <link rel="icon" href="assets/mz-mark.svg" type="image/svg+xml" />
@@ -86,12 +91,12 @@
             "@id": "https://miguelzacca.dev/#person",
             "name": "Miguel Zacca",
             "url": "https://miguelzacca.dev/",
-            "image": "https://miguelzacca.dev/assets/profile-cover.svg",
+            "image": "https://miguelzacca.dev/assets/portfolio-social.png",
             "jobTitle": "Product Engineer",
             "description": "Product engineer que transforma problemas complexos em produtos digitais completos, da estratégia à operação.",
             "sameAs": [
               "https://github.com/miguelzacca",
-              "https://conecteimob.com.br"
+              "https://www.instagram.com/mz_miguelzacca/"
             ],
             "knowsAbout": [
               "Product Engineering",
@@ -134,362 +139,414 @@
   <body>
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <div class="reading-progress" aria-hidden="true"><span></span></div>
-
-    <header class="site-header">
-      <a class="brand" href="#inicio" aria-label="Miguel Zacca — início">
-        <svg viewBox="0 0 44 44" aria-hidden="true">
-          <path d="M8 34V10l14 14 14-14v24" />
-          <path class="brand-accent" d="M8 10h7M29 34h7" />
-        </svg>
-        <span
-          >Miguel Zacca<span class="brand__role">Product Engineer</span></span
-        >
-      </a>
+    <header class="site-header wrap">
+      <a class="brand" href="#inicio" aria-label="Miguel Zacca — início"
+        ><img src="assets/mz-mark.svg" width="32" height="32" alt="" /><span
+          >Miguel Zacca<span class="brand__role"
+            >Produto & engenharia</span
+          ></span
+        ></a
+      >
       <nav class="desktop-nav" aria-label="Navegação principal">
-        <a href="#conectei">Conectei<span>01</span></a>
-        <a href="#capacidades">Capacidades<span>02</span></a>
-        <a href="#sobre">Sobre<span>03</span></a>
+        <a href="#conectei">Trabalho <span>01</span></a
+        ><a href="#engenharia">Engenharia <span>02</span></a
+        ><a href="#sobre">Sobre <span>04</span></a>
       </nav>
       <a class="header-contact" href="#contato"
         >Vamos conversar <span aria-hidden="true">↗</span></a
       >
       <button
         class="menu-toggle"
-        type="button"
         data-menu-open
         aria-controls="site-menu"
         aria-expanded="false"
         aria-label="Abrir menu"
       >
-        <span>Menu</span><i aria-hidden="true"></i>
+        Menu <span aria-hidden="true">＋</span>
       </button>
       <details class="fallback-nav">
         <summary>Menu</summary>
         <nav aria-label="Navegação sem JavaScript">
-          <a href="#inicio">Início</a><a href="#conectei">Conectei</a
-          ><a href="#capacidades">Capacidades</a><a href="#sobre">Sobre</a
+          <a href="#conectei">Trabalho <span>01</span></a
+          ><a href="#engenharia">Engenharia <span>02</span></a
+          ><a href="#sobre">Sobre <span>04</span></a
           ><a href="#contato">Contato</a>
         </nav>
       </details>
     </header>
-
     <dialog class="site-menu" id="site-menu" aria-labelledby="menu-title">
       <div class="menu-top">
         <p id="menu-title">Miguel Zacca / Portfólio</p>
-        <button type="button" data-menu-close aria-label="Fechar menu">
-          Fechar <span aria-hidden="true">×</span>
-        </button>
+        <button data-menu-close aria-label="Fechar menu">Fechar ×</button>
       </div>
       <nav aria-label="Mapa do portfólio">
-        <a href="#inicio"><span>00</span>Início<i aria-hidden="true">↗</i></a>
-        <a href="#conectei"
-          ><span>01</span>Conectei<i aria-hidden="true">↗</i></a
-        >
-        <a href="#capacidades"
-          ><span>02</span>Capacidades<i aria-hidden="true">↗</i></a
-        >
-        <a href="#sobre"><span>03</span>Sobre<i aria-hidden="true">↗</i></a>
-        <a href="#contato"><span>04</span>Contato<i aria-hidden="true">↗</i></a>
+        <a href="#inicio">Início <span>00</span></a
+        ><a href="#conectei">Trabalho <span>01</span></a
+        ><a href="#engenharia">Engenharia <span>02</span></a
+        ><a href="#capacidades">Capacidades <span>03</span></a
+        ><a href="#sobre">Sobre <span>04</span></a
+        ><a href="#contato">Contato <span>05</span></a>
       </nav>
-      <p class="menu-foot">
-        Produto, experiência e engenharia.<br />Da primeira ideia à operação.
-      </p>
+      <div class="menu-channels">
+        <a
+          href="https://wa.me/5547997431069"
+          target="_blank"
+          rel="noopener noreferrer"
+          >WhatsApp Business ↗</a
+        ><a href="mailto:contato@conecteimob.com.br">E-mail ↗</a
+        ><a
+          href="https://www.instagram.com/mz_miguelzacca/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Instagram pessoal ↗</a
+        ><a
+          href="https://www.instagram.com/conectei.imob/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Instagram da Conectei ↗</a
+        >
+      </div>
     </dialog>
-
     <div class="signature-scene" aria-hidden="true">
       <canvas id="signature-canvas"></canvas>
     </div>
-
     <main id="conteudo">
-      <div class="opening">
-        <section class="hero" id="inicio" aria-labelledby="hero-title">
-          <div class="hero__edition wrap">
-            <span>Engenharia em movimento</span><span>Portfólio / 2026</span>
+      <section class="hero wrap" id="inicio" aria-labelledby="hero-title">
+        <div class="hero__copy">
+          <p class="eyebrow hero__pretitle">
+            <span class="status-dot"></span> Miguel Zacca / Product Engineer
+          </p>
+          <h1 id="hero-title">
+            <span class="hero-line">Eu construo</span
+            ><span class="hero-line">produtos.</span
+            ><span class="hero-line"><em>Por inteiro.</em></span>
+          </h1>
+          <p class="hero__description">
+            Da experiência na tela aos sistemas por trás dela. Sou o criador da
+            <strong>Conectei</strong>, uma plataforma para a operação
+            imobiliária.
+          </p>
+          <div class="hero__actions">
+            <a class="button" href="#conectei"
+              >Explorar meu trabalho <span aria-hidden="true">↓</span></a
+            ><a class="text-link" href="#contato"
+              >Entrar em contato <span aria-hidden="true">↗</span></a
+            >
           </div>
-          <div class="hero__body wrap">
-            <p class="hero__pretitle">
-              Miguel Zacca <span>—</span> Criador da Conectei
-            </p>
-            <h1 id="hero-title">
-              <span class="hero-line"><span>Complexidade,</span></span
-              ><span class="hero-line hero-line--serif"
-                ><span>em boa</span></span
-              ><span class="hero-line hero-line--last"
-                ><span>forma<span class="period">.</span></span></span
-              >
-            </h1>
+        </div>
+        <div class="identity-study">
+          <div class="study-top">
+            <span>Produto. Experiência. Engenharia.</span
+            ><span aria-hidden="true">MZ—01</span>
           </div>
+          <svg
+            class="construction"
+            viewBox="0 0 600 520"
+            fill="none"
+            aria-hidden="true"
+          >
+            <g stroke="currentColor" stroke-width=".65">
+              <circle cx="300" cy="260" r="215" />
+              <circle cx="300" cy="260" r="169" stroke-dasharray="2 8" />
+              <path
+                d="M0 260H600M300 0V520M80 45V480M520 45V480M40 70H560M40 450H560"
+              />
+              <path
+                d="M73 70H87M80 63V77M513 450H527M520 443V457"
+                stroke-width="2"
+              />
+            </g>
+          </svg>
           <div class="hero__sculpture" aria-hidden="true">
             <img
               class="signature-fallback"
               src="assets/signature-fallback.svg"
               alt=""
-              width="800"
-              height="800"
+              width="760"
+              height="680"
               fetchpriority="high"
             />
           </div>
-          <div class="hero__foot wrap">
-            <p>
-              Conecto estratégia, experiência e engenharia para construir
-              produtos digitais <strong>de ponta a ponta.</strong>
-            </p>
-            <a class="project-link" href="#conectei"
-              ><span
-                >Conheça a Conectei<small
-                  >Uma ideia que virou produto.</small
-                ></span
-              ><span class="arrow-disc" aria-hidden="true">↓</span></a
+          <span class="study-coordinate" aria-hidden="true"
+            >MZ / PARTES DE UM TODO</span
+          >
+          <div class="study-bottom">
+            <p>Partes que encontram<br /><em>uma mesma intenção.</em></p>
+            <button
+              class="assembly-toggle"
+              data-assembly-toggle
+              aria-pressed="false"
             >
-            <p class="hero__object-note">
-              <span class="tiny-rule"></span>Partes diferentes.<br />Uma mesma
-              intenção.
-            </p>
+              Separar peças <span aria-hidden="true">↗</span>
+            </button>
           </div>
-        </section>
-
-        <section class="assembly wrap" aria-labelledby="assembly-title">
-          <div class="assembly__copy">
-            <p class="eyebrow">
-              <span class="chapter-dot"></span> Da intenção à estrutura
-            </p>
-            <h2 id="assembly-title">
-              Uma boa ideia<br />precisa de partes<br />que
-              <em>se entendem.</em>
-            </h2>
-            <p>
-              O que o usuário sente. O que o negócio precisa. O que a tecnologia
-              sustenta. Meu trabalho é fazer essas decisões funcionarem juntas.
-            </p>
-          </div>
-          <div class="assembly__sculpture" aria-hidden="true">
-            <img
-              class="signature-fallback"
-              src="assets/signature-fallback.svg"
-              alt=""
-              width="800"
-              height="800"
-              loading="lazy"
-            />
-          </div>
-          <div class="assembly__foot">
-            <span>Estratégia</span><i aria-hidden="true"></i
-            ><span>Experiência</span><i aria-hidden="true"></i
-            ><span>Engenharia</span>
-          </div>
-        </section>
+        </div>
+        <div class="hero__foot">
+          <span>Design de produto + desenvolvimento de software</span
+          ><a href="#conectei"
+            >Um produto em operação <span aria-hidden="true">↓</span></a
+          >
+        </div>
+      </section>
+      <div class="assembly wrap">
+        <p>
+          Uma identidade.<br /><em>Outras possibilidades.</em
+          ><span>As mesmas peças, em outra função.</span>
+        </p>
+        <div class="assembly__space" aria-hidden="true">
+          <span class="assembly-coordinate">MZ / EM TRANSFORMAÇÃO</span>
+          <img
+            class="signature-fallback"
+            src="assets/signature-fallback.svg"
+            alt=""
+            width="760"
+            height="680"
+            loading="lazy"
+          />
+          <i></i><i></i>
+        </div>
+        <div class="assembly-route" aria-label="Do produto à operação">
+          <span>Uma necessidade</span><i aria-hidden="true"></i
+          ><span>Uma experiência</span><i aria-hidden="true"></i
+          ><span>Um sistema</span>
+        </div>
       </div>
-
       <section class="project" id="conectei" aria-labelledby="project-title">
-        <div class="project__intro wrap">
+        <div class="wrap project__intro">
           <div class="section-meta">
-            <p class="eyebrow"><span>01</span> Produto em operação</p>
-            <p>SaaS B2B <span>·</span> Web + PWA</p>
+            <p class="eyebrow">01 / Trabalho selecionado</p>
+            <span class="project-status"
+              ><i class="status-dot"></i> Em operação · Web + PWA</span
+            >
           </div>
           <div class="project__heading">
-            <div>
-              <p class="project__kicker">Quando as partes se conectam.</p>
-              <h2 id="project-title">
-                Conectei<span class="conectei-point" aria-hidden="true"></span>
-              </h2>
-            </div>
+            <h2 id="project-title">
+              Conectei<span aria-hidden="true">✳</span>
+            </h2>
             <a
-              class="text-link text-link--light"
+              class="text-link"
               href="https://conecteimob.com.br"
               target="_blank"
               rel="noopener noreferrer"
-              >Visitar o produto <span aria-hidden="true">↗</span></a
+              >Conhecer o produto <span aria-hidden="true">↗</span></a
             >
           </div>
-          <div class="project__context">
-            <p class="project__lead">
-              A operação imobiliária,<br /><em>conectada de ponta a ponta.</em>
-            </p>
+          <div class="case-premise">
+            <h3>Encontrar o imóvel<br />é só <em>o começo.</em></h3>
             <p>
-              Pesquisa, relacionamento, análise, documentos e presença digital.
-              Um único espaço de trabalho para corretores e equipes
-              imobiliárias.
+              Entre a pesquisa e a negociação, o corretor precisa manter
+              contatos, retornos, documentos e imóveis no mesmo contexto. A
+              Conectei reúne esse percurso em um espaço de trabalho.
             </p>
           </div>
-        </div>
-
-        <div class="product-portal wrap">
-          <figure class="product-frame">
-            <div class="product-frame__bar">
-              <img
-                src="assets/conectei-logo.svg"
-                alt="Conectei"
-                width="108"
-                height="24"
-              /><span>Visão integrada da operação</span
-              ><span class="live-label"><i></i>Produto real</span>
-            </div>
-            <a
-              class="screen-button"
-              href="assets/product-dashboard.webp"
-              data-image-open="dashboard"
-              aria-label="Ampliar tela da visão geral da Conectei"
-            >
-              <picture
-                ><source
-                  media="(max-width: 600px)"
-                  srcset="assets/product-dashboard-mobile.webp"
-                  width="390"
-                  height="844" />
-                <img
-                  src="assets/product-dashboard.webp"
-                  alt="Painel da Conectei: prioridades comerciais, pulso de mercado e ferramentas em um espaço de trabalho"
-                  width="1440"
-                  height="900"
-                  decoding="async"
-                  loading="eager"
-                  fetchpriority="low"
-              /></picture>
-              <span class="screen-button__hint"
-                >Explorar a interface <span aria-hidden="true">↗</span></span
-              >
-            </a>
-            <figcaption>
-              <span>01 / Visão geral</span
-              ><span>Interface real · dados demonstrativos</span>
-            </figcaption>
-          </figure>
-        </div>
-
-        <div class="product-summary wrap">
-          <div class="product-summary__author">
-            <p class="eyebrow">Meu papel</p>
-            <p>
-              Da estratégia à operação.<br />Produto, design e engenharia<br />no
-              mesmo processo.
-            </p>
-          </div>
-          <dl class="product-facts">
+          <dl class="case-brief">
             <div>
-              <dt>Uma plataforma</dt>
-              <dd>01</dd>
+              <dt>O problema</dt>
+              <dd>Uma rotina fragmentada entre ferramentas e informações.</dd>
             </div>
             <div>
-              <dt>Momentos conectados</dt>
-              <dd>06</dd>
+              <dt>Para quem</dt>
+              <dd>Corretores autônomos e equipes imobiliárias.</dd>
             </div>
             <div>
-              <dt>Arquivos por domínios</dt>
-              <dd>1.700<span>+</span></dd>
-            </div>
-            <div>
-              <dt>Linhas de produto e entrega</dt>
-              <dd>600<span>K+</span></dd>
+              <dt>Meu papel</dt>
+              <dd>
+                Criação do produto, experiência, aplicação, dados e operação.
+              </dd>
             </div>
           </dl>
-          <p class="product-summary__note">
-            Snapshot de setembro de 2026. Produto, plataforma, testes e entrega;
-            dependências e arquivos gerados não incluídos.
-          </p>
         </div>
+        <div class="story-heading wrap">
+          <p class="eyebrow">O produto, pelas decisões</p>
+          <p>Três recortes de uma operação conectada.</p>
+        </div>
+        <div class="product-story wrap">
+          <div class="story-steps">
+            <article class="story-step" id="pesquisa" data-step="0">
+              <div class="story-copy">
+                <p class="eyebrow">
+                  <span class="step-index">01</span> Encontrar & retomar
+                </p>
+                <h3>Começar com o que<br />o corretor <em>já sabe.</em></h3>
+                <p>
+                  A pesquisa parte de um endereço ou edifício. Cidade e tipo de
+                  busca definem os campos; o histórico permite voltar ao que já
+                  foi consultado.
+                </p>
+                <div class="decision-note">
+                  <span>A decisão de experiência</span>
+                  <p>
+                    Dar um ponto de entrada concreto e tornar a retomada parte
+                    do fluxo, em vez de exigir uma nova busca a cada visita.
+                  </p>
+                </div>
+                <a class="text-link" href="#engenharia"
+                  >Da interface à aplicação <span aria-hidden="true">↘</span></a
+                >
+              </div>
+              <figure class="story-figure" data-screen="0">
+                <div class="screen-top">
+                  <span>Conectei / Pesquisa imobiliária</span><span>01—03</span>
+                </div>
+                <a
+                  class="screen-button"
+                  href="assets/product-search.webp"
+                  data-image-open="search"
+                  aria-label="Ampliar tela de pesquisa imobiliária"
+                  ><picture
+                    ><source
+                      media="(max-width: 700px)"
+                      srcset="assets/product-search-mobile.webp"
+                      width="390"
+                      height="844" />
+                    <img
+                      src="assets/product-search.webp"
+                      width="1440"
+                      height="900"
+                      alt="Pesquisa da Conectei: cidade, endereço ou edifício e buscas recentes"
+                      loading="lazy"
+                      decoding="async" /></picture
+                  ><span class="screen-button__hint"
+                    >Ampliar tela <span aria-hidden="true">↗</span></span
+                  ></a
+                >
+                <figcaption>
+                  <span>Interface real · dados demonstrativos</span
+                  ><span>Endereço → pesquisa → retomada</span>
+                </figcaption>
+              </figure>
+            </article>
 
-        <div class="product-editorial wrap">
-          <div class="editorial-heading">
-            <p class="eyebrow">Um contexto que continua</p>
-            <h3>Da descoberta<br />à próxima <em>decisão.</em></h3>
-            <p>
-              A interface muda com a tarefa.<br />O contexto acompanha o
-              profissional.
-            </p>
+            <article class="story-step" id="rotina" data-step="1">
+              <div class="story-copy">
+                <p class="eyebrow">
+                  <span class="step-index">02</span> Organizar & continuar
+                </p>
+                <h3>O próximo passo<br />precisa estar <em>à vista.</em></h3>
+                <p>
+                  O painel reúne prioridades comerciais, atividades recentes e
+                  atalhos. CRM, agenda e carteira dão continuidade ao que
+                  começou na pesquisa.
+                </p>
+                <div class="decision-note">
+                  <span>A decisão de produto</span>
+                  <p>
+                    Organizar o início pela rotina do profissional: o que
+                    retomar, o que acompanhar e qual ferramenta abrir em
+                    seguida.
+                  </p>
+                </div>
+                <a class="text-link" href="#fluxo"
+                  >Percorrer a operação <span aria-hidden="true">↘</span></a
+                >
+              </div>
+              <figure class="story-figure" data-screen="1">
+                <div class="screen-top">
+                  <span>Conectei / Visão geral da operação</span
+                  ><span>02—03</span>
+                </div>
+                <a
+                  class="screen-button"
+                  href="assets/product-dashboard.webp"
+                  data-image-open="dashboard"
+                  aria-label="Ampliar visão geral da operação"
+                  ><picture
+                    ><source
+                      media="(max-width: 700px)"
+                      srcset="assets/product-dashboard-mobile.webp"
+                      width="390"
+                      height="844" />
+                    <img
+                      src="assets/product-dashboard.webp"
+                      width="1440"
+                      height="900"
+                      alt="Painel real da Conectei com prioridades comerciais, atalhos, pulso de mercado e atividades recentes"
+                      loading="lazy"
+                      decoding="async" /></picture
+                  ><span class="screen-button__hint"
+                    >Ampliar tela <span aria-hidden="true">↗</span></span
+                  ></a
+                >
+                <figcaption>
+                  <span>Interface real · dados demonstrativos</span
+                  ><span>Prioridades → ação → continuidade</span>
+                </figcaption>
+              </figure>
+            </article>
+            <article class="story-step" id="precificacao" data-step="2">
+              <div class="story-copy">
+                <p class="eyebrow">
+                  <span class="step-index">03</span> Analisar & decidir
+                </p>
+                <h3>Um valor, sozinho,<br />não conta <em>a história.</em></h3>
+                <p>
+                  O relatório apresenta valor recomendado, faixa de mercado e
+                  indicador de confiança. A jornada considera localização,
+                  características e imóveis comparáveis.
+                </p>
+                <div class="decision-note">
+                  <span>A decisão de interface</span>
+                  <p>
+                    Mostrar a estimativa junto de seus limites. A faixa e a
+                    confiança ajudam o profissional a interpretar o número antes
+                    de definir sua estratégia.
+                  </p>
+                </div>
+                <p class="screen-disclaimer">
+                  Apoio informativo à decisão. Não substitui um PTAM.
+                </p>
+              </div>
+              <figure class="story-figure" data-screen="2">
+                <div class="screen-top">
+                  <span>Conectei / Relatório de precificação</span
+                  ><span>03—03</span>
+                </div>
+                <a
+                  class="screen-button"
+                  href="assets/product-valuation-report.webp"
+                  data-image-open="valuation"
+                  aria-label="Ampliar relatório de precificação"
+                  ><picture
+                    ><source
+                      media="(max-width: 700px)"
+                      srcset="assets/product-valuation-report-mobile.webp"
+                      width="390"
+                      height="844" />
+                    <img
+                      src="assets/product-valuation-report.webp"
+                      width="1440"
+                      height="900"
+                      alt="Relatório real de precificação com valor recomendado, intervalo de mercado e indicador de confiança; valores demonstrativos"
+                      loading="lazy"
+                      decoding="async" /></picture
+                  ><span class="screen-button__hint"
+                    >Ampliar tela <span aria-hidden="true">↗</span></span
+                  ></a
+                >
+                <figcaption>
+                  <span>Interface real · dados demonstrativos</span
+                  ><span>Comparáveis → faixa → confiança</span>
+                </figcaption>
+              </figure>
+            </article>
           </div>
-          <article class="product-detail product-detail--search">
-            <div class="product-detail__copy">
-              <span class="detail-index">01 — Encontrar</span>
-              <h4>Contexto<br />antes da ação.</h4>
-              <p>
-                Pesquisa estruturada, mapa, Radar de Oportunidades e mercado
-                transformam sinais dispersos em um ponto claro para começar.
-              </p>
-              <ul>
-                <li>Pesquisa e histórico</li>
-                <li>Exploração geográfica</li>
-                <li>Oportunidades acionáveis</li>
-              </ul>
-            </div>
-            <figure class="detail-screen">
-              <a
-                class="screen-button"
-                href="assets/product-search.webp"
-                data-image-open="search"
-                aria-label="Ampliar tela de pesquisa imobiliária"
-                ><picture
-                  ><source
-                    media="(max-width: 600px)"
-                    srcset="assets/product-search-mobile.webp"
-                    width="390"
-                    height="844" />
-                  <img
-                    src="assets/product-search.webp"
-                    alt="Pesquisa imobiliária da Conectei com campos de endereço, pesquisas recentes e histórico"
-                    width="1440"
-                    height="900"
-                    loading="lazy"
-                    decoding="async" /></picture
-                ><span class="screen-button__hint"
-                  >Ampliar pesquisa <span aria-hidden="true">↗</span></span
-                ></a
-              >
-              <figcaption>
-                Pesquisa imobiliária · dados demonstrativos
-              </figcaption>
-            </figure>
-          </article>
-          <article class="product-detail product-detail--decision">
-            <div class="product-detail__copy">
-              <span class="detail-index">02 — Abordar e decidir</span>
-              <h4>Mais alcance.<br />Mais <em>critério.</em></h4>
-              <p>
-                Campanhas de WhatsApp com IA aceleram a abordagem. Precificação,
-                análise de crédito e verificação de identidade por KBA adicionam
-                contexto à decisão.
-              </p>
-              <p class="detail-aside">
-                A tecnologia prepara o caminho.<br />O profissional mantém o
-                controle.
-              </p>
-            </div>
-            <figure class="detail-screen">
-              <a
-                class="screen-button"
-                href="assets/product-valuation-report.webp"
-                data-image-open="valuation"
-                aria-label="Ampliar relatório de precificação"
-                ><picture
-                  ><source
-                    media="(max-width: 600px)"
-                    srcset="assets/product-valuation-report-mobile.webp"
-                    width="390"
-                    height="844" />
-                  <img
-                    src="assets/product-valuation-report.webp"
-                    alt="Relatório de precificação da Conectei com faixa de mercado, valor recomendado e nível de confiança"
-                    width="1440"
-                    height="900"
-                    loading="lazy"
-                    decoding="async" /></picture
-                ><span class="screen-button__hint"
-                  >Ampliar relatório <span aria-hidden="true">↗</span></span
-                ></a
-              >
-              <figcaption>
-                Precificação com contexto · dados demonstrativos
-              </figcaption>
-            </figure>
-          </article>
+          <div class="story-stage" aria-label="Telas do produto">
+            <nav class="story-navigation" aria-label="Momentos do case">
+              <a href="#pesquisa">01 / Pesquisa</a
+              ><a href="#rotina">02 / Rotina</a
+              ><a href="#precificacao">03 / Decisão</a>
+            </nav>
+          </div>
         </div>
 
-        <div class="connected-flow wrap">
+        <div class="connected-flow wrap" id="fluxo">
           <div class="flow-heading">
-            <p class="eyebrow">03 — Operar e publicar</p>
-            <h3>Seis movimentos.<br /><em>Um único contexto.</em></h3>
+            <p class="eyebrow">O que conecta esses recortes</p>
+            <h3>A informação segue.<br /><em>O trabalho também.</em></h3>
             <p>
-              Do primeiro imóvel encontrado ao site publicado, cada etapa deixa
-              a próxima mais clara.
+              Uma pesquisa pode iniciar uma abordagem. A resposta segue para o
+              relacionamento; o imóvel avança para carteira, documentos e
+              publicação.
             </p>
           </div>
           <ol class="flow-line">
@@ -503,7 +560,7 @@
             </li>
             <li>
               <span>03</span><strong>Relacionar</strong
-              ><small>CRM · Assistant · Agenda</small>
+              ><small>CRM · Agenda</small>
             </li>
             <li>
               <span>04</span><strong>Decidir</strong
@@ -511,121 +568,300 @@
             </li>
             <li>
               <span>05</span><strong>Operar</strong
-              ><small>Carteira · Equipe · Docs</small>
+              ><small>Carteira · Documentos</small>
             </li>
             <li>
               <span>06</span><strong>Publicar</strong
-              ><small>Sites · Leads · Analytics</small>
+              ><small>Site · Leads</small>
             </li>
           </ol>
-          <div class="product-depth">
-            <details>
-              <summary>
-                <span>01</span>Abordagem com revisão humana<i aria-hidden="true"
-                  >+</i
-                >
-              </summary>
-              <p>
-                Seleção de proprietários, mensagens fixas ou variações
-                preparadas por IA, revisão da fila e execução sequencial de
-                campanhas de WhatsApp, com pausas e acompanhamento.
-              </p>
-            </details>
-            <details>
-              <summary>
-                <span>02</span>Identidade como sinal adicional<i
-                  aria-hidden="true"
-                  >+</i
-                >
-              </summary>
-              <p>
-                O Antifraude KBA usa questionário em link temporário e apresenta
-                resumo de acertos e veredito como mais um sinal para a decisão
-                do profissional.
-              </p>
-            </details>
-            <details>
-              <summary>
-                <span>03</span>Uma presença digital própria<i aria-hidden="true"
-                  >+</i
-                >
-              </summary>
-              <p>
-                CRM, carteira, documentos e sites em subdomínio ou domínio
-                próprio preservam a continuidade da operação. Vitrines com
-                identidade própria, catálogo isolado, leads e analytics
-                imobiliário.
-              </p>
-            </details>
-            <details>
-              <summary>
-                <span>04</span>Descoberta por pessoas e agentes<i
-                  aria-hidden="true"
-                  >+</i
-                >
-              </summary>
-              <p>
-                SEO, AEO, canonical, sitemap, dados estruturados, Markdown
-                alternativo, <code>llms.txt</code> e controles de crawling
-                mantêm presença pública e produto sincronizados.
-              </p>
-            </details>
-          </div>
-        </div>
-
-        <div class="ecosystem wrap">
-          <div>
-            <p class="eyebrow">A engenharia por trás</p>
-            <h3>Um produto.<br />Responsabilidades <em>claras.</em></h3>
+          <div class="human-decision">
+            <span class="eyebrow">Um limite deliberado</span>
             <p>
-              Serviços com ciclos próprios reduzem acoplamento e mantêm a visão
-              do todo.
+              Nas campanhas, a IA pode preparar variações de mensagem. O
+              profissional seleciona os contatos, revisa a abordagem e inicia a
+              execução. A automação mantém um ponto de decisão humano.
             </p>
           </div>
-          <div class="repo-list">
+        </div>
+        <div class="case-outcome wrap">
+          <div>
+            <p class="eyebrow">Estado atual / Setembro de 2026</p>
+            <h3>Uma plataforma<br /><em>em operação.</em></h3>
+          </div>
+          <div>
+            <p>
+              Pesquisa, relacionamento, carteira, documentos e presença digital
+              no mesmo produto, com experiência web e PWA. São entregas que
+              podem ser conhecidas na apresentação pública da Conectei.
+            </p>
             <a
-              href="https://github.com/conecteimob/conecteimob"
+              class="text-link"
+              href="https://conecteimob.com.br"
               target="_blank"
               rel="noopener noreferrer"
-              ><span>Produto principal<strong>conecteimob</strong></span>
-              <p>Web/PWA, APIs e domínios de negócio.</p>
-              <i aria-hidden="true">↗</i></a
-            >
-            <a
-              href="https://github.com/conecteimob/evo"
+              >Ver a Conectei <span aria-hidden="true">↗</span></a
+            ><a
+              class="source-link"
+              href="https://github.com/miguelzacca/miguelzacca#engenharia-do-produto"
               target="_blank"
               rel="noopener noreferrer"
-              ><span>Conectividade WhatsApp<strong>evo</strong></span>
-              <p>Sessão e pareamento para campanhas.</p>
-              <i aria-hidden="true">↗</i></a
-            >
-            <a
-              href="https://github.com/conecteimob/mailer"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><span>E-mail transacional<strong>mailer</strong></span>
-              <p>Acesso por link, notificações e suporte.</p>
-              <i aria-hidden="true">↗</i></a
-            >
-            <a
-              href="https://github.com/conecteimob/task"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><span>Microapp / PWA<strong>task</strong></span>
-              <p>Lembretes e tarefas com persistência local.</p>
-              <i aria-hidden="true">↗</i></a
+              >Documentação pública do trabalho ↗</a
             >
           </div>
         </div>
-        <div class="project-end wrap">
-          <p>Complexidade por dentro.<br /><em>Clareza para quem usa.</em></p>
-          <a
-            class="text-link text-link--light"
-            href="https://conecteimob.com.br"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Conhecer a Conectei <span aria-hidden="true">↗</span></a
-          >
+      </section>
+
+      <section
+        class="engineering"
+        id="engenharia"
+        aria-labelledby="engineering-title"
+      >
+        <div class="wrap">
+          <div class="section-meta">
+            <p class="eyebrow">02 / Por dentro da construção</p>
+            <span>Responsabilidades antes de tecnologias</span>
+          </div>
+          <div class="engineering-intro">
+            <h2 id="engineering-title">
+              Um produto.<br /><em>Muitas decisões.</em>
+            </h2>
+            <p>
+              Interface, aplicação, dados e serviços têm papéis diferentes. O
+              desafio é manter a continuidade da experiência sem misturar essas
+              responsabilidades.
+            </p>
+          </div>
+          <div class="scale-statement">
+            <p class="scale-number">750<span>mil+</span></p>
+            <div>
+              <h3>linhas efetivas de código.</h3>
+              <p>
+                Produto, plataforma, testes e entrega. Uma construção que vai da
+                interface à operação.
+              </p>
+              <small
+                >Volume informado pelo autor · setembro de 2026<br />Dependências
+                e arquivos gerados não incluídos.</small
+              >
+            </div>
+            <span class="scale-mark" aria-hidden="true">↳</span>
+          </div>
+          <div class="engineering-explorer">
+            <div class="engineering-map">
+              <div class="map-meta">
+                <span>MAPA DE RESPONSABILIDADES</span
+                ><span aria-hidden="true">MZ—02</span>
+              </div>
+              <svg
+                class="map-lines"
+                preserveAspectRatio="none"
+                viewBox="0 0 640 470"
+                fill="none"
+                aria-hidden="true"
+              >
+                <g stroke="currentColor">
+                  <path
+                    d="M140 130H320V240H500M140 350H320V240M500 130H320M500 350H320"
+                  />
+                  <path class="map-trace" d="M140 130H320V240H500" />
+                  <circle cx="320" cy="240" r="58" stroke-dasharray="2 7" />
+                  <circle cx="320" cy="240" r="8" />
+                  <path d="M34 35H606M34 435H606" opacity=".3" />
+                </g>
+              </svg>
+              <div
+                class="map-nodes"
+                role="group"
+                aria-label="Explorar responsabilidades da Conectei"
+              >
+                <button
+                  class="map-node is-active"
+                  data-node="interface"
+                  aria-pressed="true"
+                  aria-controls="detail-interface"
+                >
+                  <span>01 / Experiência</span><strong>Interface</strong
+                  ><small>Web + PWA <i aria-hidden="true">↗</i></small></button
+                ><button
+                  class="map-node"
+                  data-node="aplicacao"
+                  aria-pressed="false"
+                  aria-controls="detail-aplicacao"
+                >
+                  <span>02 / Contratos</span><strong>Aplicação</strong
+                  ><small
+                    >Regras + autorização <i aria-hidden="true">↗</i></small
+                  ></button
+                ><button
+                  class="map-node"
+                  data-node="dados"
+                  aria-pressed="false"
+                  aria-controls="detail-dados"
+                >
+                  <span>03 / Consistência</span><strong>Dados</strong
+                  ><small
+                    >Transações + contexto <i aria-hidden="true">↗</i></small
+                  ></button
+                ><button
+                  class="map-node"
+                  data-node="servicos"
+                  aria-pressed="false"
+                  aria-controls="detail-servicos"
+                >
+                  <span>04 / Execução</span><strong>Serviços</strong
+                  ><small>E-mail + WhatsApp <i aria-hidden="true">↗</i></small>
+                </button>
+              </div>
+              <p class="map-instruction">
+                Selecione uma parte para explorar suas decisões.
+              </p>
+              <span class="map-center" aria-hidden="true">Conectei</span>
+            </div>
+            <div class="engineering-details">
+              <article
+                class="engineering-detail"
+                id="detail-interface"
+                data-detail="interface"
+              >
+                <p class="eyebrow">01 / O que a pessoa encontra</p>
+                <h3>A tarefa define<br /><em>a interface.</em></h3>
+                <p>
+                  React, interface responsiva e PWA sustentam a experiência no
+                  computador e no celular. Pesquisa, relatórios e rotina
+                  compartilham o mesmo produto.
+                </p>
+                <dl>
+                  <div>
+                    <dt>Decisão visível</dt>
+                    <dd>
+                      Na pesquisa, o contexto de cidade e tipo de busca vem
+                      antes dos campos. O histórico é parte da tela.
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>O compromisso</dt>
+                    <dd>
+                      Adaptar a composição e a navegação ao espaço disponível,
+                      preservando a tarefa e a leitura.
+                    </dd>
+                  </div>
+                </dl>
+                <a class="text-link" href="#pesquisa"
+                  >Ver essa decisão na pesquisa
+                  <span aria-hidden="true">↗</span></a
+                >
+              </article>
+              <article
+                class="engineering-detail"
+                id="detail-aplicacao"
+                data-detail="aplicacao"
+              >
+                <p class="eyebrow">02 / O que autoriza a ação</p>
+                <h3>O pedido chega.<br /><em>O contexto vem junto.</em></h3>
+                <p>
+                  A aplicação usa Node.js, funções serverless e validação de
+                  entrada. Recursos compartilhados são tratados no contexto de
+                  organização e autorização.
+                </p>
+                <dl>
+                  <div>
+                    <dt>Limite do sistema</dt>
+                    <dd>
+                      Interface pública, produto autenticado e operações
+                      privilegiadas têm responsabilidades separadas.
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>O compromisso</dt>
+                    <dd>
+                      Conectar a rotina de uma equipe sem tratar cada usuário
+                      como se tivesse o mesmo acesso.
+                    </dd>
+                  </div>
+                </dl>
+                <a class="text-link" href="#fluxo"
+                  >Voltar ao fluxo do produto
+                  <span aria-hidden="true">↗</span></a
+                >
+              </article>
+              <article
+                class="engineering-detail"
+                id="detail-dados"
+                data-detail="dados"
+              >
+                <p class="eyebrow">03 / O que precisa permanecer consistente</p>
+                <h3>Repetir um pedido.<br /><em>Preservar a operação.</em></h3>
+                <p>
+                  PostgreSQL, migrações versionadas, transações e idempotência
+                  compõem a base de dados descrita na documentação pública.
+                </p>
+                <dl>
+                  <div>
+                    <dt>Desafio de engenharia</dt>
+                    <dd>
+                      Notificações, documentos, créditos e automações exigem
+                      consistência e rastreabilidade, inclusive em novas
+                      tentativas.
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>O compromisso</dt>
+                    <dd>
+                      Tratar repetição e concorrência como parte da operação,
+                      com testes nas fronteiras entre usuários e organizações.
+                    </dd>
+                  </div>
+                </dl>
+                <a
+                  class="text-link"
+                  href="https://github.com/miguelzacca/miguelzacca#engenharia-do-produto"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Ler a visão pública de engenharia
+                  <span aria-hidden="true">↗</span></a
+                >
+              </article>
+              <article
+                class="engineering-detail"
+                id="detail-servicos"
+                data-detail="servicos"
+              >
+                <p class="eyebrow">04 / O que continua depois do clique</p>
+                <h3>Cada execução<br /><em>no seu tempo.</em></h3>
+                <p>
+                  O produto usa um serviço separado de e-mail e um runtime
+                  dedicado para campanhas de WhatsApp. A preparação da ação e
+                  sua execução têm papéis distintos.
+                </p>
+                <dl>
+                  <div>
+                    <dt>Decisão de implementação</dt>
+                    <dd>
+                      Campanhas passam por seleção e revisão, depois por
+                      execução sequencial, intervalos, pausas e acompanhamento.
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>O compromisso</dt>
+                    <dd>
+                      Separar esses ciclos exige acompanhar estados e falhas
+                      para que o profissional saiba o que aconteceu.
+                    </dd>
+                  </div>
+                </dl>
+                <a class="text-link" href="#fluxo"
+                  >Ver o ponto de revisão humana
+                  <span aria-hidden="true">↗</span></a
+                >
+              </article>
+            </div>
+          </div>
+          <p class="engineering-footnote">
+            Representação conceitual baseada na documentação pública. As
+            relações explicam responsabilidades; não expõem a topologia interna
+            do produto.
+          </p>
         </div>
       </section>
 
@@ -635,89 +871,76 @@
         aria-labelledby="capabilities-title"
       >
         <div class="section-meta">
-          <p class="eyebrow"><span>02</span> Capacidades</p>
-          <p>A mesma visão, em todas as camadas.</p>
+          <p class="eyebrow">03 / O que esse trabalho demonstra</p>
         </div>
-        <div class="capabilities__heading">
+        <div class="capabilities-heading">
           <h2 id="capabilities-title">
-            Entre a pergunta<br />e o produto,<br /><em
-              >eu conecto os pontos.</em
-            >
+            Capacidades com<br /><em>algo para mostrar.</em>
           </h2>
           <p>
-            Software é uma cadeia de decisões. Eu cuido da cadeia inteira — do
-            primeiro fluxo à infraestrutura em produção.
+            Da escolha do fluxo à consistência da operação. Cada frente aparece
+            em uma decisão da Conectei.
           </p>
         </div>
-        <div class="capability-list">
-          <article>
-            <span class="capability-index">01</span>
-            <h3>Produto <em>&</em> estratégia</h3>
-            <p>
-              Problema, contexto, prioridade e modelo de negócio. A decisão
-              certa antes da primeira linha de código.
-            </p>
-            <span class="capability-key">Direção</span>
-          </article>
-          <article>
-            <span class="capability-index">02</span>
-            <h3>Experiência <em>&</em> interface</h3>
-            <p>
-              Hierarquia, interação, acessibilidade e movimento. Beleza como
-              consequência da clareza.
-            </p>
-            <span class="capability-key">Intenção</span>
-          </article>
-          <article>
-            <span class="capability-index">03</span>
-            <h3>Engenharia <em>full stack</em></h3>
-            <p>
-              Interfaces, serviços, contratos e arquitetura desenhados como
-              partes do mesmo produto.
-            </p>
-            <span class="capability-key">Estrutura</span>
-          </article>
-          <article>
-            <span class="capability-index">04</span>
-            <h3>IA <em>&</em> automação</h3>
-            <p>
-              Assistentes e inteligência contextual com utilidade real, controle
-              explícito e revisão humana.
-            </p>
-            <span class="capability-key">Utilidade</span>
-          </article>
-          <article>
-            <span class="capability-index">05</span>
-            <h3>Dados <em>&</em> decisão</h3>
-            <p>
-              Modelagem, visualização e indicadores que tornam o próximo passo
-              legível.
-            </p>
-            <span class="capability-key">Clareza</span>
-          </article>
-          <article>
-            <span class="capability-index">06</span>
-            <h3>Qualidade <em>&</em> operação</h3>
-            <p>
-              Testes, segurança, observabilidade e entrega contínua. O cuidado
-              continua depois do deploy.
-            </p>
-            <span class="capability-key">Confiança</span>
-          </article>
+        <div class="capabilities-body">
+          <div class="capabilities-sculpture" aria-hidden="true">
+            <i></i><span>MZ / ESTRUTURA</span>
+          </div>
+          <div class="capability-list">
+            <article>
+              <span>01</span>
+              <h3>Produto & experiência</h3>
+              <p>
+                Organizar uma rotina ampla em pontos de entrada, prioridades e
+                continuidade.
+              </p>
+              <a href="#rotina"
+                >Ver o painel <span aria-hidden="true">↗</span></a
+              >
+            </article>
+            <article>
+              <span>02</span>
+              <h3>Interface & dados</h3>
+              <p>
+                Dar contexto a uma estimativa com hierarquia, faixa de valor e
+                confiança.
+              </p>
+              <a href="#precificacao"
+                >Ver o relatório <span aria-hidden="true">↗</span></a
+              >
+            </article>
+            <article>
+              <span>03</span>
+              <h3>Engenharia de aplicação</h3>
+              <p>
+                Conectar experiência, autorização, persistência e serviços com
+                limites definidos.
+              </p>
+              <a href="#engenharia" data-select-node="aplicacao"
+                >Explorar a aplicação <span aria-hidden="true">↗</span></a
+              >
+            </article>
+            <article>
+              <span>04</span>
+              <h3>Automação & operação</h3>
+              <p>
+                Preparar ações com IA e manter revisão, execução e
+                acompanhamento explícitos.
+              </p>
+              <a href="#engenharia" data-select-node="servicos"
+                >Explorar os serviços <span aria-hidden="true">↗</span></a
+              >
+            </article>
+          </div>
         </div>
-        <p class="technology-note">
-          React <span>/</span> Node.js <span>/</span> PostgreSQL
-          <span>/</span> Serverless <span>/</span> PWA <span>/</span> Testes E2E
-          <span>/</span> Observabilidade
-        </p>
       </section>
 
       <section class="about" id="sobre" aria-labelledby="about-title">
         <div class="about__inner wrap">
           <div class="about__identity">
-            <p class="eyebrow"><span>03</span> A pessoa por trás</p>
-            <div class="about__mark" aria-hidden="true">
-              <span>M</span><span>Z</span><i></i>
+            <p class="eyebrow">04 / A pessoa por trás</p>
+            <div class="about-monogram" aria-hidden="true">
+              <span>M</span><span>Z</span>
             </div>
             <p>
               Miguel Zacca<br /><span
@@ -727,95 +950,122 @@
           </div>
           <div class="about__copy">
             <h2 id="about-title">
-              Pensar o todo.<br /><em>Cuidar de cada parte.</em>
+              Eu sou o Miguel.<br /><em>E este é o meu trabalho.</em>
             </h2>
             <p class="about__lead">
+              Na Conectei, meu trabalho passa pelo desenho da experiência,
+              desenvolvimento da aplicação, dados, automações e operação. É um
+              produto que reúne essas frentes no mesmo lugar.
+            </p>
+            <p>
               Gosto dos problemas em que produto, design e engenharia precisam
-              sentar na mesma mesa — e sair de lá falando a mesma língua.
+              conversar. Uma busca clara, uma estimativa bem apresentada e uma
+              ação que continua depois do clique são partes do mesmo cuidado.
             </p>
             <p>
-              A Conectei é a síntese dessa forma de trabalhar: um ecossistema
-              amplo, responsivo e operacional, criado com atenção ao detalhe sem
-              perder a visão do todo.
+              O que você viu aqui é um recorte dessa construção: decisões de
+              interface que chegam aos serviços, e decisões técnicas que voltam
+              para a experiência de quem usa.
             </p>
-            <p>
-              Minha régua é simples: o usuário entende, o negócio avança e a
-              tecnologia aguenta crescer. Quando as três coisas acontecem
-              juntas, o produto vira infraestrutura para fazer algo melhor.
-            </p>
-            <div class="about__principles">
-              <span>Clareza antes de complexidade.</span
-              ><span>Detalhe sem perder o sistema.</span
-              ><span>IA como ferramenta.</span
-              ><span>Qualidade como parte do produto.</span>
+            <div class="about-links">
+              <a
+                class="text-link"
+                href="https://github.com/miguelzacca"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Meu GitHub <span aria-hidden="true">↗</span></a
+              ><a
+                class="text-link"
+                href="https://www.instagram.com/mz_miguelzacca/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Meu Instagram <span aria-hidden="true">↗</span></a
+              >
             </div>
           </div>
         </div>
       </section>
 
       <section class="contact" id="contato" aria-labelledby="contact-title">
-        <div class="contact__inner wrap">
-          <p class="eyebrow"><span>04</span> A próxima conexão</p>
-          <h2 id="contact-title">Vamos dar<br /><em>forma?</em></h2>
-          <p class="contact__copy">
-            Produto, engenharia ou uma ideia que ainda precisa ganhar forma.
-            Vamos colocar as partes na mesma mesa.
-          </p>
-          <a
-            class="contact__cta"
-            href="https://github.com/miguelzacca"
-            target="_blank"
-            rel="noopener noreferrer"
-            ><span>Conversar pelo GitHub</span
-            ><span aria-hidden="true">↗</span></a
-          ><a
-            class="contact__secondary"
-            href="https://conecteimob.com.br"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Ou comece pela Conectei <span aria-hidden="true">↗</span></a
-          >
-        </div>
-        <div class="contact__sculpture" aria-hidden="true">
-          <img
-            class="signature-fallback"
-            src="assets/signature-fallback.svg"
-            alt=""
-            width="800"
-            height="800"
-            loading="lazy"
-          />
-        </div>
-        <div class="contact__resolution wrap" aria-hidden="true">
-          <span>Ideia.</span><span>Estrutura.</span><span>Conexão.</span
-          ><span class="resolution-line"></span><strong>MZ</strong>
+        <div class="wrap">
+          <div class="section-meta">
+            <p class="eyebrow">05 / Vamos conversar</p>
+            <span>Uma conversa pode ser o começo.</span>
+          </div>
+          <div class="contact-intro">
+            <h2 id="contact-title">
+              Tem um produto<br />para <em>construir?</em>
+            </h2>
+            <div>
+              <p>
+                Produto digital, experiência ou engenharia de software. Se o
+                desafio pede essas partes trabalhando juntas, me conte o que
+                você está pensando.
+              </p>
+              <a
+                class="button contact-cta"
+                href="https://wa.me/5547997431069"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Conversar no WhatsApp <span aria-hidden="true">↗</span></a
+              ><span class="contact-small"
+                >Contato direto com Miguel · WhatsApp Business</span
+              >
+            </div>
+          </div>
+          <div class="contact-line" aria-hidden="true">
+            <span>Ideia</span><i></i><span>Conversa</span><i></i
+            ><strong>Próximo passo ↗</strong>
+          </div>
+          <div class="contact-channels">
+            <a href="mailto:contato@conecteimob.com.br"
+              ><span>E-mail / Miguel e Conectei</span
+              ><strong>contato@conecteimob.com.br</strong
+              ><i aria-hidden="true">↗</i></a
+            ><a
+              href="https://www.instagram.com/mz_miguelzacca/"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><span>Instagram / Pessoal</span><strong>@mz_miguelzacca</strong
+              ><i aria-hidden="true">↗</i></a
+            ><a
+              href="https://www.instagram.com/conectei.imob/"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><span>Instagram / Conectei</span><strong>@conectei.imob</strong
+              ><i aria-hidden="true">↗</i></a
+            >
+          </div>
+          <div class="contact-resolution">
+            <p>Miguel Zacca<span>Produto. Experiência. Engenharia.</span></p>
+            <div class="contact-emblem" aria-hidden="true">
+              <img
+                class="signature-fallback"
+                src="assets/signature-fallback.svg"
+                alt=""
+                width="760"
+                height="680"
+                loading="lazy"
+              />
+              <span>MZ / PEÇAS DE UMA MESMA CONSTRUÇÃO</span>
+            </div>
+          </div>
         </div>
       </section>
     </main>
-
     <footer class="site-footer wrap">
-      <a
-        href="#inicio"
-        class="footer-name"
-        aria-label="Miguel Zacca — voltar ao início"
-        >Miguel Zacca<span aria-hidden="true">↑</span></a
+      <a class="footer-name" href="#inicio"
+        >Voltar ao início <span aria-hidden="true">↑</span></a
       >
       <div class="footer-bottom">
         <p>Produto · experiência · engenharia</p>
-        <div>
-          <a
-            href="https://github.com/miguelzacca"
-            target="_blank"
-            rel="noopener noreferrer"
-            >GitHub ↗</a
-          ><a
-            href="https://conecteimob.com.br"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Conectei ↗</a
-          >
-        </div>
-        <p>© <span data-year>2026</span> · miguelzacca.dev</p>
+        <a
+          href="https://github.com/miguelzacca"
+          target="_blank"
+          rel="noopener noreferrer"
+          >GitHub ↗</a
+        >
+        <p>© <span data-year>2026</span></p>
       </div>
     </footer>
 
@@ -836,17 +1086,16 @@
         role="region"
         aria-label="Captura ampliada da interface"
       >
-        <img
-          src="assets/product-dashboard.webp"
-          alt=""
-          width="1440"
-          height="900"
-        />
+        <img alt="" width="1440" height="900" />
       </div>
       <p class="image-dialog__caption">
         Interface real da Conectei · dados demonstrativos
       </p>
     </dialog>
-    <script src="script.js" defer></script>
+    <script
+      type="module"
+      src="script.js"
+      onerror="document.documentElement.classList.remove('signature-pending')"
+    ></script>
   </body>
 </html>

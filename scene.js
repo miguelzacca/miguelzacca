@@ -138,6 +138,123 @@ const POSES = [HERO, FRAME, RESOLVED].map((poses) =>
   poses.map(poseFromEndpoints),
 );
 
+// One set of eight members, with a different job in each chapter. There are no
+// replacement models: every position, joint, length and section is interpolated.
+const FORMATIONS = {
+  resolved: POSES[2],
+  frame: POSES[1],
+  exploded: POSES[2].map((pose, i) => ({
+    position: pose.position
+      .clone()
+      .multiplyScalar(1.37)
+      .add(
+        new THREE.Vector3(
+          Math.sin(i * 2.4) * 0.48,
+          Math.cos(i * 1.8) * 0.42,
+          (i % 2 ? 1 : -1) * (1 + i * 0.11),
+        ),
+      ),
+    quaternion: pose.quaternion
+      .clone()
+      .multiply(
+        new THREE.Quaternion().setFromEuler(
+          new THREE.Euler(
+            Math.sin(i * 1.9) * 0.5,
+            (i % 2 ? 1 : -1) * 0.55,
+            Math.cos(i * 2.5) * 0.3,
+          ),
+        ),
+      ),
+    length: pose.length,
+  })),
+  helix: POSES[2].map((pose, i) => {
+    const angle = (i / 8) * Math.PI * 2;
+    return {
+      position: new THREE.Vector3(
+        Math.cos(angle) * 2.12,
+        Math.sin(angle) * 1.55,
+        Math.sin(angle * 2) * 1.45,
+      ),
+      quaternion: new THREE.Quaternion().setFromEuler(
+        new THREE.Euler(0.45 + angle * 0.35, angle, angle - 0.5),
+      ),
+      length: pose.length * 0.92,
+    };
+  }),
+  spine: POSES[2].map((_, i) => ({
+    position: new THREE.Vector3(
+      Math.sin(i * 0.85) * 0.2,
+      (3.5 - i) * 0.67,
+      Math.cos(i * 0.85) * 0.6,
+    ),
+    quaternion: new THREE.Quaternion().setFromEuler(
+      new THREE.Euler(0, i * 0.26, Math.PI / 2 + Math.sin(i) * 0.16),
+    ),
+    length: 1.48 + Math.sin(i * 0.9) * 0.32,
+  })),
+  corners: POSES[1].map((pose, i) => ({
+    position: pose.position
+      .clone()
+      .multiply(new THREE.Vector3(1.08, 1.13, 1))
+      .setZ((i % 2 ? 1 : -1) * 0.48),
+    quaternion: pose.quaternion
+      .clone()
+      .multiply(
+        new THREE.Quaternion().setFromEuler(
+          new THREE.Euler((i % 2 ? 1 : -1) * 0.25, 0.25, 0),
+        ),
+      ),
+    length: pose.length * 0.68,
+  })),
+  network: [
+    [
+      [-3.25, 0.45, 0],
+      [-3.25, 1.85, 0],
+    ],
+    [
+      [-3.25, 1.85, 0],
+      [-1.25, 1.85, 0],
+    ],
+    [
+      [1.25, 1.85, 0],
+      [3.25, 1.85, 0],
+    ],
+    [
+      [3.25, 1.85, 0],
+      [3.25, 0.45, 0],
+    ],
+    [
+      [-3.25, -0.45, 0],
+      [-3.25, -1.85, 0],
+    ],
+    [
+      [-3.25, -1.85, 0],
+      [-1.25, -1.85, 0],
+    ],
+    [
+      [1.25, -1.85, 0],
+      [3.25, -1.85, 0],
+    ],
+    [
+      [3.25, -1.85, 0],
+      [3.25, -0.45, 0],
+    ],
+  ].map(poseFromEndpoints),
+};
+const fromPosition = new THREE.Vector3();
+const toPosition = new THREE.Vector3();
+
+function fitPose(pose, name, aspect, position) {
+  position.copy(pose.position);
+  if (!["frame", "corners", "network"].includes(name)) return pose.length;
+  const vertical = (name === "network" ? 6.9 / 4.7 : 6.12 / 3.52) / aspect;
+  position.y *= vertical;
+  // The aperture adapts to the real image's aspect ratio, including portrait
+  // captures on touch. Members stay straight; only the vertical members extend.
+  v1.copy(Y_AXIS).applyQuaternion(pose.quaternion);
+  return pose.length * Math.hypot(v1.x, v1.y * vertical, v1.z);
+}
+
 /**
  * A viewport-sized, transparent, orthographic scene. Bounds are CSS pixels and
  * remain controlled by the document; neither scrolling nor content depends on it.
@@ -218,7 +335,7 @@ export function createSignature(
     // A local studio supplies long, quiet reflections without remote HDR assets.
     const room = new RoomEnvironment();
     const generator = new THREE.PMREMGenerator(renderer);
-    environment = generator.fromScene(room, 0.05);
+    environment = generator.fromScene(room, 0.025);
     scene.environment = environment.texture;
     scene.environmentIntensity = 0.82;
     room.dispose();
@@ -432,22 +549,70 @@ export function createSignature(
   }
 
   function updateSculpture(delta, immediate) {
+    const journey = state.mode === "journey";
     const p = ease(clamp(Number(state.progress) || 0, 0, 1));
     const chapter =
       state.mode === "contact" ? 2 : state.mode === "product" ? 1 : 0;
-    const from = chapter === 2 ? POSES[1] : POSES[0];
-    const to = chapter === 2 ? POSES[2] : chapter === 1 ? POSES[1] : POSES[0];
-    const blend = chapter === 0 ? 0 : p;
+    const from = journey
+      ? FORMATIONS[state.fromPose]
+      : chapter === 2
+        ? POSES[1]
+        : chapter === 1
+          ? POSES[2]
+          : POSES[0];
+    const to = journey
+      ? FORMATIONS[state.toPose]
+      : chapter === 2 || state.mode === "identity"
+        ? POSES[2]
+        : chapter === 1
+          ? POSES[1]
+          : POSES[0];
+    const blend = chapter === 0 && state.mode !== "identity" ? 0 : p;
     const damping = immediate ? 1 : 1 - Math.exp(-delta * 8.5);
 
     for (let i = 0; i < members.length; i += 1) {
       const { part, beam, depth, nominalLength } = members[i];
-      center.lerpVectors(from[i].position, to[i].position, blend);
-      quat.copy(from[i].quaternion).slerp(to[i].quaternion, blend);
+      const memberBlend = journey
+        ? ease(clamp(state.morph * 1.3 - i * 0.042, 0, 1))
+        : state.mode === "identity"
+          ? ease(clamp(state.progress * 1.3 - i * 0.04, 0, 1))
+          : blend;
+      const fromLength = journey
+        ? fitPose(from[i], state.fromPose, state.frameAspect, fromPosition)
+        : from[i].length;
+      const toLength = journey
+        ? fitPose(to[i], state.toPose, state.frameAspect, toPosition)
+        : to[i].length;
+      center.lerpVectors(
+        journey ? fromPosition : from[i].position,
+        journey ? toPosition : to[i].position,
+        memberBlend,
+      );
+      if (
+        journey &&
+        (state.fromPose === "network" || state.toPose === "network")
+      ) {
+        const strength =
+          state.fromPose === "network" && state.toPose === "network"
+            ? 1
+            : state.fromPose === "network"
+              ? 1 - memberBlend
+              : memberBlend;
+        if (Math.floor(i / 2) === state.focusIndex) {
+          center.z += 0.6 * strength;
+          center.y += 0.11 * strength;
+        }
+      }
+      if (state.mode === "identity") {
+        center.x += Math.sign(from[i].position.x) * 0.28 * (1 - memberBlend);
+        center.y += ((i % 3) - 1) * 0.32 * (1 - memberBlend);
+        center.z += (i % 2 ? 0.75 : -0.45) * (1 - memberBlend);
+      }
+      quat.copy(from[i].quaternion).slerp(to[i].quaternion, memberBlend);
       const targetLength = THREE.MathUtils.lerp(
-        from[i].length,
-        to[i].length,
-        blend,
+        fromLength,
+        toLength,
+        memberBlend,
       );
       part.position.lerp(center, damping);
       part.quaternion.slerp(quat, damping);
@@ -457,6 +622,8 @@ export function createSignature(
         damping,
       );
       beam.scale.y = members[i].length / nominalLength;
+      const cross = journey ? state.crossSection : 1;
+      beam.scale.x = beam.scale.z = cross;
       part.updateMatrix();
       if (i !== 7) {
         for (let endIndex = 0; endIndex < 2; endIndex += 1) {
@@ -464,7 +631,7 @@ export function createSignature(
           jointMatrix.makeTranslation(
             0,
             end * (members[i].length / 2 - 0.18),
-            depth / 2 + 0.006,
+            (depth * cross) / 2 + 0.006,
           );
           jointMatrix.premultiply(part.matrix);
           for (const bolts of boltInstances)
@@ -487,7 +654,12 @@ export function createSignature(
       frameRotation.set(-0.13, -0.23, -0.018);
     }
     heroRotation.lerp(frameRotation, chapter === 0 ? 0 : p);
-    const interaction = chapter === 1 ? 1 - p * 0.85 : 1;
+    if (journey) heroRotation.set(...state.rotation);
+    const interaction = journey
+      ? state.pointerStrength
+      : chapter === 1
+        ? 1 - p * 0.85
+        : 1;
     euler.set(
       heroRotation.x + pointerY * 0.026 * interaction,
       heroRotation.y + pointerX * 0.039 * interaction,
@@ -500,10 +672,12 @@ export function createSignature(
     const frameAmount = chapter === 2 ? 1 - p : chapter === 1 ? p : 0;
     const nominalWidth = THREE.MathUtils.lerp(6.15, 6.64, frameAmount);
     const nominalHeight = THREE.MathUtils.lerp(5.2, 4.1, frameAmount);
-    const scale = Math.max(
-      0.01,
-      Math.min(bounds.width / nominalWidth, bounds.height / nominalHeight),
-    );
+    const scale = journey
+      ? state.unitScale
+      : Math.max(
+          0.01,
+          Math.min(bounds.width / nominalWidth, bounds.height / nominalHeight),
+        );
     const targetX = bounds.x - width / 2;
     const targetY = height / 2 - bounds.y;
     // Viewport positioning is immediate so the canvas stays aligned with DOM
@@ -615,6 +789,12 @@ export function createSignature(
         bounds: { ...state.bounds, ...nextState.bounds },
       };
       canvas.dataset.mode = state.mode;
+      if (state.mode === "journey") {
+        canvas.dataset.fromPose = state.fromPose;
+        canvas.dataset.toPose = state.toPose;
+        canvas.dataset.morph = Number(state.morph).toFixed(3);
+        canvas.dataset.score = String(state.score);
+      }
       if (!canAnimate()) {
         cancelAnimationFrame(raf);
         raf = 0;

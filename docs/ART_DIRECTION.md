@@ -1,37 +1,42 @@
-# Engenharia em movimento
+# Engenharia de produto, em construção
 
-O portfólio continua sendo de Miguel Zacca, Product Engineer e criador da Conectei. O princípio visual é o mesmo princípio de trabalho: partes distintas precisam se entender para produzir um todo útil.
+Papel quente, verde tinta, metal usinado e relações desenhadas. A identidade de Miguel conduz a página: as mesmas oito peças que formam o MZ se soltam, atravessam os capítulos, enquadram o produto, apoiam sua engenharia e retornam à assinatura. A Conectei é o principal case; o encerramento volta à pessoa e aos contatos autorizados.
 
-## Três momentos
+## Sequência editorial
 
-1. **Complexidade, em boa forma.** Papel quente, tipografia editorial em três planos e uma construção de oito membros extrudados. O M e o Z aparecem incompletos, em profundidades diferentes. Grafite, alumínio acetinado e fixações de latão retomam a identidade existente.
-2. **Quando as partes se conectam.** A estrutura atravessa a mudança cromática e se reorganiza como abertura para a Conectei. A moldura WebGL e a superfície DOM do produto compartilham posição e escala. O restante do case mostra telas reais, decisões, fluxo e responsabilidades do ecossistema.
-3. **Vamos dar forma?** O mesmo conjunto fecha o MZ ao lado de um convite simples. A conclusão recupera a assinatura, o nome e o papel profissional de Miguel.
+1. **Quem / o quê / próximo passo:** Miguel Zacca, Product Engineer e criador da Conectei. Proposta, acesso ao trabalho e contato visíveis juntos em 1366 × 768.
+2. **Problema, público e papel:** uma rotina imobiliária fragmentada, corretores e equipes, criação do produto da experiência à operação.
+3. **Três decisões:** começar e retomar uma pesquisa; organizar a rotina; interpretar uma estimativa com faixa e confiança. Cada explicação acompanha uma captura existente, real e com dados demonstrativos.
+4. **Continuidade e estado:** pesquisa, abordagem, relacionamento, decisão, operação e publicação; revisão humana; plataforma em operação. Sem resultados comerciais ou métricas de adoção inventados.
+5. **Engenharia:** 750 mil+ LOC efetivos informados pelo autor, com data e escopo. Mapa de interface, aplicação, dados e serviços. A escala é contexto; as decisões sustentam o case.
+6. **Capacidades, pessoa e contato:** capacidades ligadas a evidências, trabalho atual sem trajetória inventada, WhatsApp Business, e-mail e Instagrams autorizados.
 
-## Movimento
+## Uma escultura, sete formações
 
-- Scroll nativo, sem captura de wheel, touch ou teclado e sem trechos de rolagem fixada obrigatória.
-- Uma cena WebGL transparente compartilhada entre os capítulos; texto e links são HTML.
-- Abertura: atribuição, três linhas com máscaras tipográficas, depois convite. Nenhum preloader.
-- Gramática DOM: curva `cubic-bezier(.22,1,.36,1)`, entradas entre 700–1150 ms; linhas, máscaras, deslocamento lateral curto e mudanças de opacidade têm papéis distintos.
-- Interação: ponteiro normal, alvos imóveis, setas e linhas que indicam direção. Amortecimento da escultura limitado a poucos graus.
-- O mobile segue a posição real dos elementos no documento; reorganiza a estrutura em um intervalo próprio antes do produto. A interface permanece reta e usa os screenshots mobile originais.
-- Reduced motion: composição estática em cada momento, sem parallax e sem sequência obrigatória. A mudança da preferência durante a visita é observada.
+O monograma encontrado no repositório já era geometria procedural em Three.js, com SVG como alternativa estática. A reconstrução preserva os oito membros, os materiais, juntas e iluminação de estúdio. Não há troca de modelos ou cenas independentes para simular continuidade.
 
-## Implementação
+`journey.js` define uma partitura em coordenadas do documento: MZ → peças separadas → espiral espacial → lâminas agrupadas → moldura → cantos abertos → apoios do mapa. As formações se interpolam membro por membro, incluindo comprimento, seção, posição e rotação. A escala e as trajetórias têm espaços próprios no layout.
 
-- `index.html`: conteúdo indexável, navegação, imagens reais, metadados e JSON-LD.
-- `styles.css`: tokens de papel/grafite/latão, tipografia local, composição e breakpoints.
-- `script.js`: navegação, visualizador de imagens, medidas do documento e timeline de scroll. Nenhuma atualização de framework por frame.
-- `scene.js`: geometria procedural, materiais, luz, morph e lifecycle Three.js; `assets/signature.js` é o bundle local gerado e serve diretamente no hosting estático existente.
-- `assets/signature-fallback.svg`: interpretação vetorial da mesma construção para carregamento inicial ou falha de WebGL.
+| Momento          | Comunica                                             | Início e término                                                                                                                                                                                                                                                                                                    | Ao subir                                                                               | Touch                                                                                                                   | Movimento reduzido / falha                                                                                                                            |
+| ---------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Identidade       | Uma assinatura construída por partes                 | HTML imediato; o monograma aguarda invisível pelo primeiro quadro desmontado e se monta em cerca de 1,8 s. SVG imediato com movimento reduzido ou sem JavaScript, e restaurado em caso de falha. Botão permite separar/reunir. Ao rolar, a montagem deixa seu estudo, se abre e gira no intervalo anterior ao case. | A partitura é percorrida ao contrário, com as mesmas peças; não reinicia a introdução. | Estudo abaixo dos CTAs, botão por toque e um espaço vertical específico para a transformação.                           | SVG desenhado; sem importação Three.js com preferência inicial reduzida. Mudança de preferência ou perda de contexto restaura os elementos estáticos. |
+| Produto          | As peças da identidade passam a sustentar o trabalho | A escultura se alinha aos limites reais de cada captura. Na mudança de tarefa, os oito membros se abrem, a tela muda e a moldura fecha. Texto essencial fica em HTML estável.                                                                                                                                       | Captura e montagem anteriores retornam com a posição de rolagem.                       | Capturas em seus próprios artigos, sem sticky ou carrossel. A moldura adapta altura e largura ao recorte vertical real. | Figuras e explicações completas. Sem JavaScript, todas as capturas permanecem em seus artigos.                                                        |
+| Engenharia       | Responsabilidades distintas compõem um produto       | A moldura se desfaz e seus membros formam quatro apoios ao redor dos botões reais. Seleção, foco ou setas destacam a responsabilidade, seu caminho e suas decisões.                                                                                                                                                 | Seleção persiste; apoios se soltam e retornam à forma anterior.                        | Mapa recomposto, botões de toque, detalhes abaixo. Não exige hover.                                                     | Mapa HTML/SVG; seleção imediata. Sem JavaScript, os quatro painéis ficam expostos.                                                                    |
+| Retorno à pessoa | A autoria permanece do início ao fim                 | Peças se agrupam em uma estrutura lateral nas capacidades, recompõem MZ no Sobre, se soltam outra vez e encerram em uma montagem ampla depois dos canais de contato.                                                                                                                                                | Reversão integral da mesma partitura.                                                  | Trajetórias nas margens durante leitura; assinatura final tem área própria.                                             | Monograma estático no Sobre e encerramento; layout preservado.                                                                                        |
 
-O conteúdo não é ocultado por CSS à espera de JavaScript. As animações usam Web Animations sem deixar estado final invisível. Sem script, o menu mobile usa `details`, imagens continuam sendo links para os arquivos originais e os números já têm valores finais.
+Nas faixas de leitura, as peças se recolhem às margens; não atravessam o eixo principal de texto. Cabeçalho, botões, imagens e leitura têm prioridade de composição. O canvas transparente nunca recebe eventos de ponteiro. Não há interceptação de wheel/touch, rolagem horizontal obrigatória, som, cursor customizado ou texto essencial dentro de canvas.
 
-Renderização limitada por DPR, sem pós-processamento, com sombras simplificadas conforme capacidade. A cena repousa depois de acomodar o movimento, suspende trabalho fora dos momentos relevantes ou em aba oculta e descarta seus recursos ao sair. Fontes, geometria e imagens não dependem de CDN em runtime.
+## Responsabilidades do código
 
-## Conteúdo e limites
+- `index.html`: conteúdo, metadados, âncoras, figuras, painéis e espaços das esculturas, disponíveis antes do JavaScript.
+- `styles.css`: tokens, composição, camadas, estados e breakpoints. Fontes locais existentes; espaços reservados evitam reflow ao ativar a cena.
+- `script.js`: navegação, dialogs, zoom, etapas do case, mapa e coordenação da cena. Listeners usam AbortController; observers e animações são descartados ao sair.
+- `journey.js`: medidas do documento e formas ao longo da rolagem. A moldura consulta o elemento de imagem real; o mapa consulta seus limites reais. Medidas se atualizam após resize, fontes e mudanças de layout.
+- `scene.js`: oito membros persistentes, materiais, luzes, juntas, interpolação geométrica e renderização. Canvas único no viewport; DPR limitado e qualidade adaptativa. Cessa de renderizar após acomodar, fora do viewport, em aba oculta, durante overlays e ao descartar. Em janelas móveis muito baixas, o módulo é carregado quando a escultura entra na área visível.
+- `assets/portfolio-social.png`: imagem social pessoal, reproduzível por `tools/build-social.mjs`, com monograma e fontes existentes.
 
-Todos os destinos externos anteriores permanecem. Nenhum contato, projeto, cliente ou resultado foi inventado. As telas fornecidas usam dados demonstrativos; os números de engenharia estão contextualizados como snapshot de setembro de 2026. O README público original da Conectei foi preservado.
+Nenhum framework, motor de animação ou dependência de runtime foi adicionado. Web Animations cuida de transições pontuais; Three.js cuida da geometria. Não há novas telas fictícias, métricas de produto fabricadas ou retrato gerado.
 
-Comandos e evidências de verificação: [VALIDATION.md](VALIDATION.md). Nenhuma publicação, merge ou alteração remota é realizada pelos comandos locais.
+## Revisão crítica
+
+A primeira versão completa continha o MZ apenas no estudo de abertura. Isso não atendia à intenção de uma identidade que conduz a experiência. Depois da correção do autor, a cena passou a ser contínua do início ao fim. A revisão de capturas levou a separar legendas da moldura física, ajustar a altura do palco do produto, recompor as trajetórias no celular e simplificar o rodapé para que a montagem final tenha espaço.

@@ -37,10 +37,10 @@ test("touch input opens navigation, product details and readable mobile screensh
   expect(dialogBounds.x + dialogBounds.width).toBeLessThanOrEqual(844);
   await page.locator("[data-image-close]").tap();
   await page.setViewportSize({ width: 390, height: 844 });
-  const detail = page.locator(".product-depth details").first();
-  await detail.locator("summary").tap();
-  await expect(detail).toHaveAttribute("open", "");
-  await expect(detail.locator("p")).toBeVisible();
+  const node = page.locator('[data-node="dados"]');
+  await node.tap();
+  await expect(node).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator("#detail-dados")).toBeVisible();
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth),
   ).toBeLessThanOrEqual(390);

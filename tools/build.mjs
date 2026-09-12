@@ -27,10 +27,11 @@ if (!sceneOnly) {
   const requiredDestinations = [
     "https://conecteimob.com.br",
     "https://github.com/miguelzacca",
-    "https://github.com/conecteimob/conecteimob",
-    "https://github.com/conecteimob/evo",
-    "https://github.com/conecteimob/mailer",
-    "https://github.com/conecteimob/task",
+    "https://github.com/miguelzacca/miguelzacca#engenharia-do-produto",
+    "https://wa.me/5547997431069",
+    "https://www.instagram.com/mz_miguelzacca/",
+    "https://www.instagram.com/conectei.imob/",
+    "mailto:contato@conecteimob.com.br",
   ];
   for (const destination of requiredDestinations) {
     if (!html.includes(`href="${destination}"`))
@@ -109,6 +110,7 @@ if (!sceneOnly) {
     "index.html",
     "styles.css",
     "script.js",
+    "journey.js",
     "robots.txt",
     "sitemap.xml",
     "assets",
