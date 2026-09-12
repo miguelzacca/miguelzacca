@@ -1,0 +1,21 @@
+[Unit]
+Description=Update Miguel Zacca onion site only when main changes
+Wants=network-online.target
+After=network-online.target miguelzacca-onion-nginx.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /opt/miguelzacca-onion/bin/update-if-needed.sh
+Environment=GIT_TERMINAL_PROMPT=0
+TimeoutStartSec=30min
+TimeoutStopSec=30s
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=miguelzacca-onion-deploy
+UMask=0022
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/opt/miguelzacca-onion/source /opt/miguelzacca-onion/home /var/www/miguelzacca-onion /run/lock
+InaccessiblePaths=-/var/lib/tor
+NoNewPrivileges=true
