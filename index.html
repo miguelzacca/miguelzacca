@@ -1223,10 +1223,11 @@
                   <a
                     class="network-open"
                     data-onion-link
+                    data-tor-access
                     href="http://hdwlsilq4x73cpco4wpn73tylmfuswdfzrlk5wisgu247wff3om7emad.onion"
                     target="_blank"
                     rel="noopener noreferrer"
-                    >Abrir no Tor <span aria-hidden="true">↗</span></a
+                    >Entrar na Onion Layer <span aria-hidden="true">↗</span></a
                   >
                 </div>
                 <p
@@ -1314,6 +1315,162 @@
         <p>© <span data-year>2026</span></p>
       </div>
     </footer>
+
+    <dialog
+      class="tor-access"
+      id="tor-access-dialog"
+      aria-labelledby="tor-access-title"
+      aria-describedby="tor-access-description"
+    >
+      <div class="tor-access__bar">
+        <span>MZ <span aria-hidden="true">//</span> GUIA DE ACESSO</span>
+        <button type="button" data-tor-close autofocus>
+          Fechar <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="tor-access__scroll">
+        <div class="tor-access__route" aria-hidden="true">
+          <span>SURFACE WEB</span><i></i><span>TOR REQUIRED</span>
+        </div>
+        <div class="tor-access__intro">
+          <h2 id="tor-access-title">Essa rota<br /><em>precisa do Tor.</em></h2>
+          <svg
+            class="tor-access__diagram"
+            viewBox="0 0 128 104"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M1 20H127M1 52H127M1 84H127M32 1V103M64 1V103M96 1V103"
+              stroke="currentColor"
+              opacity=".15"
+            />
+            <path
+              d="m18 28 46-17 46 17-46 17Zm0 24 46-17 46 17-46 17Zm0 24 46-17 46 17-46 17Z"
+              stroke="currentColor"
+              opacity=".6"
+            />
+            <path d="M64 28v48M58 76h12M64 70v12" stroke="currentColor" />
+            <circle cx="64" cy="28" r="3" fill="currentColor" />
+          </svg>
+        </div>
+        <p class="tor-access__description" id="tor-access-description">
+          Endereços .onion existem na rede Tor. Não abrem nos navegadores
+          comuns, como Chrome, Safari, Edge ou Firefox. Não precisa usar
+          terminal.
+        </p>
+        <ol
+          class="tor-access__steps"
+          aria-label="Como acessar o portfólio Onion"
+        >
+          <li>
+            <span aria-hidden="true">01</span>
+            <div>
+              <h3>Baixe o Tor Browser</h3>
+              <p>Para desktop e Android.</p>
+            </div>
+          </li>
+          <li>
+            <span aria-hidden="true">02</span>
+            <div>
+              <h3>Abra e conecte</h3>
+              <p>Conecte à rede Tor no navegador.</p>
+            </div>
+          </li>
+          <li>
+            <span aria-hidden="true">03</span>
+            <div>
+              <h3>Cole o endereço .onion</h3>
+              <p>Seu destino está logo abaixo.</p>
+            </div>
+          </li>
+        </ol>
+        <div class="tor-access__download-row">
+          <a
+            class="tor-access__download"
+            data-tor-download
+            href="https://download.torproject.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span
+              >Baixar Tor Browser<small
+                >OFICIAL / DESKTOP + ANDROID</small
+              ></span
+            ><span aria-hidden="true">↗</span>
+          </a>
+          <p class="tor-access__ios">
+            <span>iPhone / iPad?</span
+            ><a
+              href="https://support.torproject.org/tor-browser/getting-started/installing/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Veja a orientação oficial do Tor Project para iOS
+              <span aria-hidden="true">↗</span></a
+            >
+          </p>
+        </div>
+        <section
+          class="tor-access__destination"
+          aria-labelledby="tor-access-service"
+        >
+          <div class="tor-access__service-bar">
+            <h3 id="tor-access-service">ONION SERVICE</h3>
+            <span>PROTOCOL / V3</span>
+          </div>
+          <code id="tor-access-address" tabindex="-1"
+            >http://hdwlsilq4x73cpco4wpn73tylmfuswdfzrlk5wisgu247wff3om7emad.onion</code
+          >
+          <div class="tor-access__actions">
+            <a
+              class="tor-access__open"
+              data-tor-destination
+              href="http://hdwlsilq4x73cpco4wpn73tylmfuswdfzrlk5wisgu247wff3om7emad.onion"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><span>Já estou no Tor</span
+              ><span>ABRIR .ONION <span aria-hidden="true">↗</span></span></a
+            >
+            <button class="tor-access__copy" type="button" data-tor-copy hidden>
+              <span data-tor-copy-label>Copiar endereço</span
+              ><svg
+                viewBox="0 0 20 20"
+                width="18"
+                height="18"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  class="network-copy__sheets"
+                  d="M7 7h10v10H7zM3 13V3h10"
+                  stroke="currentColor"
+                  stroke-width="1.3"
+                />
+                <path
+                  class="network-copy__check"
+                  d="m4 10 4 4 8-9"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+              </svg>
+            </button>
+          </div>
+          <p
+            class="tor-access__status"
+            data-tor-copy-status
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            Copie e cole no Tor Browser.
+          </p>
+        </section>
+        <p class="tor-access__signoff">
+          <span>BAIXE. CONECTE. ENTRE.</span
+          ><span aria-hidden="true">MZ / OTHER SIDE</span>
+        </p>
+      </div>
+    </dialog>
 
     <dialog
       class="image-dialog"

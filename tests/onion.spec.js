@@ -247,7 +247,9 @@ test("no JavaScript leaves the destination, downloads and guide usable", async (
   await expect(page.locator("#network-title")).toBeVisible();
   await expect(page.locator("#onion-address")).toHaveText(onion.slice(7));
   await expect(page.locator("[data-copy-onion]")).toBeHidden();
-  await expect(page.locator(`a[href="${download}"]`)).toBeVisible();
+  await expect(
+    page.locator(`.network-guide a[href="${download}"]`),
+  ).toBeVisible();
   await expect(page.locator(".network-guide")).toContainText(
     "Não existe Tor Browser oficial para iOS",
   );

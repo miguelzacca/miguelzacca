@@ -2944,13 +2944,16 @@ section,
 }
 
 /* The alternate route is a contained epilogue, beyond the editorial surface. */
-.network-layer {
+.network-layer,
+.tor-access {
   --network-bg: #080d0c;
   --network-text: #e6ece3;
   --network-muted: #a0aca4;
   --network-accent: #bed8ae;
   --network-line: #33413a;
   --network-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+.network-layer {
   position: relative;
   z-index: 6;
   isolation: isolate;
@@ -2958,11 +2961,13 @@ section,
   background: var(--network-bg);
   color-scheme: dark;
 }
-.network-layer ::selection {
+.network-layer ::selection,
+.tor-access ::selection {
   background: var(--network-accent);
   color: var(--network-bg);
 }
-.network-layer :focus-visible {
+.network-layer :focus-visible,
+.tor-access :focus-visible {
   outline: 2px solid var(--network-accent);
   outline-offset: 5px;
 }
@@ -3787,5 +3792,442 @@ section,
   .network-open:hover span,
   .network-guide a:hover span {
     transform: none;
+  }
+}
+
+/* Clearnet access guide. The separate Onion portfolio has no script dependency. */
+.tor-access {
+  width: min(880px, calc(100% - 48px));
+  max-width: none;
+  max-height: calc(100vh - 48px);
+  max-height: calc(100dvh - 48px);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #526457;
+  color: var(--network-text);
+  background: #0c1210;
+  color-scheme: dark;
+}
+.tor-access[open] {
+  display: flex;
+  flex-direction: column;
+  animation: tor-access-enter 240ms var(--ease);
+}
+.tor-access::backdrop {
+  background: #030705e8;
+  animation: tor-access-backdrop 200ms ease-out;
+}
+.tor-access__bar {
+  flex-shrink: 0;
+  min-height: 57px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 30px;
+  border-bottom: 1px solid var(--network-line);
+  font: 10px/1.5 var(--network-mono);
+  letter-spacing: 0.06em;
+}
+.tor-access__bar > span > span {
+  color: var(--network-accent);
+  margin-inline: 8px;
+}
+.tor-access__bar button {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 44px;
+  padding: 8px 0 8px 10px;
+  color: var(--network-muted);
+  font: 11px/1.5 var(--network-mono);
+}
+.tor-access__bar button > span {
+  color: var(--network-text);
+  font: 24px/1 var(--sans);
+}
+.tor-access__bar button:hover {
+  color: var(--network-text);
+}
+.tor-access__scroll {
+  min-height: 0;
+  padding: 26px 30px 18px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: #65795f #0c1210;
+  scrollbar-width: thin;
+  background-image:
+    linear-gradient(#a4b69e06 1px, transparent 1px),
+    linear-gradient(90deg, #a4b69e06 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.tor-access__route {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--network-muted);
+  font: 9px/1.5 var(--network-mono);
+  letter-spacing: 0.08em;
+}
+.tor-access__route > i {
+  width: 72px;
+  height: 1px;
+  position: relative;
+  background: #53664e;
+}
+.tor-access__route > i::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -2px;
+  width: 5px;
+  height: 5px;
+  background: var(--network-accent);
+}
+.tor-access__route > span:last-child {
+  color: var(--network-accent);
+}
+.tor-access__intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 18px;
+}
+.tor-access h2 {
+  color: var(--network-text);
+  font-size: 46px;
+  line-height: 1.03;
+  letter-spacing: -0.045em;
+}
+.tor-access h2 em {
+  color: var(--network-accent);
+  font-size: 1.22em;
+  line-height: 1.05;
+}
+.tor-access__diagram {
+  flex: 0 0 128px;
+  width: 128px;
+  height: 104px;
+  color: var(--network-accent);
+}
+.tor-access__description {
+  max-width: 650px;
+  margin-top: 20px;
+  color: var(--network-muted);
+  font-size: 14px;
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+.tor-access__steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin: 23px 0 20px;
+  padding: 19px 0;
+  list-style: none;
+  border-block: 1px solid var(--network-line);
+}
+.tor-access__steps li {
+  display: flex;
+  gap: 12px;
+  min-width: 0;
+}
+.tor-access__steps li > span {
+  flex-shrink: 0;
+  padding-top: 2px;
+  color: var(--network-accent);
+  font: 10px/1.7 var(--network-mono);
+}
+.tor-access__steps h3 {
+  font: 600 12px/1.6 var(--sans);
+  letter-spacing: 0;
+  text-wrap: initial;
+}
+.tor-access__steps p {
+  margin-top: 5px;
+  color: var(--network-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+.tor-access__download-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 26px;
+  align-items: center;
+}
+.tor-access__download {
+  min-height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 18px;
+  background: var(--network-accent);
+  border: 1px solid var(--network-accent);
+  color: #11190e;
+  font-size: 15px;
+  font-weight: 600;
+}
+.tor-access__download small {
+  display: block;
+  margin-top: 4px;
+  font: 9px/1.5 var(--network-mono);
+  letter-spacing: 0.05em;
+}
+.tor-access__download > span:last-child {
+  font-size: 24px;
+  font-weight: 400;
+}
+.tor-access__ios {
+  font-size: 11px;
+  line-height: 1.7;
+}
+.tor-access__ios > span {
+  display: block;
+  color: var(--network-muted);
+}
+.tor-access__ios a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding-block: 5px;
+  text-decoration: underline;
+  text-decoration-color: #71816a;
+  text-underline-offset: 4px;
+}
+.tor-access__destination {
+  margin-top: 24px;
+  padding: 18px 20px 0;
+  border: 1px solid #445140;
+  background: #111a13;
+}
+.tor-access__service-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--network-muted);
+}
+.tor-access__service-bar h3,
+.tor-access__service-bar > span {
+  font: 9px/1.6 var(--network-mono);
+  letter-spacing: 0.07em;
+}
+.tor-access__destination code {
+  display: block;
+  margin-top: 13px;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  user-select: text;
+  -webkit-user-select: text;
+  font: 14px/1.85 var(--network-mono);
+  color: var(--network-text);
+}
+.tor-access__actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 12px;
+  margin-top: 18px;
+}
+.tor-access__open,
+.tor-access__copy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 50px;
+  padding: 12px 16px;
+  border: 1px solid #819779;
+  font: 600 12px/1.65 var(--sans);
+}
+.tor-access__open {
+  background: #bed8ae14;
+  color: var(--network-accent);
+}
+.tor-access__open > span:last-child {
+  font: 10px/1.65 var(--network-mono);
+}
+.tor-access__copy {
+  border-color: #52634b;
+  color: var(--network-text);
+}
+.tor-access__copy[hidden] {
+  display: none;
+}
+.tor-access__copy svg {
+  flex-shrink: 0;
+}
+.tor-access__copy[data-copied] .network-copy__sheets {
+  display: none;
+}
+.tor-access__copy[data-copied] .network-copy__check {
+  display: block;
+}
+.tor-access__download:hover {
+  background: #d4e7c9;
+}
+.tor-access__open:hover,
+.tor-access__copy:hover {
+  background: #bed8ae24;
+  border-color: var(--network-accent);
+}
+.tor-access__status {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: 10px;
+  color: var(--network-muted);
+  font: 10px/1.6 var(--network-mono);
+}
+.tor-access__signoff {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  color: var(--network-muted);
+  font: 8px/1.6 var(--network-mono);
+  letter-spacing: 0.06em;
+}
+@keyframes tor-access-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes tor-access-backdrop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 620px) {
+  .tor-access {
+    width: calc(100% - 20px);
+    max-height: calc(100vh - 20px);
+    max-height: calc(100dvh - 20px);
+  }
+  .tor-access__bar {
+    min-height: 53px;
+    padding-inline: 18px;
+    font-size: 9px;
+  }
+  .tor-access__scroll {
+    padding: 22px 18px 16px;
+  }
+  .tor-access__route {
+    font-size: 8px;
+    gap: 10px;
+  }
+  .tor-access__route > i {
+    flex: 1;
+    max-width: 72px;
+  }
+  .tor-access__intro {
+    gap: 10px;
+    margin-top: 24px;
+    position: relative;
+  }
+  .tor-access h2 {
+    font-size: clamp(31px, 8.2vw, 45px);
+  }
+  .tor-access__diagram {
+    width: 56px;
+    height: 46px;
+    flex-basis: 56px;
+    position: absolute;
+    right: 0;
+    top: -12px;
+    opacity: 0.5;
+  }
+  .tor-access__description {
+    margin-top: 16px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .tor-access__steps {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-block: 22px;
+    padding-block: 18px;
+  }
+  .tor-access__steps li {
+    gap: 18px;
+  }
+  .tor-access__steps h3 {
+    font-size: 13px;
+  }
+  .tor-access__steps p {
+    display: none;
+  }
+  .tor-access__download-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .tor-access__download {
+    min-height: 68px;
+  }
+  .tor-access__ios {
+    font-size: 12px;
+  }
+  .tor-access__destination {
+    margin-top: 21px;
+    padding: 16px 13px 0;
+  }
+  .tor-access__service-bar {
+    gap: 8px;
+  }
+  .tor-access__service-bar h3,
+  .tor-access__service-bar > span {
+    font-size: 8px;
+    letter-spacing: 0.02em;
+  }
+  .tor-access__destination code {
+    font-size: 13px;
+  }
+  .tor-access__actions {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 17px;
+  }
+  .tor-access__open,
+  .tor-access__copy {
+    min-height: 52px;
+    padding-inline: 12px;
+  }
+  .tor-access__open > span:last-child {
+    font-size: 9px;
+  }
+  .tor-access__status {
+    font-size: 9px;
+  }
+  .tor-access__signoff {
+    font-size: 7px;
+    letter-spacing: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tor-access[open],
+  .tor-access::backdrop {
+    animation: none;
+  }
+}
+@media (forced-colors: active) {
+  .tor-access,
+  .tor-access__destination,
+  .tor-access a,
+  .tor-access button {
+    border-color: ButtonText;
+  }
+  .tor-access :focus-visible {
+    outline-color: Highlight;
   }
 }

@@ -1,13 +1,14 @@
 # Portfolio via Tor Onion Service v3
 
-Esta infraestrutura publica o mesmo `dist/` produzido por `npm run build`,
-diretamente do disco da VPS. O deploy da Vercel, `vercel.json`, o build, o site,
-as URLs, o SEO e o canonical `https://miguelzacca.dev/` permanecem intactos.
-Os links externos existentes continuam levando aos seus destinos originais.
+Esta infraestrutura publica a Hacker Portfolio independente diretamente na raiz
+do Onion Service. Cada release contém somente `onion/index.html`,
+`onion/styles.css` e a fonte local Manrope, sem JavaScript. O build `dist/` da
+Surface Web continua exclusivo da Vercel; seu SEO e canonical não são alterados
+pelo deploy da VPS.
 
 ```text
-GitHub/main → timer (verifica SHA a cada minuto) → npm ci → npm run build → dist/
-                                      ↓ cópia completa
+GitHub/main → timer (verifica SHA e tipo) → snapshot dos três arquivos Onion
+                                      ↓ pacote estático
                   /var/www/miguelzacca-onion/releases/<timestamp>
                                       ↑ current (symlink atômico)
 Tor Onion v3:80 → Nginx 127.0.0.1:8080 ──┘
@@ -21,7 +22,7 @@ porta pública da VPS. Nenhum script abre portas no firewall ou na Oracle.
 
 1. Em **Compute → Instances → Create instance**, escolha Ubuntu Server 24.04 LTS
    ou 26.04 LTS, arquitetura amd64 ou arm64 (incluindo Ampere), com systemd.
-   Reserve memória e disco para `npm ci`, o build e ao menos três cópias de `dist/`.
+   Reserve disco para o checkout, seu snapshot temporário e três releases estáticas.
    Use uma VPS dedicada, uma chave SSH e o usuário administrativo `ubuntu`.
 2. Associe a VNIC a uma subnet com saída para a Internet (Internet Gateway e rota
    de saída; IP público para SSH direto, ou bastion para uma subnet privada).
@@ -78,8 +79,9 @@ Não substitui o Node do sistema. Uma versão já instalada e incompatível caus
 uma mensagem de erro para você atualizar conscientemente antes de repetir.
 
 O bootstrap cria o usuário de sistema sem login `miguelzacca-onion` e um segundo
-checkout de `main` em `/opt/miguelzacca-onion/source`. Git/npm/build rodam com esse
-usuário, sem root. O diretório `/opt/miguelzacca-onion/home` contém seu cache npm.
+checkout de `main` em `/opt/miguelzacca-onion/source`. Git e a extração do snapshot
+rodam com esse usuário, sem root. O deploy Onion não executa npm ou o build da
+Surface; o bootstrap mantém a instalação de ferramentas já existente.
 As releases e `current` são controlados por root; o Nginx só precisa lê-los.
 
 Serviços e configurações exclusivos instalados na VPS:
@@ -94,6 +96,7 @@ Serviços e configurações exclusivos instalados na VPS:
 | Releases | `/var/www/miguelzacca-onion/releases/` |
 | Symlink ativo | `/var/www/miguelzacca-onion/current` |
 | SHA de cada release, fora da raiz HTTP | `/var/www/miguelzacca-onion/revisions/<timestamp>` |
+| Tipo do pacote de cada release | `/var/www/miguelzacca-onion/revisions/<timestamp>.kind` |
 | Identidade permanente | `/var/lib/tor/miguelzacca-onion/` |
 | Estado de conexão Tor | `/var/lib/tor/miguelzacca-onion-data/` |
 
@@ -142,12 +145,12 @@ sudo cat /var/lib/tor/miguelzacca-onion/hostname
 ```
 
 Abra `http://ENDERECO_DE_56_CARACTERES.onion/` no
-[Tor Browser oficial](https://www.torproject.org/download/). Aguarde a conexão
+[Tor Browser oficial](https://download.torproject.org/). Aguarde a conexão
 Tor completar e a publicação do descriptor; um serviço systemd ativo ou o curl
 local bem-sucedido não comprovam alcance pela rede Tor. Verifique o carregamento
-das seções, imagens, fontes e navegação no navegador. As opções de segurança do
-Tor Browser podem limitar JavaScript/WebGL; o HTML e os fallbacks existentes são
-preservados, sem CSP ou outros headers novos interferindo no site.
+das seções, fonte e navegação no navegador. A experiência não depende de
+JavaScript, WebGL ou recursos externos. Arquivos inexistentes retornam 404;
+não existe fallback de roteamento client-side para o portfolio da Surface.
 
 ## 4. Atualizar no futuro
 
@@ -157,20 +160,21 @@ minuto por conexões de saída, sem webhook, novas portas ou alterações na Ver
 
 `update-if-needed.sh` chama o modo `--if-needed` do deploy existente. O mesmo
 processo mantém `/run/lock/miguelzacca-onion.lock` durante fetch, comparação,
-build, troca, validação e gravação do SHA; não há locks aninhados ou uma janela
+empacotamento, troca, validação e gravação do SHA; não há locks aninhados ou uma janela
 sem lock entre a checagem e o deploy. Se houver operação em andamento, a
 checagem encerra com sucesso e tenta novamente no próximo ciclo.
 
 O SHA implantado vem de `revisions/<nome da release apontada por current>`.
 Ele só é gravado após o HTTP da nova release passar. **HEAD do checkout não é
-o SHA implantado**: um build pode falhar depois do fast-forward. Nesse caso,
+o SHA implantado**: o empacotamento pode falhar depois do fast-forward. Nesse caso,
 `current` e seu SHA continuam anteriores e o timer tenta novamente. Uma release
 antiga sem metadado é reconstruída uma vez para estabelecer um SHA comprovado;
 o script nunca presume que ela corresponde ao HEAD atual. O deploy usa o commit
-exato obtido no fetch, mesmo se outro push acontecer durante o build.
+exato obtido no fetch, mesmo se outro push acontecer durante o empacotamento.
 
-Se o SHA remoto já estiver implantado, só há operações Git e a comparação:
-nenhum `npm ci`, build ou nova release. Logs de sucesso, ausência de mudança,
+O arquivo `.kind` registra `onion-archive-v1`. Uma release antiga da Surface é
+migrada mesmo quando o SHA não mudou. Se SHA e tipo já corresponderem, só há
+operações Git e comparação, sem nova release. Logs de sucesso, ausência de mudança,
 lock ocupado e falhas ficam no journal. Uma falha não interrompe o site anterior.
 
 O bootstrap instala cópias revisadas dos scripts em `/opt/miguelzacca-onion/bin`,
@@ -183,7 +187,7 @@ sudo systemctl enable --now miguelzacca-onion-deploy.timer
 
 O timer inicia após cerca de um minuto de boot e espera um minuto após cada
 execução terminar (`OnUnitInactiveSec=1min`, `AccuracySec=1s`). Não sobrepõe
-execuções; o timeout do serviço é 30 minutos. O serviço executa Git/npm/build
+execuções; o timeout do serviço é 30 minutos. O serviço executa Git e extração
 como o usuário sem privilégios já existente e **não tem acesso a `/var/lib/tor`**.
 Scripts de infraestrutura recém-baixados do Git não são executados como root.
 Referência: [timers no systemd do Ubuntu](https://manpages.ubuntu.com/manpages/noble/man5/systemd.timer.5.html).
@@ -202,30 +206,34 @@ release=$(basename "$(readlink -f /var/www/miguelzacca-onion/current)")
 cat "/var/www/miguelzacca-onion/revisions/$release"
 ```
 
-Para forçar um rebuild manual, independentemente do SHA:
+Para forçar uma publicação manual, independentemente do SHA:
 
 ```bash
 sudo bash /opt/miguelzacca-onion/bin/deploy.sh
 ```
 
 O deploy atualiza o checkout de produção com `git fetch` e `git merge --ff-only`
-do commit obtido de `origin/main`, executa `npm ci --include=dev` e o `npm run build` original. Recusa
+do commit obtido de `origin/main`. Recusa
 checkout sujo, branch incorreta, origin inesperado ou commits locais divergentes.
 Se houver alterações locais, revise-as; não use `reset --hard` automaticamente.
-O build existente também regenera `assets/signature.js` e seu arquivo de licença.
-Para que isso não suje o checkout nem bloqueie a próxima atualização, o deploy
-extrai o commit exato com `git archive` para uma pasta temporária
-`/opt/miguelzacca-onion/home/build.*` e executa ali os mesmos comandos npm.
-O conteúdo servido é diretamente o `dist/` normal gerado nessa cópia; nenhum
-arquivo ou comando do frontend é modificado. A pasta temporária é removida ao
+O deploy extrai o commit exato com `git archive` para uma pasta temporária
+`/opt/miguelzacca-onion/home/build.*`. Confere os arquivos exigidos, seus limites
+no snapshot e a ausência de scripts/handlers inline no HTML. Copia apenas:
+
+- `onion/index.html` para `index.html` da release;
+- `onion/styles.css` para `styles.css` da release;
+- `assets/fonts/manrope-latin-variable.woff2` para o mesmo caminho na release.
+
+O HTML e CSS são publicados sem transformação. As referências relativas à fonte
+também funcionam na raiz do Onion Service. A pasta temporária é removida ao
 terminar, inclusive em falhas capturáveis. Nenhuma mudança é enviada ao GitHub.
 
-Após conferir `dist/index.html`, copia todo `dist/` para uma release UTC como
+Os arquivos verificados são instalados em uma release UTC como
 `20260912T153000.123456789Z`. Só então renomeia atomicamente um symlink temporário
 para `current`. Um lock impede bootstrap, deploy e rollback simultâneos. A
-verificação exige HTTP 200 e corpo idêntico ao `index.html` da release, sem
-seguir redirects ou usar proxies do ambiente. Falha de instalação, fetch, npm
-ou build deixa o site anterior intacto. Falha HTTP ou interrupção capturável
+verificação exige HTTP 200 e bytes idênticos para HTML, CSS e fonte, sem
+seguir redirects ou usar proxies do ambiente. Falha de fetch ou empacotamento
+deixa o site anterior intacto. Falha HTTP ou interrupção capturável
 durante a troca restaura `current` e verifica a release anterior; no primeiro
 deploy, remove apenas o symlink, pois não existe release anterior.
 
