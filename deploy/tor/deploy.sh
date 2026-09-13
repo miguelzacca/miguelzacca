@@ -17,6 +17,7 @@ readonly CURRENT=$WEB/current
 readonly REVISIONS=$WEB/revisions
 readonly DEPLOY_USER=miguelzacca-onion
 readonly RELEASE_PATTERN='^[0-9]{8}T[0-9]{6}\.[0-9]{9}Z$'
+readonly RELEASE_KIND=onion-archive-v1
 mode=deploy
 automatic=0
 target=
@@ -70,11 +71,15 @@ atomic_link() {
 }
 health_check() {
     # Do not inherit an HTTP proxy or accept redirects / another site's 200 page.
-    local status
-    status=$(curl --noproxy '*' --fail --silent --show-error \
-        --connect-timeout 5 --max-time 20 --output "$response" \
-        --write-out '%{http_code}' http://127.0.0.1:8080/) || return 1
-    [[ $status == 200 ]] && cmp -s -- "$response" "$1/index.html"
+    local status file url_path
+    for file in index.html styles.css assets/fonts/manrope-latin-variable.woff2; do
+        url_path=$file
+        [[ $file != index.html ]] || url_path=
+        status=$(curl --noproxy '*' --fail --silent --show-error \
+            --connect-timeout 5 --max-time 20 --output "$response" \
+            --write-out '%{http_code}' "http://127.0.0.1:8080/$url_path") || return 1
+        [[ $status == 200 ]] && cmp -s -- "$response" "$1/$file" || return 1
+    done
 }
 cleanup() {
     local result=$?
@@ -117,6 +122,7 @@ if [[ $mode == deploy ]]; then
     as_builder git -C "$SOURCE" fetch --prune origin main
     revision=$(as_builder git -C "$SOURCE" rev-parse --verify 'refs/remotes/origin/main^{commit}')
     deployed_revision=
+    deployed_kind=
     if [[ -n $previous ]]; then
         metadata=$REVISIONS/${previous##*/}
         [[ ! -L $metadata ]] || die 'Metadado de revisão não pode ser symlink.'
@@ -124,31 +130,38 @@ if [[ $mode == deploy ]]; then
             deployed_revision=$(< "$metadata")
             [[ $deployed_revision =~ ^[0-9a-f]{40}$ ]] || die 'SHA implantado inválido.'
         fi
+        [[ ! -L $metadata.kind ]] || die 'Metadado de tipo não pode ser symlink.'
+        [[ ! -f $metadata.kind ]] || deployed_kind=$(< "$metadata.kind")
     fi
     printf 'origin/main=%s; implantado=%s\n' "$revision" "${deployed_revision:-desconhecido}"
-    if (( automatic )) && [[ $revision == "$deployed_revision" ]]; then
-        printf 'Sem alteração: nenhum npm ci, build ou nova release.\n'
+    if (( automatic )) && [[ $revision == "$deployed_revision" && $deployed_kind == "$RELEASE_KIND" ]]; then
+        printf 'Sem alteração: Hacker Portfolio já publicada; nenhuma nova release.\n'
         exit 0
     fi
     # Pin this deployment to the fetched commit, including its metadata.
     as_builder git -C "$SOURCE" merge-base --is-ancestor HEAD "$revision" \
         || die 'main divergiu ou contém commits locais; o site atual foi preservado.'
     as_builder git -C "$SOURCE" merge --ff-only "$revision"
-    # The normal build regenerates tracked assets. Build an exact Git snapshot
-    # so those generated files cannot dirty source and block the next update.
+    # Package the Onion document from an exact Git snapshot. Never publish the
+    # clearnet dist or run its build: the Tor listener has its own static release.
     build_work=$(as_builder mktemp -d "$BASE/home/build.XXXXXXXX")
     as_builder git -C "$SOURCE" archive --format=tar "$revision" \
         | as_builder tar -xf - -C "$build_work"
-    (
-        cd "$build_work"
-        as_builder npm ci --include=dev
-        as_builder npm run build
-    )
-    [[ -d $build_work/dist && ! -L $build_work/dist && -s $build_work/dist/index.html ]] || die 'Build não gerou dist/index.html.'
-    [[ -z $(find "$build_work/dist" -type l -print -quit) ]] || die 'dist não pode conter symlinks.'
+    for file in onion/index.html onion/styles.css assets/fonts/manrope-latin-variable.woff2; do
+        [[ -s $build_work/$file && -f $build_work/$file && ! -L $build_work/$file \
+            && $(readlink -f -- "$build_work/$file") == "$build_work/"* ]] \
+            || die "Arquivo Onion ausente ou fora do snapshot: $file"
+    done
+    if grep -Eiq '<script([[:space:]>])|[[:space:]]on[a-z]+[[:space:]]*=' "$build_work/onion/index.html"; then
+        die 'A Hacker Portfolio não pode publicar JavaScript.'
+    fi
+    grep -Fq 'id="entry-title"' "$build_work/onion/index.html" \
+        || die 'O documento esperado da Hacker Portfolio não foi encontrado.'
     target=$RELEASES/$(date -u +%Y%m%dT%H%M%S.%NZ)
-    mkdir -m 0755 -- "$target"
-    rsync -rlt --chmod=D755,F644 -- "$build_work/dist/" "$target/"
+    install -d -m 0755 "$target/assets/fonts"
+    install -m 0644 "$build_work/onion/index.html" "$target/index.html"
+    install -m 0644 "$build_work/onion/styles.css" "$target/styles.css"
+    install -m 0644 "$build_work/assets/fonts/manrope-latin-variable.woff2" "$target/assets/fonts/manrope-latin-variable.woff2"
 fi
 validate_release "$target" || die 'Release alvo inválida ou sem index.html.'
 [[ $target != "$previous" ]] || die 'Esta release já está ativa.'
@@ -166,6 +179,11 @@ if [[ $mode == deploy ]]; then
     chmod 0644 "$revision_temporary"
     mv -Tf -- "$revision_temporary" "$REVISIONS/${target##*/}"
     revision_temporary=
+    revision_temporary=$(mktemp "$REVISIONS/.kind.XXXXXXXX")
+    printf '%s\n' "$RELEASE_KIND" > "$revision_temporary"
+    chmod 0644 "$revision_temporary"
+    mv -Tf -- "$revision_temporary" "$REVISIONS/${target##*/}.kind"
+    revision_temporary=
 fi
 committed=1
 printf 'Release ativa: %s\n' "${target##*/}"
@@ -182,6 +200,7 @@ if [[ $mode == deploy ]]; then
         if (( count > 3 )) && [[ $candidate != "$target" && $candidate != "$previous" && ! -L $candidate ]]; then
             rm -rf --one-file-system -- "$candidate"
             rm -f -- "$REVISIONS/$name"
+            rm -f -- "$REVISIONS/$name.kind"
         fi
     done
 fi

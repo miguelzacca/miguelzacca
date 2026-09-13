@@ -20,6 +20,7 @@ import { createJourney } from "./journey.js";
   const menu = document.querySelector(".site-menu");
   const menuTrigger = document.querySelector("[data-menu-open]");
   const imageDialog = document.querySelector("#image-dialog");
+  const torDialog = document.querySelector("#tor-access-dialog");
   const study = document.querySelector(".identity-study");
   const canvas = document.querySelector("#signature-canvas");
   const sceneLayer = document.querySelector(".signature-scene");
@@ -133,6 +134,7 @@ import { createJourney } from "./journey.js";
       !document.hidden &&
       !menu.open &&
       !imageDialog.open &&
+      !torDialog?.open &&
       !motion.matches;
     if (active && !motion.matches && !signature && !loading && !failed)
       loadSignature();
@@ -215,6 +217,7 @@ import { createJourney } from "./journey.js";
           !document.hidden &&
           !menu.open &&
           !imageDialog.open &&
+          !torDialog?.open &&
           !motion.matches,
       });
       signature.resize(layout.width, layout.height);
@@ -330,7 +333,7 @@ import { createJourney } from "./journey.js";
     opener?.focus({ preventScroll: true });
     requestUpdate();
   });
-  [menu, imageDialog].forEach((dialog) =>
+  [menu, imageDialog, torDialog].filter(Boolean).forEach((dialog) =>
     listen(dialog, "click", (event) => {
       if (event.target !== dialog) return;
       const r = dialog.getBoundingClientRect();
@@ -344,7 +347,7 @@ import { createJourney } from "./journey.js";
     }),
   );
   // Keep Tab navigation inside an open overlay, including the first/last edge.
-  [menu, imageDialog].forEach((dialog) =>
+  [menu, imageDialog, torDialog].filter(Boolean).forEach((dialog) =>
     listen(dialog, "keydown", (event) => {
       if (event.key !== "Tab") return;
       const targets = [
@@ -501,20 +504,23 @@ import { createJourney } from "./journey.js";
     );
   }
 
-  function setupOnionMirror() {
-    const section = document.querySelector(".network-layer");
-    const button = section?.querySelector("[data-copy-onion]");
-    if (!button) return () => {};
-    const address = section
-      .querySelector("[data-onion-link]")
-      .getAttribute("href");
-    const code = section.querySelector("#onion-address");
-    const label = section.querySelector("[data-copy-label]");
-    const status = section.querySelector("[data-copy-status]");
+  function setupAddressCopy({
+    container,
+    button,
+    address,
+    code,
+    label,
+    status,
+    isActive,
+  }) {
     let feedbackTimer = 0;
     let copying = false;
+    let attempt = 0;
 
     function resetFeedback() {
+      attempt++;
+      copying = false;
+      button.removeAttribute("aria-busy");
       clearTimeout(feedbackTimer);
       feedbackTimer = 0;
       if (status.textContent === "Copie e cole no Tor Browser.") return;
@@ -536,7 +542,8 @@ import { createJourney } from "./journey.js";
       buffer.readOnly = true;
       buffer.tabIndex = -1;
       buffer.setAttribute("aria-label", "Endereço Onion para copiar");
-      section.append(buffer);
+      // A modal makes the rest of the page inert; the buffer must stay inside it.
+      container.append(buffer);
       try {
         buffer.focus({ preventScroll: true });
         buffer.select();
@@ -554,9 +561,10 @@ import { createJourney } from "./journey.js";
 
     listen(button, "click", async () => {
       if (copying) return;
+      resetFeedback();
+      const currentAttempt = attempt;
       copying = true;
       button.setAttribute("aria-busy", "true");
-      resetFeedback();
       let copied = false;
       try {
         if (navigator.clipboard?.writeText) {
@@ -565,6 +573,12 @@ import { createJourney } from "./journey.js";
         }
       } catch {
         // Permissions and non-secure contexts can refuse the modern API.
+      }
+      // A late permission response must not steal focus after closing the dialog.
+      if (disposed || currentAttempt !== attempt) return;
+      if (!isActive()) {
+        resetFeedback();
+        return;
       }
       if (!copied) copied = fallbackCopy();
       copying = false;
@@ -585,12 +599,83 @@ import { createJourney } from "./journey.js";
         status.textContent = "Selecione e copie o endereço acima.";
       }
       if (copied) {
-        if (!document.hidden && button.closest(".is-inview"))
+        if (!document.hidden && isActive())
           feedbackTimer = setTimeout(resetFeedback, 3600);
         else resetFeedback();
       }
     });
     button.hidden = false;
+    return resetFeedback;
+  }
+
+  function setupTorAccess() {
+    if (!torDialog?.showModal) return () => {};
+    let trigger;
+    const section = document.querySelector(".network-layer");
+    const resetFeedback = setupAddressCopy({
+      container: torDialog,
+      button: torDialog.querySelector("[data-tor-copy]"),
+      address: torDialog
+        .querySelector("[data-tor-destination]")
+        .getAttribute("href"),
+      code: torDialog.querySelector("#tor-access-address"),
+      label: torDialog.querySelector("[data-tor-copy-label]"),
+      status: torDialog.querySelector("[data-tor-copy-status]"),
+      isActive: () => torDialog.open,
+    });
+    document.querySelectorAll("[data-tor-access]").forEach((link) => {
+      // Without enhancement this remains a normal, navigable Onion link.
+      link.setAttribute("role", "button");
+      link.setAttribute("aria-haspopup", "dialog");
+      link.setAttribute("aria-controls", torDialog.id);
+      link.setAttribute("aria-expanded", "false");
+      const open = (event) => {
+        event.preventDefault();
+        if (torDialog.open) return;
+        trigger = link;
+        resetFeedback();
+        torDialog.showModal();
+        torDialog.querySelector(".tor-access__scroll").scrollTop = 0;
+        link.setAttribute("aria-expanded", "true");
+        section?.classList.add("is-suspended");
+        requestUpdate();
+      };
+      // Modified clicks also show the guide; no browser detection is involved.
+      listen(link, "click", open);
+      listen(link, "auxclick", (event) => {
+        if (event.button === 1) open(event);
+      });
+      listen(link, "keydown", (event) => {
+        if (event.key === " ") open(event);
+      });
+    });
+    listen(torDialog.querySelector("[data-tor-close]"), "click", () =>
+      torDialog.close(),
+    );
+    listen(torDialog, "close", () => {
+      resetFeedback();
+      trigger?.setAttribute("aria-expanded", "false");
+      trigger?.focus({ preventScroll: true });
+      section?.classList.toggle("is-suspended", document.hidden);
+      requestUpdate();
+    });
+    return resetFeedback;
+  }
+  const disposeTorAccess = setupTorAccess();
+
+  function setupOnionMirror() {
+    const section = document.querySelector(".network-layer");
+    const button = section?.querySelector("[data-copy-onion]");
+    if (!button) return () => {};
+    const resetFeedback = setupAddressCopy({
+      container: section,
+      button,
+      address: section.querySelector("[data-onion-link]").getAttribute("href"),
+      code: section.querySelector("#onion-address"),
+      label: section.querySelector("[data-copy-label]"),
+      status: section.querySelector("[data-copy-status]"),
+      isActive: () => Boolean(button.closest(".is-inview")),
+    });
 
     const entrance = new IntersectionObserver(
       (entries) => {
@@ -606,7 +691,10 @@ import { createJourney } from "./journey.js";
       .querySelectorAll("[data-network-enter]")
       .forEach((el) => entrance.observe(el));
     const suspend = () => {
-      section.classList.toggle("is-suspended", document.hidden);
+      section.classList.toggle(
+        "is-suspended",
+        document.hidden || torDialog?.open,
+      );
       if (document.hidden) resetFeedback();
     };
     listen(document, "visibilitychange", suspend);
@@ -654,6 +742,7 @@ import { createJourney } from "./journey.js";
     cancelAnimationFrame(introFrame);
     observer.disconnect();
     disposeOnionMirror();
+    disposeTorAccess();
     resizeObserver.disconnect();
     animations.forEach((animation) => animation.cancel());
     signature?.dispose();
