@@ -12,7 +12,10 @@
     "lint": "eslint .",
     "test": "playwright test",
     "test:headed": "playwright test --headed",
-    "check": "npm run lint && npm run build && npm test"
+    "check": "npm run lint && npm run build && npm run test:seo && npm test",
+    "seo:generate": "node tools/seo.mjs",
+    "seo:check": "node tools/seo.mjs --check",
+    "test:seo": "node --test tools/seo.test.mjs"
   },
   "dependencies": {
     "three": "0.185.1"
@@ -21,6 +24,7 @@
     "@axe-core/playwright": "4.13.0",
     "@playwright/test": "1.63.0",
     "esbuild": "0.28.2",
-    "eslint": "10.10.0"
+    "eslint": "10.10.0",
+    "turndown": "7.2.2"
   }
 }

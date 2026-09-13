@@ -2,6 +2,7 @@ import { build } from "esbuild";
 import { access, cp, mkdir, readFile, rm, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { generatedFiles, syncSeo } from "./seo.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const output = path.resolve(root, "dist");
@@ -20,6 +21,7 @@ await build({
 });
 
 if (!sceneOnly) {
+  await syncSeo();
   const html = await readFile(path.join(root, "index.html"), "utf8");
   const issues = [];
   const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
@@ -113,6 +115,8 @@ if (!sceneOnly) {
     "journey.js",
     "robots.txt",
     "sitemap.xml",
+    "README.md",
+    ...generatedFiles.filter((file) => file !== "sitemap.xml"),
     "assets",
   ]) {
     await cp(path.join(root, file), path.join(output, file), {

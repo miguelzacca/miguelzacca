@@ -1,0 +1,31 @@
+# Miguel Zacca
+
+> Miguel Zacca: Product Engineer, ex-hacker e criador da Conectei. Conheça seu trabalho em produto, UX, software, dados, IA e operação e entre em contato.
+
+Miguel Zacca é Product Engineer, ex-hacker e criador da Conectei, uma plataforma de inteligência e operação imobiliária. Seu trabalho reúne desenho da experiência, desenvolvimento da aplicação, dados, automações e operação.
+
+A apresentação pública de Miguel inclui seu portfólio de ex-hacker. A chamada e o guia de acesso estão na seção Outra rota da landing; o portfólio correspondente é acessado pela rede Tor.
+
+Fonte principal: https://miguelzacca.dev/
+Idioma: pt-BR. Perfil revisado em 2026-09-13.
+
+## Conteúdo
+
+- [Portfólio completo em Markdown](https://miguelzacca.dev/index.md): biografia, Conectei, engenharia, capacidades, contatos e todo o texto da landing.
+- [Conteúdo completo para agentes](https://miguelzacca.dev/llms-full.txt): portfólio e documentação pública detalhada da Conectei em um arquivo.
+- [README público](https://miguelzacca.dev/README.md): funcionalidades, jornadas, integrações e engenharia da Conectei.
+- [Dados estruturados](https://miguelzacca.dev/profile.jsonld): Person, ProfilePage, WebSite e SoftwareApplication.
+
+## Contatos oficiais
+
+- WhatsApp Business / contato direto com Miguel: [+5547997431069](https://wa.me/5547997431069)
+- E-mail / Miguel e Conectei: [contato@conecteimob.com.br](mailto:contato@conecteimob.com.br)
+- GitHub pessoal: [Miguel Zacca](https://github.com/miguelzacca)
+- Instagram pessoal: [@mz_miguelzacca](https://www.instagram.com/mz_miguelzacca/)
+- Instagram da Conectei: [@conectei.imob](https://www.instagram.com/conectei.imob/)
+- Produto: [Conectei](https://conecteimob.com.br)
+- GitHub da Conectei: [conecteimob](https://github.com/conecteimob)
+
+## Contexto das fontes
+
+O portfólio descreve o trabalho do próprio autor. As métricas têm o contexto e a data indicados na landing. A Conectei é o produto criado por Miguel; seus perfis sociais são distintos dos perfis pessoais. A chamada de ex-hacker faz parte da apresentação pública. O conteúdo do serviço Tor não está reproduzido nestes arquivos.
