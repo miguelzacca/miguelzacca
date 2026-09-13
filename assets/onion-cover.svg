@@ -1,0 +1,59 @@
+<svg width="1440" height="600" viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Portfólio de ex-hacker — Miguel Zacca</title>
+  <desc id="desc">Você chegou ao fim da superfície. Tem mais uma rota. Capa escura com tipografia editorial, três planos representando a passagem da clearweb ao Onion Service e detalhes em verde sálvia.</desc>
+  <defs>
+    <linearGradient id="surface" x1="0" y1="0" x2="1440" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101815"/>
+      <stop offset="1" stop-color="#060a09"/>
+    </linearGradient>
+    <radialGradient id="light" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1100 310) scale(360 280)">
+      <stop stop-color="#bed8ae" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#bed8ae" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="plane" x1="940" y1="180" x2="1270" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#bed8ae" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#bed8ae" stop-opacity=".02"/>
+    </linearGradient>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M80 0H0V80" stroke="#bed8ae" stroke-opacity=".035"/>
+    </pattern>
+  </defs>
+
+  <rect width="1440" height="600" rx="20" fill="url(#surface)"/>
+  <rect width="1440" height="600" rx="20" fill="url(#grid)"/>
+  <rect width="1440" height="600" rx="20" fill="url(#light)"/>
+  <rect x=".5" y=".5" width="1439" height="599" rx="19.5" stroke="#bed8ae" stroke-opacity=".18"/>
+
+  <g font-family="Consolas, Menlo, monospace" font-size="16" letter-spacing="2" fill="#9faa9f">
+    <text x="80" y="64">MZ / NETWORK LAYER 02</text>
+    <text x="1360" y="64" text-anchor="end">ACCESS: PUBLIC</text>
+  </g>
+  <path d="M80 88H1360" stroke="#bed8ae" stroke-opacity=".2"/>
+
+  <text x="80" y="161" fill="#bed8ae" font-family="Consolas, Menlo, monospace" font-size="17" letter-spacing="1.5">VOCÊ CHEGOU AO FIM DA SUPERFÍCIE.</text>
+  <text x="74" y="273" fill="#eef0e9" font-family="Arial, Helvetica, sans-serif" font-size="88" font-weight="700" letter-spacing="-4">PORTFÓLIO DE</text>
+  <text x="74" y="385" fill="#bed8ae" font-family="Georgia, Times New Roman, serif" font-size="114" font-style="italic" letter-spacing="-5">ex-hacker.</text>
+  <text x="80" y="444" fill="#b6c0b6" font-family="Arial, Helvetica, sans-serif" font-size="24">Tem mais uma rota.</text>
+
+  <g stroke="#bed8ae" stroke-linejoin="round">
+    <path d="M1110 149 1290 222 1110 295 930 222Z" fill="url(#plane)" stroke-opacity=".25"/>
+    <path d="M1110 224 1290 297 1110 370 930 297Z" fill="url(#plane)" stroke-opacity=".45"/>
+    <path d="M1110 299 1290 372 1110 445 930 372Z" fill="url(#plane)" stroke-opacity=".8"/>
+    <path d="M930 222V372M1290 222V372M1110 295V445" stroke-opacity=".2" stroke-dasharray="3 7"/>
+    <path d="M1110 222V372" stroke-opacity=".65" stroke-dasharray="3 7"/>
+    <path d="m1065 372 45-18 45 18-45 18Z" fill="#bed8ae" fill-opacity=".18" stroke-opacity=".8"/>
+    <circle cx="1110" cy="222" r="4" fill="#101815"/>
+    <circle cx="1110" cy="297" r="4" fill="#101815"/>
+    <circle cx="1110" cy="372" r="5" fill="#bed8ae"/>
+  </g>
+  <g font-family="Consolas, Menlo, monospace" font-size="14" letter-spacing="1.5" fill="#9faa9f">
+    <text x="1308" y="227">01</text>
+    <text x="1308" y="302">02</text>
+    <text x="1308" y="377" fill="#bed8ae">03</text>
+  </g>
+
+  <path d="M80 501H1360" stroke="#bed8ae" stroke-opacity=".2"/>
+  <circle cx="86" cy="548" r="5" fill="#bed8ae"/>
+  <text x="108" y="554" fill="#bed8ae" font-family="Consolas, Menlo, monospace" font-size="17" letter-spacing="1">TOR → ONION SERVICE v3</text>
+  <text x="1360" y="554" text-anchor="end" fill="#9faa9f" font-family="Consolas, Menlo, monospace" font-size="16" letter-spacing="1">MESMO MIGUEL. OUTRA ROTA.</text>
+</svg>

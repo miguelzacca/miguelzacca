@@ -255,14 +255,15 @@ export function createJourney() {
     add(finale, "resolved", point(endRect, finale, unit(endRect) * 1.1), {
       angle: [0.14, 5.9, -0.035],
     });
+    // Preserve the original ending, regardless of chapters added after contact.
+    const surfaceEnd =
+      contact.bottom +
+      document.querySelector(".site-footer").getBoundingClientRect().height -
+      h;
     add(
-      document.documentElement.scrollHeight - h,
+      surfaceEnd,
       "resolved",
-      point(
-        endRect,
-        document.documentElement.scrollHeight - h,
-        unit(endRect) * 1.1,
-      ),
+      point(endRect, surfaceEnd, unit(endRect) * 1.1),
       { angle: [0.14, 5.9, -0.035] },
     );
     keys.sort((a, b) => a.at - b.at);
@@ -315,6 +316,8 @@ export function createJourney() {
     } else if (a.identity && assemblyProgress < 0.5) {
       shape.fromPose = "exploded";
     }
+    // Beyond the original ending, the signature exits with its document position.
+    shape.bounds.y -= Math.max(0, scrollY - keys.at(-1).at);
     // Include the widest formation and its shadow. Skip GPU work entirely when
     // this envelope is outside the viewport, including short mobile openings.
     const radius = shape.unitScale * Math.max(4.8, 3.06 / ratio + 1);

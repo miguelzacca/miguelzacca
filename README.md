@@ -318,3 +318,36 @@ A superfície apresentada aqui representa trabalho de ponta a ponta em produto, 
   &nbsp;&nbsp;·&nbsp;&nbsp;
   <a href="https://github.com/conecteimob">github.com/conecteimob</a>
 </p>
+
+---
+
+<p align="center"><sub><strong>MZ / NETWORK LAYER 02 · A ÚLTIMA CAMADA</strong></sub></p>
+
+<h2 align="center">Quer ver meu<br>portfólio de ex-hacker?</h2>
+
+<p align="center">
+  <a href="https://miguelzacca.dev/#outra-rota" title="Explorar a última camada do portfólio">
+    <img src="./assets/onion-cover.svg" alt="Portfólio de ex-hacker. Você chegou ao fim da superfície. Tem mais uma rota: Tor → Onion Service v3." width="100%">
+  </a>
+</p>
+
+<p align="center">
+  <strong>Sim, eu coloquei meu portfólio na rede Tor.</strong><br>
+  Uma cópia rodando como <strong>Onion Service v3</strong>.<br>
+  <sub>Mesmo trabalho. Outra rota.</sub>
+</p>
+
+<h3 align="center">
+  <a href="http://hdwlsilq4x73cpco4wpn73tylmfuswdfzrlk5wisgu247wff3om7emad.onion" target="_blank" rel="noopener noreferrer">ABRIR O ONION MIRROR ↗</a>
+</h3>
+
+`http://hdwlsilq4x73cpco4wpn73tylmfuswdfzrlk5wisgu247wff3om7emad.onion`
+
+> Endereços `.onion` precisam ser acessados pela rede Tor. Não abrem no Chrome, Safari ou Edge comum.
+
+**Nunca usou Tor?** Sem terminal. Sem ritual: baixe o navegador, abra e conecte à rede Tor, cole o endereço.
+
+- <a href="https://download.torproject.org/" target="_blank" rel="noopener noreferrer">Baixar Tor Browser — Windows / macOS / Linux / Android ↗</a>
+- **iPhone/iPad:** não existe Tor Browser oficial para iOS. O Tor Project recomenda Onion Browser. <a href="https://support.torproject.org/tor-browser/getting-started/installing/" target="_blank" rel="noopener noreferrer">Ver orientação oficial ↗</a>
+
+<sub>A versão principal continua em <a href="https://miguelzacca.dev/">miguelzacca.dev</a>. O Onion é uma rota alternativa.</sub>

@@ -501,6 +501,127 @@ import { createJourney } from "./journey.js";
     );
   }
 
+  function setupOnionMirror() {
+    const section = document.querySelector(".network-layer");
+    const button = section?.querySelector("[data-copy-onion]");
+    if (!button) return () => {};
+    const address = section
+      .querySelector("[data-onion-link]")
+      .getAttribute("href");
+    const code = section.querySelector("#onion-address");
+    const label = section.querySelector("[data-copy-label]");
+    const status = section.querySelector("[data-copy-status]");
+    let feedbackTimer = 0;
+    let copying = false;
+
+    function resetFeedback() {
+      clearTimeout(feedbackTimer);
+      feedbackTimer = 0;
+      if (status.textContent === "Copie e cole no Tor Browser.") return;
+      button.removeAttribute("data-copied");
+      label.textContent = "Copiar endereço";
+      status.textContent = "Copie e cole no Tor Browser.";
+    }
+
+    // Copy only the configured destination, preserving selection, focus and scroll.
+    function fallbackCopy() {
+      const focused = document.activeElement;
+      const selection = window.getSelection();
+      const ranges = Array.from({ length: selection.rangeCount }, (_, i) =>
+        selection.getRangeAt(i).cloneRange(),
+      );
+      const buffer = document.createElement("textarea");
+      buffer.className = "network-copy-buffer";
+      buffer.value = address;
+      buffer.readOnly = true;
+      buffer.tabIndex = -1;
+      buffer.setAttribute("aria-label", "Endereço Onion para copiar");
+      section.append(buffer);
+      try {
+        buffer.focus({ preventScroll: true });
+        buffer.select();
+        buffer.setSelectionRange(0, address.length);
+        return document.execCommand("copy");
+      } catch {
+        return false;
+      } finally {
+        buffer.remove();
+        focused?.focus({ preventScroll: true });
+        selection.removeAllRanges();
+        ranges.forEach((range) => selection.addRange(range));
+      }
+    }
+
+    listen(button, "click", async () => {
+      if (copying) return;
+      copying = true;
+      button.setAttribute("aria-busy", "true");
+      resetFeedback();
+      let copied = false;
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(address);
+          copied = true;
+        }
+      } catch {
+        // Permissions and non-secure contexts can refuse the modern API.
+      }
+      if (!copied) copied = fallbackCopy();
+      copying = false;
+      button.removeAttribute("aria-busy");
+      if (disposed) return;
+      if (copied) {
+        button.setAttribute("data-copied", "");
+        label.textContent = "Copiado";
+        status.textContent = "Copiado // pronto para colar.";
+      } else {
+        // A manual path remains available when both clipboard methods are blocked.
+        code.focus({ preventScroll: true });
+        const range = document.createRange();
+        range.selectNodeContents(code);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        status.textContent = "Selecione e copie o endereço acima.";
+      }
+      if (copied) {
+        if (!document.hidden && button.closest(".is-inview"))
+          feedbackTimer = setTimeout(resetFeedback, 3600);
+        else resetFeedback();
+      }
+    });
+    button.hidden = false;
+
+    const entrance = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(({ target, isIntersecting }) => {
+          target.classList.toggle("is-inview", isIntersecting);
+          if (isIntersecting) target.classList.add("is-revealed");
+          else if (target.contains(button)) resetFeedback();
+        });
+      },
+      { threshold: 0.08 },
+    );
+    section
+      .querySelectorAll("[data-network-enter]")
+      .forEach((el) => entrance.observe(el));
+    const suspend = () => {
+      section.classList.toggle("is-suspended", document.hidden);
+      if (document.hidden) resetFeedback();
+    };
+    listen(document, "visibilitychange", suspend);
+    listen(window, "pageshow", suspend);
+    listen(window, "pagehide", () => {
+      section.classList.add("is-suspended");
+      resetFeedback();
+    });
+    return () => {
+      entrance.disconnect();
+      resetFeedback();
+    };
+  }
+  const disposeOnionMirror = setupOnionMirror();
+
   listen(window, "scroll", requestUpdate, { passive: true });
   listen(window, "resize", measure, { passive: true });
   listen(window, "pageshow", measure);
@@ -532,6 +653,7 @@ import { createJourney } from "./journey.js";
     cancelAnimationFrame(scheduled);
     cancelAnimationFrame(introFrame);
     observer.disconnect();
+    disposeOnionMirror();
     resizeObserver.disconnect();
     animations.forEach((animation) => animation.cancel());
     signature?.dispose();

@@ -1052,6 +1052,252 @@
           </div>
         </div>
       </section>
+      <section
+        class="network-layer"
+        id="outra-rota"
+        aria-labelledby="network-title"
+      >
+        <div class="network-threshold" aria-hidden="true">
+          <div class="wrap network-threshold__line">
+            <span>FIM DA SUPERFÍCIE</span><span>CONTINUE ↓</span>
+          </div>
+          <span class="network-threshold__depth">01<br /><i></i>02</span>
+        </div>
+        <div class="wrap network-content">
+          <div class="network-meta">
+            <p>MZ / NETWORK LAYER 02</p>
+            <span>CLEARWEB <b aria-hidden="true">↘</b> ONION</span>
+            <span>ACCESS: PUBLIC</span>
+          </div>
+          <div class="network-heading" data-network-enter>
+            <h2 id="network-title">
+              Você chegou ao<br /><em>fim da superfície.</em>
+            </h2>
+            <span class="network-heading__glyph" aria-hidden="true">↳</span>
+          </div>
+          <div class="network-layout">
+            <div class="network-story">
+              <h3>Quer ver meu<br /><em>portfólio de ex-hacker?</em></h3>
+              <p>
+                Sim, eu coloquei meu portfólio na rede Tor.<br />Mesmo trabalho.
+                Outra rota.
+              </p>
+              <div class="network-route" data-network-enter aria-hidden="true">
+                <svg viewBox="0 0 520 300" fill="none">
+                  <defs>
+                    <linearGradient
+                      id="network-plane"
+                      x1="80"
+                      y1="0"
+                      x2="380"
+                      y2="220"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stop-color="#20342b" stop-opacity=".65" />
+                      <stop offset="1" stop-color="#0b1010" stop-opacity=".3" />
+                    </linearGradient>
+                    <linearGradient id="network-edge">
+                      <stop stop-color="#52675b" stop-opacity=".2" />
+                      <stop offset=".5" stop-color="#bfdbba" />
+                      <stop offset="1" stop-color="#52675b" stop-opacity=".2" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M25 250H480M25 264V236M480 264V236M242 12V284"
+                    stroke="#34443c"
+                    stroke-dasharray="2 6"
+                  />
+                  <g class="network-route__plane network-route__plane--one">
+                    <path
+                      d="m62 73 180-58 180 58-180 60Z"
+                      fill="url(#network-plane)"
+                      stroke="#4d5b53"
+                    />
+                    <path
+                      d="m62 73 180 60 180-60M242 133v17"
+                      stroke="url(#network-edge)"
+                    />
+                    <path d="M356 36h80" stroke="#53645a" />
+                    <text x="440" y="40">01</text>
+                    <text x="23" y="43">CLEARNET</text>
+                  </g>
+                  <g class="network-route__plane network-route__plane--two">
+                    <path
+                      d="m62 143 180-58 180 58-180 60Z"
+                      fill="url(#network-plane)"
+                      stroke="#66836d"
+                    />
+                    <path
+                      d="m62 143 180 60 180-60"
+                      stroke="url(#network-edge)"
+                    />
+                    <path d="M422 143h35" stroke="#68866e" />
+                    <text x="465" y="147">TOR</text>
+                    <path
+                      d="m170 143 72-23 72 23-72 24Z"
+                      stroke="#728e76"
+                      stroke-dasharray="2 5"
+                    />
+                  </g>
+                  <g class="network-route__plane network-route__plane--three">
+                    <path
+                      d="m62 213 180-58 180 58-180 60Z"
+                      fill="url(#network-plane)"
+                      stroke="#6e8a72"
+                    />
+                    <path
+                      d="m62 213 180 60 180-60"
+                      stroke="url(#network-edge)"
+                    />
+                    <path d="M242 192v42m-21-21h42" stroke="#c5e0bf" />
+                    <circle cx="242" cy="213" r="5" fill="#c5e0bf" />
+                    <path d="M80 228H23" stroke="#809c80" />
+                    <text x="23" y="282">ONION SERVICE / V3</text>
+                  </g>
+                </svg>
+                <p>
+                  TOPOLOGIA CONCEITUAL
+                  <span>OUTRA CAMADA DA MESMA IDENTIDADE</span>
+                </p>
+              </div>
+            </div>
+            <div class="network-console" data-network-enter>
+              <div class="network-console__bar">
+                <span><i aria-hidden="true"></i> ONION MIRROR</span>
+                <span>ROUTE MANIFEST <span aria-hidden="true">↗</span></span>
+              </div>
+              <!-- An editorial route manifest, never a live network/health check. -->
+              <div class="network-terminal" aria-hidden="true">
+                <p class="network-terminal__command network-row">
+                  $ cat portfolio.route
+                </p>
+                <div class="network-row">
+                  <span>transport</span><b>tor</b><span>01</span>
+                </div>
+                <div class="network-row">
+                  <span>service</span><b>onion v3</b><span>02</span>
+                </div>
+                <div class="network-row">
+                  <span>access</span><b>public</b><span>03</span>
+                </div>
+                <p class="network-terminal__end network-row">
+                  &gt; another route exists<span class="network-cursor">_</span>
+                </p>
+              </div>
+              <div class="network-destination">
+                <p class="network-label">SEU DESTINO / ONION V3</p>
+                <div class="network-address">
+                  <code id="onion-address" tabindex="-1"
+                    >hdwlsilq4x73cpco4wpn73tylmfuswdfzrlk5wisgu247wff3om7emad.onion</code
+                  >
+                </div>
+                <div class="network-actions">
+                  <button
+                    type="button"
+                    class="network-copy"
+                    data-copy-onion
+                    hidden
+                  >
+                    <svg
+                      viewBox="0 0 20 20"
+                      width="18"
+                      height="18"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        class="network-copy__sheets"
+                        d="M7 7h10v10H7zM3 13V3h10"
+                        stroke="currentColor"
+                        stroke-width="1.3"
+                      />
+                      <path
+                        class="network-copy__check"
+                        d="m4 10 4 4 8-9"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                      />
+                    </svg>
+                    <span data-copy-label>Copiar endereço</span>
+                  </button>
+                  <a
+                    class="network-open"
+                    data-onion-link
+                    href="http://hdwlsilq4x73cpco4wpn73tylmfuswdfzrlk5wisgu247wff3om7emad.onion"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Abrir no Tor <span aria-hidden="true">↗</span></a
+                  >
+                </div>
+                <p
+                  class="network-copy-status"
+                  data-copy-status
+                  role="status"
+                  aria-live="polite"
+                  aria-atomic="true"
+                >
+                  Copie e cole no Tor Browser.
+                </p>
+              </div>
+              <div class="network-console__foot" aria-hidden="true">
+                <span>56 CHARS + .ONION</span><span>NO DNS / V3</span>
+              </div>
+            </div>
+          </div>
+          <div class="network-guide" aria-labelledby="tor-guide-title">
+            <div class="network-guide__intro">
+              <h3 id="tor-guide-title">Nunca usou Tor?</h3>
+              <p>
+                Endereços .onion não abrem no Chrome, Safari ou Edge comum. Para
+                acessar, use um navegador conectado à rede Tor.
+              </p>
+            </div>
+            <div class="network-guide__steps">
+              <p class="network-guide__note">SEM TERMINAL. SEM RITUAL.</p>
+              <ol>
+                <li>
+                  <span class="network-step-index" aria-hidden="true">01</span
+                  ><a
+                    href="https://download.torproject.org/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Baixar Tor Browser <span aria-hidden="true">↗</span></a
+                  >
+                  <p>Windows / macOS / Linux / Android</p>
+                </li>
+                <li>
+                  <span class="network-step-index" aria-hidden="true">02</span
+                  ><strong>Abra e conecte</strong>
+                  <p>Inicie o navegador e conecte à rede Tor.</p>
+                </li>
+                <li>
+                  <span class="network-step-index" aria-hidden="true">03</span
+                  ><strong>Cole o endereço</strong>
+                  <p>
+                    Na barra de endereços.<br />Pronto. Você está do outro lado.
+                  </p>
+                </li>
+              </ol>
+            </div>
+            <div class="network-ios">
+              <p>
+                <strong>iPhone/iPad?</strong> Não existe Tor Browser oficial
+                para iOS. O Tor Project recomenda Onion Browser.
+              </p>
+              <a
+                href="https://support.torproject.org/tor-browser/getting-started/installing/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Ver orientação oficial <span aria-hidden="true">↗</span></a
+              >
+            </div>
+          </div>
+          <div class="network-signoff" aria-hidden="true">
+            <span>MESMO MIGUEL. OUTRA ROTA.</span
+            ><span>END OF TRANSMISSION / MZ</span>
+          </div>
+        </div>
+      </section>
     </main>
     <footer class="site-footer wrap">
       <a class="footer-name" href="#inicio"
