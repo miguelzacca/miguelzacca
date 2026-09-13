@@ -38,6 +38,17 @@ const server = createServer(async (request, response) => {
   try {
     const url = new URL(request.url, "http://localhost");
     const pathname = decodeURIComponent(url.pathname);
+    // Keep relative assets correct when the local review URL omits its slash.
+    // The production preview still returns 404: onion is not part of dist.
+    if (pathname === "/onion" && !process.argv.includes("--dist")) {
+      response
+        .writeHead(307, {
+          Location: `/onion/${url.search}`,
+          "Cache-Control": "no-store",
+        })
+        .end();
+      return;
+    }
     const parts = pathname.split(/[\\/]/).filter(Boolean);
     if (
       parts.some(
