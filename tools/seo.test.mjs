@@ -54,7 +54,11 @@ test("all public contact links appear in every agent representation", async () =
     assert.match(text, /ex-hacker/);
   }
   const sitemap = await readFile("dist/sitemap.xml", "utf8");
-  assert.equal((sitemap.match(/<loc>/g) || []).length, 1);
+  assert.equal((sitemap.match(/<loc>/g) || []).length, 2);
+  assert.match(sitemap, /<loc>https:\/\/miguelzacca\.dev\/links\/<\/loc>/);
+  for (const name of ["index.md", "llms.txt", "llms-full.txt", "README.md"]) {
+    assert.match(await readFile(`dist/${name}`, "utf8"), /https:\/\/miguelzacca\.dev\/links\//);
+  }
   assert.doesNotMatch(sitemap, /\.onion|\.md|llms/);
 });
 

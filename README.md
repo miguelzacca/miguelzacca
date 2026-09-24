@@ -17,6 +17,7 @@ A apresentação pública de Miguel inclui seu portfólio de ex-hacker. A chamad
 
 - [Portfólio na Surface Web](https://miguelzacca.dev/)
 - [Portfólio em Markdown](https://miguelzacca.dev/index.md)
+- [Diretório de links](https://miguelzacca.dev/links/)
 - [Guia para agentes](https://miguelzacca.dev/llms.txt)
 - [Conteúdo completo para agentes](https://miguelzacca.dev/llms-full.txt)
 - [Dados estruturados JSON-LD](https://miguelzacca.dev/profile.jsonld)

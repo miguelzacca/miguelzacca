@@ -29,6 +29,7 @@ Plataforma SaaS B2B de inteligência e operação imobiliária para corretores a
 ## Fontes públicas
 
 - [Landing e portfólio de Miguel](https://miguelzacca.dev/)
+- [Diretório de links](https://miguelzacca.dev/links/)
 - [Produto Conectei](https://conecteimob.com.br)
 - [Documentação pública da Conectei](https://miguelzacca.dev/README.md)
 - [Repositório original](https://github.com/miguelzacca/miguelzacca)

@@ -25,7 +25,7 @@ se as versões commitadas estão sincronizadas antes do build.
 | `/llms-full.txt` | Portfólio e documentação pública detalhada da Conectei |
 | `/README.md` | README público com biografia e contatos sincronizados |
 | `/profile.jsonld` | Mesmo grafo JSON-LD embutido no HTML |
-| `/sitemap.xml` | Apenas a URL canônica HTML da Surface Web |
+| `/sitemap.xml` | URLs canônicas da landing e do diretório de links |
 
 HTML e headers HTTP anunciam Markdown com `rel="alternate"` e o índice com
 `rel="describedby"`. `Accept: text/markdown` em `/` ou `/index.html` retorna

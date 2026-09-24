@@ -13,6 +13,7 @@ Idioma: pt-BR. Perfil revisado em 2026-09-13.
 
 - [Portfólio completo em Markdown](https://miguelzacca.dev/index.md): biografia, Conectei, engenharia, capacidades, contatos e todo o texto da landing.
 - [Conteúdo completo para agentes](https://miguelzacca.dev/llms-full.txt): portfólio e documentação pública detalhada da Conectei em um arquivo.
+- [Diretório de links](https://miguelzacca.dev/links/): projetos, código e canais públicos.
 - [README público](https://miguelzacca.dev/README.md): funcionalidades, jornadas, integrações e engenharia da Conectei.
 - [Dados estruturados](https://miguelzacca.dev/profile.jsonld): Person, ProfilePage, WebSite e SoftwareApplication.
 
