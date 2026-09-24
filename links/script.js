@@ -3,7 +3,10 @@
   const finePointer = matchMedia("(hover: hover) and (pointer: fine)");
   const lifetime = new AbortController();
   const listen = (element, type, handler, options = {}) =>
-    element.addEventListener(type, handler, { ...options, signal: lifetime.signal });
+    element.addEventListener(type, handler, {
+      ...options,
+      signal: lifetime.signal,
+    });
   const header = document.querySelector(".site-header");
   const progress = document.querySelector(".reading-progress span");
   const study = document.querySelector(".signature-study");
@@ -30,11 +33,14 @@
   let size = { width: 1, height: 1 };
   const pointer = { x: 0, y: 0 };
 
-  document.querySelector("[data-year]").textContent = String(new Date().getFullYear());
+  document.querySelector("[data-year]").textContent = String(
+    new Date().getFullYear(),
+  );
 
   function updateScroll() {
     scrollFrame = 0;
-    const available = document.documentElement.scrollHeight - window.innerHeight;
+    const available =
+      document.documentElement.scrollHeight - window.innerHeight;
     const amount = available > 0 ? window.scrollY / available : 0;
     progress.style.transform = `scaleX(${Math.max(0, Math.min(1, amount))})`;
     header.classList.toggle("is-scrolled", window.scrollY > 20);
@@ -50,8 +56,15 @@
       morph: assembly,
       frameAspect: 1.74,
       crossSection: 1,
-      unitScale: Math.min(size.width / (6.7 + released * 1.6), size.height / (5.2 + released * 1.4)),
-      rotation: [0.14 + released * 0.1, -0.52 + released * 0.7, -0.04 - released * 0.12],
+      unitScale: Math.min(
+        size.width / (6.7 + released * 1.6),
+        size.height / (5.2 + released * 1.4),
+      ),
+      rotation: [
+        0.14 + released * 0.1,
+        -0.52 + released * 0.7,
+        -0.04 - released * 0.12,
+      ],
       pointerStrength: 3,
       pointer,
       opacity: 1,
@@ -102,11 +115,15 @@
     study.classList.remove("has-signature");
     assemblyButton.hidden = true;
     // A constructor error can occur before its return value is assigned.
-    setTimeout(() => { signature?.dispose(); signature = undefined; }, 0);
+    setTimeout(() => {
+      signature?.dispose();
+      signature = undefined;
+    }, 0);
   }
 
   async function loadSignature() {
-    if (loading || signature || failed || disposed || reducedMotion.matches) return;
+    if (loading || signature || failed || disposed || reducedMotion.matches)
+      return;
     loading = true;
     try {
       const { createSignature } = await import("/assets/signature.js");
@@ -131,55 +148,92 @@
   listen(assemblyButton, "click", () => {
     const separated = assemblyButton.getAttribute("aria-pressed") !== "true";
     assemblyButton.setAttribute("aria-pressed", String(separated));
-    assemblyButton.firstElementChild.textContent = separated ? "Reunir peças" : "Separar peças";
+    assemblyButton.firstElementChild.textContent = separated
+      ? "Reunir peças"
+      : "Separar peças";
     assemble(separated ? 0 : 1);
   });
-  listen(stage, "pointermove", (event) => {
-    if (reducedMotion.matches || !finePointer.matches || event.pointerType === "touch") return;
-    const bounds = stage.getBoundingClientRect();
-    pointer.x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 2;
-    pointer.y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 2;
-    syncSignature();
-  }, { passive: true });
+  listen(
+    stage,
+    "pointermove",
+    (event) => {
+      if (
+        reducedMotion.matches ||
+        !finePointer.matches ||
+        event.pointerType === "touch"
+      )
+        return;
+      const bounds = stage.getBoundingClientRect();
+      pointer.x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 2;
+      pointer.y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 2;
+      syncSignature();
+    },
+    { passive: true },
+  );
   listen(stage, "pointerleave", () => {
     pointer.x = pointer.y = 0;
     syncSignature();
   });
 
   function syncMarquee() {
-    track.style.animationPlayState = marqueePaused || !marqueeInView || document.hidden || reducedMotion.matches ? "paused" : "running";
+    track.style.animationPlayState =
+      marqueePaused ||
+      !marqueeInView ||
+      document.hidden ||
+      reducedMotion.matches
+        ? "paused"
+        : "running";
     marqueeButton.hidden = reducedMotion.matches;
     marquee.classList.toggle("is-paused", marqueePaused);
     marqueeButton.setAttribute("aria-pressed", String(marqueePaused));
-    marqueeButton.setAttribute("aria-label", marqueePaused ? "Retomar faixa animada" : "Pausar faixa animada");
+    marqueeButton.setAttribute(
+      "aria-label",
+      marqueePaused ? "Retomar faixa animada" : "Pausar faixa animada",
+    );
   }
-  listen(marqueeButton, "click", () => { marqueePaused = !marqueePaused; syncMarquee(); });
+  listen(marqueeButton, "click", () => {
+    marqueePaused = !marqueePaused;
+    syncMarquee();
+  });
 
   if ("IntersectionObserver" in window) {
-    const sceneObserver = new IntersectionObserver(([entry]) => {
-      sceneInView = entry.isIntersecting;
-      if (sceneInView) { loadSignature(); syncSignature(); }
-      else finishAssembly();
-    }, { threshold: 0.01 });
+    const sceneObserver = new IntersectionObserver(
+      ([entry]) => {
+        sceneInView = entry.isIntersecting;
+        if (sceneInView) {
+          loadSignature();
+          syncSignature();
+        } else finishAssembly();
+      },
+      { threshold: 0.01 },
+    );
     sceneObserver.observe(stage);
     const marqueeObserver = new IntersectionObserver(([entry]) => {
       marqueeInView = entry.isIntersecting;
       syncMarquee();
     });
     marqueeObserver.observe(marquee);
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        revealObserver.unobserve(entry.target);
-        if (reducedMotion.matches) return;
-        const animation = entry.target.animate(
-          [{ opacity: 0.25, transform: "translateY(24px)" }, { opacity: 1, transform: "translateY(0)" }],
-          { duration: 750, easing: "cubic-bezier(.22,1,.36,1)" },
-        );
-        animations.add(animation);
-        animation.finished.then(() => animations.delete(animation)).catch(() => animations.delete(animation));
-      });
-    }, { threshold: 0.08 });
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          revealObserver.unobserve(entry.target);
+          if (reducedMotion.matches) return;
+          const animation = entry.target.animate(
+            [
+              { opacity: 0.25, transform: "translateY(24px)" },
+              { opacity: 1, transform: "translateY(0)" },
+            ],
+            { duration: 750, easing: "cubic-bezier(.22,1,.36,1)" },
+          );
+          animations.add(animation);
+          animation.finished
+            .then(() => animations.delete(animation))
+            .catch(() => animations.delete(animation));
+        });
+      },
+      { threshold: 0.08 },
+    );
     cards.forEach((card) => revealObserver.observe(card));
     observers.push(sceneObserver, marqueeObserver, revealObserver);
   } else {
@@ -188,25 +242,40 @@
   }
 
   cards.forEach((card) => {
-    listen(card, "pointermove", (event) => {
-      if (reducedMotion.matches || !finePointer.matches || event.pointerType === "touch") return;
-      const bounds = card.getBoundingClientRect();
-      const x = (event.clientX - bounds.left) / bounds.width;
-      const y = (event.clientY - bounds.top) / bounds.height;
-      card.style.setProperty("--glow-x", `${x * 100}%`);
-      card.style.setProperty("--glow-y", `${y * 100}%`);
-      card.style.setProperty("--tilt-x", `${(0.5 - y) * 2}deg`);
-      card.style.setProperty("--tilt-y", `${(x - 0.5) * 2}deg`);
-    }, { passive: true });
+    listen(
+      card,
+      "pointermove",
+      (event) => {
+        if (
+          reducedMotion.matches ||
+          !finePointer.matches ||
+          event.pointerType === "touch"
+        )
+          return;
+        const bounds = card.getBoundingClientRect();
+        const x = (event.clientX - bounds.left) / bounds.width;
+        const y = (event.clientY - bounds.top) / bounds.height;
+        card.style.setProperty("--glow-x", `${x * 100}%`);
+        card.style.setProperty("--glow-y", `${y * 100}%`);
+        card.style.setProperty("--tilt-x", `${(0.5 - y) * 2}deg`);
+        card.style.setProperty("--tilt-y", `${(x - 0.5) * 2}deg`);
+      },
+      { passive: true },
+    );
     listen(card, "pointerleave", () => {
       card.style.setProperty("--tilt-x", "0deg");
       card.style.setProperty("--tilt-y", "0deg");
     });
   });
 
-  listen(window, "scroll", () => {
-    if (!scrollFrame) scrollFrame = requestAnimationFrame(updateScroll);
-  }, { passive: true });
+  listen(
+    window,
+    "scroll",
+    () => {
+      if (!scrollFrame) scrollFrame = requestAnimationFrame(updateScroll);
+    },
+    { passive: true },
+  );
   listen(window, "resize", measure, { passive: true });
   const resizeObserver = new ResizeObserver(measure);
   resizeObserver.observe(stage);
@@ -214,8 +283,12 @@
   listen(reducedMotion, "change", () => {
     finishAssembly();
     animations.forEach((animation) => animation.cancel());
-    study.classList.toggle("has-signature", !reducedMotion.matches && canvas.dataset.ready === "true");
-    assemblyButton.hidden = reducedMotion.matches || canvas.dataset.ready !== "true";
+    study.classList.toggle(
+      "has-signature",
+      !reducedMotion.matches && canvas.dataset.ready === "true",
+    );
+    assemblyButton.hidden =
+      reducedMotion.matches || canvas.dataset.ready !== "true";
     syncMarquee();
     if (!reducedMotion.matches && sceneInView) loadSignature();
   });
@@ -235,7 +308,10 @@
     signature?.dispose();
     lifetime.abort();
   });
-  listen(window, "pageshow", () => { measure(); syncMarquee(); });
+  listen(window, "pageshow", () => {
+    measure();
+    syncMarquee();
+  });
   document.fonts.ready.then(measure);
   measure();
   syncMarquee();

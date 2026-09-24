@@ -86,19 +86,19 @@ As releases e `current` são controlados por root; o Nginx só precisa lê-los.
 
 Serviços e configurações exclusivos instalados na VPS:
 
-| Item | Local/nome |
-| --- | --- |
-| Nginx | `/etc/nginx/miguelzacca-onion.conf` |
-| Tor | `/etc/tor/miguelzacca-onion.conf` |
-| Units systemd | `/etc/systemd/system/miguelzacca-onion-{nginx,tor}.service` |
-| Auto-deploy | `miguelzacca-onion-deploy.service` e `.timer` |
-| Scripts instalados, controlados por root | `/opt/miguelzacca-onion/bin/` |
-| Releases | `/var/www/miguelzacca-onion/releases/` |
-| Symlink ativo | `/var/www/miguelzacca-onion/current` |
-| SHA de cada release, fora da raiz HTTP | `/var/www/miguelzacca-onion/revisions/<timestamp>` |
-| Tipo do pacote de cada release | `/var/www/miguelzacca-onion/revisions/<timestamp>.kind` |
-| Identidade permanente | `/var/lib/tor/miguelzacca-onion/` |
-| Estado de conexão Tor | `/var/lib/tor/miguelzacca-onion-data/` |
+| Item                                     | Local/nome                                                  |
+| ---------------------------------------- | ----------------------------------------------------------- |
+| Nginx                                    | `/etc/nginx/miguelzacca-onion.conf`                         |
+| Tor                                      | `/etc/tor/miguelzacca-onion.conf`                           |
+| Units systemd                            | `/etc/systemd/system/miguelzacca-onion-{nginx,tor}.service` |
+| Auto-deploy                              | `miguelzacca-onion-deploy.service` e `.timer`               |
+| Scripts instalados, controlados por root | `/opt/miguelzacca-onion/bin/`                               |
+| Releases                                 | `/var/www/miguelzacca-onion/releases/`                      |
+| Symlink ativo                            | `/var/www/miguelzacca-onion/current`                        |
+| SHA de cada release, fora da raiz HTTP   | `/var/www/miguelzacca-onion/revisions/<timestamp>`          |
+| Tipo do pacote de cada release           | `/var/www/miguelzacca-onion/revisions/<timestamp>.kind`     |
+| Identidade permanente                    | `/var/lib/tor/miguelzacca-onion/`                           |
+| Estado de conexão Tor                    | `/var/lib/tor/miguelzacca-onion-data/`                      |
 
 O Nginx usa uma configuração completa própria, sem importar `sites-enabled`,
 `conf.d` ou o site padrão. Nenhum outro site é editado ou desabilitado. Se Nginx
