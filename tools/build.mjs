@@ -108,6 +108,7 @@ if (!sceneOnly) {
   await mkdir(output, { recursive: true });
   for (const file of [
     "index.html",
+    "links",
     "styles.css",
     "script.js",
     "journey.js",
