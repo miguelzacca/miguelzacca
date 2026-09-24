@@ -3,6 +3,7 @@ import { createReadStream } from "node:fs";
 import { realpath, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { seoResponse } from "./seo-routes.mjs";
 
 const workspace = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -28,6 +29,8 @@ const types = {
   ".ico": "image/x-icon",
   ".xml": "application/xml; charset=utf-8",
   ".txt": "text/plain; charset=utf-8",
+  ".md": "text/markdown; charset=utf-8",
+  ".jsonld": "application/ld+json; charset=utf-8",
 };
 
 const server = createServer(async (request, response) => {
@@ -37,7 +40,8 @@ const server = createServer(async (request, response) => {
   }
   try {
     const url = new URL(request.url, "http://localhost");
-    const pathname = decodeURIComponent(url.pathname);
+    const seo = seoResponse(decodeURIComponent(url.pathname), request.headers, request.method);
+    const pathname = seo.pathname;
     // Keep relative assets correct when the local review URL omits its slash.
     // The production preview still returns 404: onion is not part of dist.
     if (pathname === "/onion" && !process.argv.includes("--dist")) {
@@ -81,6 +85,7 @@ const server = createServer(async (request, response) => {
       "Content-Length": info.size,
       "Cache-Control": "no-cache",
       "X-Content-Type-Options": "nosniff",
+      ...seo.headers,
     });
     if (request.method === "HEAD") response.end();
     else

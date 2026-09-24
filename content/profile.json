@@ -1,0 +1,34 @@
+{
+  "url": "https://miguelzacca.dev/",
+  "language": "pt-BR",
+  "updated": "2026-09-13",
+  "title": "Miguel Zacca — Product Engineer, ex-hacker e criador da Conectei",
+  "description": "Miguel Zacca: Product Engineer, ex-hacker e criador da Conectei. Conheça seu trabalho em produto, UX, software, dados, IA e operação e entre em contato.",
+  "person": {
+    "name": "Miguel Zacca",
+    "jobTitle": "Product Engineer",
+    "bio": "Miguel Zacca é Product Engineer, ex-hacker e criador da Conectei, uma plataforma de inteligência e operação imobiliária. Seu trabalho reúne desenho da experiência, desenvolvimento da aplicação, dados, automações e operação.",
+    "background": "A apresentação pública de Miguel inclui seu portfólio de ex-hacker. A chamada e o guia de acesso estão na seção Outra rota da landing; o portfólio correspondente é acessado pela rede Tor.",
+    "knowsAbout": ["Product Engineering", "Software Architecture", "User Experience", "Artificial Intelligence", "React", "Node.js", "PostgreSQL", "Progressive Web Apps", "Technical SEO"],
+    "github": "https://github.com/miguelzacca",
+    "instagram": "https://www.instagram.com/mz_miguelzacca/",
+    "email": "contato@conecteimob.com.br",
+    "telephone": "+5547997431069",
+    "whatsapp": "https://wa.me/5547997431069"
+  },
+  "product": {
+    "name": "Conectei",
+    "url": "https://conecteimob.com.br",
+    "description": "Plataforma SaaS B2B de inteligência e operação imobiliária para corretores autônomos e equipes imobiliárias. Reúne pesquisa, mapa, radar de oportunidades, campanhas de WhatsApp com IA, CRM, agenda, precificação, crédito, verificação de identidade, carteira, documentos, sites e leads em uma experiência web e PWA.",
+    "instagram": "https://www.instagram.com/conectei.imob/",
+    "github": "https://github.com/conecteimob",
+    "documentation": "https://github.com/miguelzacca/miguelzacca#engenharia-do-produto",
+    "features": ["Pesquisa imobiliária por endereço ou edifício", "Mapa e radar de oportunidades", "Campanhas de WhatsApp com IA e revisão humana", "CRM e agenda", "Precificação com comparáveis, faixa de mercado e confiança", "Análise de crédito e verificação de identidade KBA", "Carteira de imóveis e documentos", "Sites imobiliários e gestão de leads", "Experiência responsiva web e PWA"]
+  },
+  "socialImage": {
+    "url": "https://miguelzacca.dev/assets/portfolio-social.png",
+    "width": 1200,
+    "height": 630,
+    "alt": "Miguel Zacca — Produto, experiência e engenharia"
+  }
+}

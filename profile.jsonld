@@ -1,0 +1,132 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://miguelzacca.dev/#person",
+      "name": "Miguel Zacca",
+      "url": "https://miguelzacca.dev/",
+      "jobTitle": "Product Engineer",
+      "description": "Miguel Zacca é Product Engineer, ex-hacker e criador da Conectei, uma plataforma de inteligência e operação imobiliária. Seu trabalho reúne desenho da experiência, desenvolvimento da aplicação, dados, automações e operação.",
+      "mainEntityOfPage": {
+        "@id": "https://miguelzacca.dev/#webpage"
+      },
+      "sameAs": [
+        "https://github.com/miguelzacca",
+        "https://www.instagram.com/mz_miguelzacca/"
+      ],
+      "email": "contato@conecteimob.com.br",
+      "telephone": "+5547997431069",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Contato profissional",
+        "url": "https://wa.me/5547997431069",
+        "email": "contato@conecteimob.com.br",
+        "telephone": "+5547997431069",
+        "availableLanguage": "pt-BR"
+      },
+      "knowsAbout": [
+        "Product Engineering",
+        "Software Architecture",
+        "User Experience",
+        "Artificial Intelligence",
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Progressive Web Apps",
+        "Technical SEO"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://miguelzacca.dev/#website",
+      "url": "https://miguelzacca.dev/",
+      "name": "Miguel Zacca — Portfólio",
+      "description": "Miguel Zacca: Product Engineer, ex-hacker e criador da Conectei. Conheça seu trabalho em produto, UX, software, dados, IA e operação e entre em contato.",
+      "inLanguage": "pt-BR",
+      "author": {
+        "@id": "https://miguelzacca.dev/#person"
+      },
+      "publisher": {
+        "@id": "https://miguelzacca.dev/#person"
+      }
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://miguelzacca.dev/#webpage",
+      "url": "https://miguelzacca.dev/",
+      "name": "Miguel Zacca — Product Engineer, ex-hacker e criador da Conectei",
+      "description": "Miguel Zacca: Product Engineer, ex-hacker e criador da Conectei. Conheça seu trabalho em produto, UX, software, dados, IA e operação e entre em contato.",
+      "inLanguage": "pt-BR",
+      "dateModified": "2026-09-13",
+      "isPartOf": {
+        "@id": "https://miguelzacca.dev/#website"
+      },
+      "mainEntity": {
+        "@id": "https://miguelzacca.dev/#person"
+      },
+      "about": [
+        {
+          "@id": "https://miguelzacca.dev/#person"
+        },
+        {
+          "@id": "https://miguelzacca.dev/#conectei"
+        }
+      ],
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://miguelzacca.dev/assets/portfolio-social.png",
+        "width": 1200,
+        "height": 630,
+        "caption": "Miguel Zacca — Produto, experiência e engenharia"
+      },
+      "hasPart": [
+        {
+          "@type": "WebPageElement",
+          "@id": "https://miguelzacca.dev/#engenharia",
+          "name": "Engenharia do produto"
+        },
+        {
+          "@type": "WebPageElement",
+          "@id": "https://miguelzacca.dev/#sobre",
+          "name": "Sobre Miguel Zacca"
+        },
+        {
+          "@type": "WebPageElement",
+          "@id": "https://miguelzacca.dev/#contato",
+          "name": "Contatos profissionais"
+        }
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://miguelzacca.dev/#conectei",
+      "name": "Conectei",
+      "url": "https://conecteimob.com.br",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "Plataforma de inteligência e operação imobiliária",
+      "operatingSystem": "Web, PWA",
+      "inLanguage": "pt-BR",
+      "description": "Plataforma SaaS B2B de inteligência e operação imobiliária para corretores autônomos e equipes imobiliárias. Reúne pesquisa, mapa, radar de oportunidades, campanhas de WhatsApp com IA, CRM, agenda, precificação, crédito, verificação de identidade, carteira, documentos, sites e leads em uma experiência web e PWA.",
+      "creator": {
+        "@id": "https://miguelzacca.dev/#person"
+      },
+      "featureList": [
+        "Pesquisa imobiliária por endereço ou edifício",
+        "Mapa e radar de oportunidades",
+        "Campanhas de WhatsApp com IA e revisão humana",
+        "CRM e agenda",
+        "Precificação com comparáveis, faixa de mercado e confiança",
+        "Análise de crédito e verificação de identidade KBA",
+        "Carteira de imóveis e documentos",
+        "Sites imobiliários e gestão de leads",
+        "Experiência responsiva web e PWA"
+      ],
+      "sameAs": [
+        "https://www.instagram.com/conectei.imob/",
+        "https://github.com/conecteimob"
+      ],
+      "subjectOf": "https://github.com/miguelzacca/miguelzacca#engenharia-do-produto"
+    }
+  ]
+}
