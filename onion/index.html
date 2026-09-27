@@ -464,6 +464,62 @@
               </figcaption>
             </figure>
           </div>
+
+          <div class="inject-block">
+            <div class="inject-header">
+              <p class="micro">CASE_04.B / INJECTABLE JS · CREDENTIAL HARVESTING</p>
+              <h3 id="inject-title">Payload universal.<br /><span class="muted">Uma injeção.</span></h3>
+            </div>
+            <div class="inject-grid">
+              <div class="inject-main">
+                <p class="statement">
+                  Desenvolvi scripts JavaScript injetáveis capazes de comprometer
+                  contas em qualquer plataforma da Meta (Facebook, Instagram),
+                  Google e marketplaces como Mercado Livre e Amazon — tudo em um
+                  único payload modular, dinâmico e universal.
+                </p>
+                <div class="inject-tech-strip" aria-hidden="true">
+                  <span>XSS</span><i></i><span>SELF-XSS</span><i></i><span>META</span><i></i><span>GOOGLE</span><i></i><span>MARKETPLACES</span><i></i><span>UNIVERSAL</span>
+                </div>
+              </div>
+              <div class="inject-aside">
+                <figure class="inject-method-fig">
+                  <div class="diagram-head">
+                    <span>MÉTODO DE INJEÇÃO</span><span aria-hidden="true">[ 04.B ]</span>
+                  </div>
+                  <p class="inject-method-value">XSS<br /><span class="muted">&amp;</span><br />Self-XSS</p>
+                  <figcaption>Cross-Site Scripting / Self-XSS.<br />Injeção via browser context.</figcaption>
+                </figure>
+              </div>
+            </div>
+            <div class="inject-notes">
+              <aside class="context-note" aria-labelledby="inject-title inject-context">
+                <h4 id="inject-context">PARA QUEM NÃO É DA ÁREA</h4>
+                <p>
+                  XSS (Cross-Site Scripting) é uma vulnerabilidade que permite
+                  injetar código JavaScript no contexto de um site legítimo,
+                  aproveitando falhas na forma como a aplicação processa dados
+                  externos. Self-XSS é uma variante em que a vítima executa o
+                  código ela mesma — geralmente enganada por engenharia social.
+                  Ambas as técnicas permitem acesso a sessões autenticadas, tokens
+                  e dados de formulário sem necessidade de acesso direto ao
+                  servidor. A arquitetura modular do payload adaptava-se
+                  dinamicamente à plataforma detectada, cobrindo múltiplos alvos
+                  sem reescrever o código-base.
+                </p>
+              </aside>
+              <aside class="context-note inject-regret" aria-label="Nota sobre bug bounty">
+                <h4>CAMINHO NÃO TOMADO</h4>
+                <p>
+                  As vulnerabilidades exploradas aqui seriam válidas em programas
+                  de bug bounty — Meta, Google e os marketplaces mencionados
+                  pagam pesquisadores que reportam responsavelmente. Na época, não
+                  segui esse caminho porque queria continuar no mundo ilegal.
+                  Me arrependi depois.
+                </p>
+              </aside>
+            </div>
+          </div>
           <aside
             class="context-note context-wide"
             aria-labelledby="malware-title malware-context"
@@ -765,7 +821,7 @@
                 Muito mais<br />ficou fora<br />desta página.
               </h2>
               <p>
-                Parte por acordos de confidencialidade.<br />Parte por segurança
+                Parte por acordos de confidencialidade.<br />Parte por segurança minha
                 e exposição de terceiros.<br />Parte porque há informações que
                 não devem ser publicadas.
               </p>

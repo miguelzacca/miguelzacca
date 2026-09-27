@@ -2151,6 +2151,21 @@ figcaption {
   .system-anatomy figcaption {
     font-size: 9px;
   }
+  .inject-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .inject-header h3 {
+    font-size: 9.5vw;
+  }
+  .inject-notes {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .inject-tech-strip {
+    font-size: 8px;
+    gap: 10px;
+  }
   .commerce-layout {
     display: flex;
     flex-direction: column-reverse;
@@ -2638,6 +2653,101 @@ figcaption {
     border-color: CanvasText;
   }
 }
+
+/* ─── CASE_04.B  Injectable JS ─────────────────────────── */
+.inject-block {
+  border-top: 1px solid var(--rule);
+  margin-top: 55px;
+  padding-top: 52px;
+}
+.inject-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 30px;
+  margin-bottom: 38px;
+}
+.inject-header .micro {
+  color: var(--muted);
+}
+.inject-header h3 {
+  font-size: clamp(32px, 3.8vw, 54px);
+  font-weight: 600;
+  letter-spacing: -0.06em;
+}
+.inject-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 10%;
+  align-items: start;
+}
+.inject-main .statement {
+  font-size: clamp(17px, 1.6vw, 22px);
+  max-width: 620px;
+}
+/* tech strip — same rhythm as .layer-strip */
+.inject-tech-strip {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  font: 9px/1.5 var(--mono);
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-top: 32px;
+  border-block: 1px solid var(--rule);
+  padding-block: 16px;
+}
+.inject-tech-strip i {
+  height: 1px;
+  flex: 1;
+  background: var(--rule);
+  position: relative;
+}
+.inject-tech-strip i::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -2px;
+  width: 4px;
+  height: 4px;
+  background: var(--rule);
+}
+/* method figure — same treatment as .system-anatomy */
+.inject-method-fig {
+  border: 1px solid #505b45;
+  padding: 21px 24px;
+  background: #141811;
+}
+.inject-method-value {
+  font-size: clamp(30px, 3.5vw, 50px);
+  font-weight: 600;
+  letter-spacing: -0.065em;
+  line-height: 1.1;
+  margin-top: 20px;
+  color: var(--ink);
+}
+.inject-method-fig figcaption {
+  color: var(--muted);
+  font-size: 9px;
+  border-top: 1px solid var(--rule);
+  padding-top: 18px;
+  margin-top: 22px;
+}
+/* notes row — two columns, same as .context-wide */
+.inject-notes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8%;
+  border-top: 1px solid var(--rule);
+  padding-top: 30px;
+  margin-top: 40px;
+}
+.inject-regret h4 {
+  color: var(--past);
+}
+
 
 @media print {
   :root,
