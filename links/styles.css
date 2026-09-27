@@ -99,6 +99,17 @@ h1 em { color: #697650; font: italic 400 1.07em/1 "Instrument Serif", Georgia, s
 }
 .link-item__action span { font-size: 17px; line-height: 1; }
 .link-item:hover .link-item__action, .link-item:focus-visible .link-item__action { background: var(--ink); color: white; }
+.private-note {
+  margin-top: 34px; padding: 24px 26px;
+  border: 1px solid var(--line); border-left: 3px solid #697650;
+  border-radius: 5px; background: #f4f1e9;
+}
+.private-note__label {
+  color: #52664c; font-size: 10px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+}
+.private-note h2 { margin: 10px 0 7px; font-size: 19px; font-weight: 700; letter-spacing: -.035em; line-height: 1.3; }
+.private-note p { max-width: 610px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
 .site-footer {
   display: flex; justify-content: space-between; gap: 20px;
   margin-top: 60px; padding-block: 24px max(32px, env(safe-area-inset-bottom));
@@ -120,6 +131,8 @@ h1 em { color: #697650; font: italic 400 1.07em/1 "Instrument Serif", Georgia, s
   .link-item__url { font-size: 10px; }
   .link-item__action { min-width: 40px; width: 40px; height: 40px; padding: 0; font-size: 0; }
   .link-item__action span { font-size: 20px; }
+  .private-note { padding: 20px; }
+  .private-note h2 { font-size: 17px; }
 }
 @media (max-width: 355px) {
   .brand small { display: none; }
