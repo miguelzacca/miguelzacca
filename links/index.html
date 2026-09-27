@@ -9,7 +9,7 @@
     <title>Links — Miguel Zacca</title>
     <meta
       name="description"
-      content="Um ponto de partida para o portfólio, projetos, código e canais de Miguel Zacca. Explore Conectei, Volts, Lab, GitHub e Instagram."
+      content="Todos os links de Miguel Zacca em um só lugar: portfólio, Conectei, Volts, Lab, GitHub e Instagram."
     />
     <meta name="author" content="Miguel Zacca" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -21,7 +21,7 @@
     <meta property="og:title" content="Links — Miguel Zacca" />
     <meta
       property="og:description"
-      content="Portfólio, projetos, código e canais. Sete direções para conhecer o trabalho de Miguel Zacca."
+      content="Acesse o portfólio, projetos, código e perfis de Miguel Zacca."
     />
     <meta property="og:url" content="https://miguelzacca.dev/links/" />
     <meta
@@ -49,7 +49,6 @@
       crossorigin
     />
     <link rel="stylesheet" href="/links/styles.css" />
-    <script src="/links/script.js" defer></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -105,443 +104,71 @@
     </script>
   </head>
   <body>
-    <a class="skip-link" href="#diretorio">Pular para os links</a>
-    <div class="reading-progress" aria-hidden="true"><span></span></div>
-
-    <header class="site-header wrap" id="inicio">
-      <a class="brand" href="/" aria-label="Miguel Zacca — ir ao portfólio">
-        <img src="/assets/mz-mark.svg" width="32" height="32" alt="" />
-        <span
-          >Miguel Zacca<span class="brand__role"
-            >Produto &amp; engenharia</span
-          ></span
-        >
+    <a class="skip-link" href="#links">Pular para os links</a>
+    <header class="site-header wrap">
+      <a class="brand" href="/" aria-label="Miguel Zacca — portfólio">
+        <img src="/assets/mz-mark.svg" width="38" height="38" alt="" />
+        <span>Miguel Zacca<small>Produto &amp; engenharia</small></span>
       </a>
-      <nav class="header-nav" aria-label="Navegação desta página">
-        <a href="#diretorio">Diretório <span>01</span></a>
-        <a href="#alem-da-lista">Além da lista <span>02</span></a>
-      </nav>
-      <a class="header-home" href="/"
-        >Ver portfólio <span aria-hidden="true">↗</span></a
-      >
+      <a class="header-home" href="/">Ver portfólio <span aria-hidden="true">↗</span></a>
     </header>
 
-    <main>
-      <section class="intro wrap" aria-labelledby="intro-title">
-        <div class="intro__copy">
-          <p class="eyebrow intro__eyebrow">
-            <span class="status-dot"></span> Miguel Zacca / diretório público
-          </p>
-          <h1 id="intro-title">Um nome.<br /><em>Várias direções.</em></h1>
-          <p class="intro__description">
-            Projetos, experiências, código e conversas. Um ponto de partida para
-            explorar o que construo e os lugares onde compartilho esse trabalho.
-          </p>
-          <div class="intro__actions">
-            <a class="button" href="#diretorio"
-              >Explorar links <span aria-hidden="true">↓</span></a
-            >
-            <span class="intro__count"
-              ><strong>07</strong><span>destinos<br />públicos</span></span
-            >
-          </div>
-        </div>
-
-        <div class="signature-study">
-          <div class="signature-study__top">
-            <span>Uma assinatura. Vários caminhos.</span
-            ><span aria-hidden="true">MZ—07</span>
-          </div>
-          <div class="signature-stage" aria-hidden="true">
-            <svg class="signature-grid" viewBox="0 0 600 500" fill="none">
-              <circle cx="300" cy="250" r="192" />
-              <circle cx="300" cy="250" r="145" stroke-dasharray="1 8" />
-              <path
-                d="M30 250H570M300 20V480M108 58V442M492 58V442M60 105H540M60 395H540"
-              />
-              <path
-                class="signature-grid__accent"
-                d="M288 250H312M300 238V262"
-              />
-            </svg>
-            <img
-              class="signature-fallback"
-              src="/assets/signature-fallback.svg"
-              width="760"
-              height="680"
-              alt=""
-              fetchpriority="high"
-            />
-            <canvas id="links-signature"></canvas>
-          </div>
-          <div class="signature-study__bottom">
-            <p>Mesma essência.<br /><em>Novas direções.</em></p>
-            <button
-              class="assembly-toggle"
-              type="button"
-              aria-pressed="false"
-              hidden
-            >
-              <span>Separar peças</span><span aria-hidden="true">↗</span>
-            </button>
-          </div>
-        </div>
-        <div class="intro__foot">
-          <span>Produto · experiência · engenharia</span
-          ><span>Role para explorar <span aria-hidden="true">↓</span></span>
-        </div>
-      </section>
-
-      <div class="marquee">
-        <div class="marquee__viewport" aria-hidden="true">
-          <div class="marquee__track">
-            <div class="marquee__group">
-              <span>PORTFÓLIO</span><i>✳</i><span>PROJETOS</span><i>✳</i
-              ><span>CÓDIGO</span><i>✳</i><span>IDEIAS</span><i>✳</i
-              ><span>CONEXÕES</span><i>✳</i>
-            </div>
-            <div class="marquee__group">
-              <span>PORTFÓLIO</span><i>✳</i><span>PROJETOS</span><i>✳</i
-              ><span>CÓDIGO</span><i>✳</i><span>IDEIAS</span><i>✳</i
-              ><span>CONEXÕES</span><i>✳</i>
-            </div>
-          </div>
-        </div>
-        <button
-          class="marquee__toggle"
-          type="button"
-          aria-label="Pausar faixa animada"
-          aria-pressed="false"
-          hidden
-        >
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path
-              class="pause-icon"
-              d="M7 5v10M13 5v10"
-              stroke="currentColor"
-              stroke-width="2"
-            />
-            <path class="play-icon" d="m7 4 9 6-9 6Z" fill="currentColor" />
-          </svg>
-        </button>
+    <main class="wrap">
+      <div class="page-heading">
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Diretório público / Miguel Zacca</p>
+        <h1>Meus <em>links.</em></h1>
+        <p class="page-heading__description">Projetos, código e canais. Escolha um destino para abrir.</p>
       </div>
 
-      <section
-        class="directory"
-        id="diretorio"
-        aria-labelledby="directory-title"
-      >
-        <div class="wrap">
-          <div class="section-heading">
-            <p class="eyebrow">
-              <span class="status-dot"></span> 01 / Escolha seu caminho
-            </p>
-            <div class="section-heading__body">
-              <h2 id="directory-title">Onde vamos <em>agora?</em></h2>
-              <p>
-                Sete portas abertas para conhecer produtos, bastidores e canais.
-                Escolha uma e siga.
-              </p>
-            </div>
-          </div>
-
-          <nav class="cards" aria-label="Links públicos de Miguel Zacca">
-            <a
-              class="link-card link-card--featured"
-              href="/"
-              aria-label="Portfólio de Miguel Zacca — abrir nesta aba"
-            >
-              <span class="link-card__glow" aria-hidden="true"></span>
-              <span class="link-card__top"
-                ><span class="link-card__icon"
-                  ><img
-                    src="/assets/mz-mark.svg"
-                    width="54"
-                    height="54"
-                    alt="" /></span
-                ><span class="link-card__index"
-                  >01 / PONTO DE PARTIDA</span
-                ></span
-              >
-              <span class="link-card__body"
-                ><span class="link-card__category"
-                  >Portfólio / Trabalho selecionado</span
-                ><span class="link-card__title"
-                  >O trabalho,<br /><em>por inteiro.</em></span
-                ><span class="link-card__description"
-                  >A visão por trás dos produtos: estratégia, experiência,
-                  engenharia e a Conectei em detalhe.</span
-                ></span
-              >
-              <span class="link-card__bottom"
-                ><span>miguelzacca.dev</span
-                ><span class="link-card__arrow" aria-hidden="true"
-                  >↗</span
-                ></span
-              >
-              <span class="link-card__watermark" aria-hidden="true"
-                ><img
-                  src="/assets/signature-fallback.svg"
-                  width="760"
-                  height="680"
-                  alt=""
-                  loading="lazy"
-              /></span>
-            </a>
-
-            <a
-              class="link-card link-card--conectei"
-              href="https://conecteimob.com.br/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Conectei — abre em nova aba"
-            >
-              <span class="link-card__glow" aria-hidden="true"></span>
-              <span class="link-card__top"
-                ><span class="link-card__icon"
-                  ><img
-                    src="/assets/conectei-icon.svg"
-                    width="54"
-                    height="54"
-                    alt="" /></span
-                ><span class="link-card__index">02 / PRODUTO</span></span
-              >
-              <span class="link-card__body"
-                ><span class="link-card__category">Plataforma imobiliária</span
-                ><span class="link-card__title"
-                  >Conectei<span class="title-period">.</span></span
-                ><span class="link-card__description"
-                  >Captação, campanhas de WhatsApp com IA e CRM em uma operação
-                  imobiliária conectada.</span
-                ></span
-              >
-              <span class="link-card__bottom"
-                ><span>conecteimob.com.br</span
-                ><span class="link-card__arrow" aria-hidden="true"
-                  >↗</span
-                ></span
-              >
-            </a>
-
-            <a
-              class="link-card link-card--volts"
-              href="https://voltslab.com.br/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Volts Lab — abre em nova aba"
-            >
-              <span class="link-card__glow" aria-hidden="true"></span>
-              <span class="link-card__top"
-                ><span class="link-card__icon"
-                  ><img
-                    src="/assets/link-icons/volts.svg"
-                    width="54"
-                    height="54"
-                    alt="" /></span
-                ><span class="link-card__index">03 / MARCA</span></span
-              >
-              <span class="link-card__body"
-                ><span class="link-card__category"
-                  >Volts® / Experiência digital</span
-                ><span class="link-card__title"
-                  >Energia em<br /><em>outra frequência.</em></span
-                ><span class="link-card__description"
-                  >Conheça a identidade e o universo digital da Volts®.</span
-                ></span
-              >
-              <span class="link-card__bottom"
-                ><span>voltslab.com.br</span
-                ><span class="link-card__arrow" aria-hidden="true"
-                  >↗</span
-                ></span
-              >
-            </a>
-
-            <a
-              class="link-card link-card--lab"
-              href="https://lab.miguelzacca.dev/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Lab de Miguel Zacca — abre em nova aba"
-            >
-              <span class="link-card__glow" aria-hidden="true"></span>
-              <span class="link-card__top"
-                ><span class="link-card__icon"
-                  ><img
-                    src="/assets/link-icons/lab.svg"
-                    width="54"
-                    height="54"
-                    alt="" /></span
-                ><span class="link-card__index">04 / LABORATÓRIO</span></span
-              >
-              <span class="link-card__body"
-                ><span class="link-card__category"
-                  >Pesquisa / Experimentação</span
-                ><span class="link-card__title"
-                  >O Lab<span class="title-period">.</span></span
-                ><span class="link-card__description"
-                  >Um espaço experimental para explorar ideias, protótipos e
-                  novas possibilidades.</span
-                ></span
-              >
-              <span class="link-card__bottom"
-                ><span>lab.miguelzacca.dev</span
-                ><span class="link-card__arrow" aria-hidden="true"
-                  >↗</span
-                ></span
-              >
-            </a>
-
-            <a
-              class="link-card link-card--github"
-              href="https://github.com/miguelzacca"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub de Miguel Zacca — abre em nova aba"
-            >
-              <span class="link-card__glow" aria-hidden="true"></span>
-              <span class="link-card__top"
-                ><span class="link-card__icon"
-                  ><img
-                    src="/assets/link-icons/github.svg"
-                    width="54"
-                    height="54"
-                    alt="" /></span
-                ><span class="link-card__index">05 / CÓDIGO</span></span
-              >
-              <span class="link-card__body"
-                ><span class="link-card__category"
-                  >Repositórios / Engenharia</span
-                ><span class="link-card__title"
-                  >GitHub<span class="title-period">.</span></span
-                ><span class="link-card__description"
-                  >Projetos públicos, código e parte do processo de
-                  construção.</span
-                ></span
-              >
-              <span class="link-card__bottom"
-                ><span>github.com/miguelzacca</span
-                ><span class="link-card__arrow" aria-hidden="true"
-                  >↗</span
-                ></span
-              >
-            </a>
-
-            <a
-              class="link-card link-card--instagram"
-              href="https://www.instagram.com/mz_miguelzacca/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram pessoal @mz_miguelzacca — abre em nova aba"
-            >
-              <span class="link-card__glow" aria-hidden="true"></span>
-              <span class="link-card__top"
-                ><span class="link-card__icon"
-                  ><img
-                    src="/assets/link-icons/instagram.png"
-                    width="54"
-                    height="54"
-                    alt="" /></span
-                ><span class="link-card__index">06 / SOCIAL</span></span
-              >
-              <span class="link-card__body"
-                ><span class="link-card__category">Instagram / Pessoal</span
-                ><span class="link-card__title link-card__title--handle"
-                  >@mz_<wbr />miguelzacca</span
-                ><span class="link-card__description"
-                  >Meu espaço pessoal para compartilhar perspectivas, rotina e o
-                  que está em construção.</span
-                ></span
-              >
-              <span class="link-card__bottom"
-                ><span>instagram.com/mz_miguelzacca</span
-                ><span class="link-card__arrow" aria-hidden="true"
-                  >↗</span
-                ></span
-              >
-            </a>
-
-            <a
-              class="link-card link-card--instagram"
-              href="https://www.instagram.com/conectei.imob/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram da Conectei @conectei.imob — abre em nova aba"
-            >
-              <span class="link-card__glow" aria-hidden="true"></span>
-              <span class="link-card__top"
-                ><span class="link-card__icon"
-                  ><img
-                    src="/assets/link-icons/instagram.png"
-                    width="54"
-                    height="54"
-                    alt="" /></span
-                ><span class="link-card__index">07 / SOCIAL</span></span
-              >
-              <span class="link-card__body"
-                ><span class="link-card__category">Instagram / Conectei</span
-                ><span class="link-card__title link-card__title--handle"
-                  >@conectei<wbr />.imob</span
-                ><span class="link-card__description"
-                  >Novidades, conteúdo e o dia a dia da plataforma
-                  imobiliária.</span
-                ></span
-              >
-              <span class="link-card__bottom"
-                ><span>instagram.com/conectei.imob</span
-                ><span class="link-card__arrow" aria-hidden="true"
-                  >↗</span
-                ></span
-              >
-            </a>
-          </nav>
-          <div class="directory__end">
-            <span>FIM DOS DESTINOS PÚBLICOS</span
-            ><span>07 / 07 <span aria-hidden="true">↓</span></span>
-          </div>
+      <nav id="links" aria-label="Links públicos de Miguel Zacca">
+        <div class="list-heading"><h2>Projetos e trabalho</h2><span>01 — 04</span></div>
+        <div class="link-list">
+          <a class="link-item" href="/" aria-label="Portfólio — abrir nesta aba">
+            <span class="link-item__icon"><img src="/assets/mz-mark.svg" width="32" height="32" alt="" /></span>
+            <span class="link-item__content"><strong>Portfólio</strong><span>Meu trabalho, projetos e trajetória.</span><span class="link-item__url">miguelzacca.dev</span></span>
+            <span class="link-item__action" aria-hidden="true">Abrir <span>↗</span></span>
+          </a>
+          <a class="link-item" href="https://conecteimob.com.br/" target="_blank" rel="noopener noreferrer" aria-label="Conectei — abre em nova aba">
+            <span class="link-item__icon"><img src="/assets/conectei-icon.svg" width="32" height="32" alt="" /></span>
+            <span class="link-item__content"><strong>Conectei</strong><span>Plataforma para a operação imobiliária.</span><span class="link-item__url">conecteimob.com.br</span></span>
+            <span class="link-item__action" aria-hidden="true">Abrir <span>↗</span></span>
+          </a>
+          <a class="link-item" href="https://voltslab.com.br/" target="_blank" rel="noopener noreferrer" aria-label="Volts Lab — abre em nova aba">
+            <span class="link-item__icon"><img src="/assets/link-icons/volts.svg" width="32" height="32" alt="" /></span>
+            <span class="link-item__content"><strong>Volts Lab</strong><span>Marca e experiência digital da Volts®.</span><span class="link-item__url">voltslab.com.br</span></span>
+            <span class="link-item__action" aria-hidden="true">Abrir <span>↗</span></span>
+          </a>
+          <a class="link-item" href="https://lab.miguelzacca.dev/" target="_blank" rel="noopener noreferrer" aria-label="Lab de Miguel Zacca — abre em nova aba">
+            <span class="link-item__icon"><img src="/assets/link-icons/lab.svg" width="32" height="32" alt="" /></span>
+            <span class="link-item__content"><strong>Lab</strong><span>Ideias, experimentos e protótipos.</span><span class="link-item__url">lab.miguelzacca.dev</span></span>
+            <span class="link-item__action" aria-hidden="true">Abrir <span>↗</span></span>
+          </a>
         </div>
-      </section>
 
-      <section
-        class="more wrap"
-        id="alem-da-lista"
-        aria-labelledby="more-title"
-      >
-        <div class="more__line">
-          <span class="eyebrow">02 / O que não aparece aqui</span
-          ><span aria-hidden="true">MZ — ACESSO PÚBLICO</span>
+        <div class="list-heading list-heading--second"><h2>Código e canais</h2><span>05 — 07</span></div>
+        <div class="link-list">
+          <a class="link-item" href="https://github.com/miguelzacca" target="_blank" rel="noopener noreferrer" aria-label="GitHub de Miguel Zacca — abre em nova aba">
+            <span class="link-item__icon"><img src="/assets/link-icons/github.svg" width="32" height="32" alt="" /></span>
+            <span class="link-item__content"><strong>GitHub</strong><span>Repositórios e código público.</span><span class="link-item__url">github.com/miguelzacca</span></span>
+            <span class="link-item__action" aria-hidden="true">Abrir <span>↗</span></span>
+          </a>
+          <a class="link-item" href="https://www.instagram.com/mz_miguelzacca/" target="_blank" rel="noopener noreferrer" aria-label="Instagram pessoal @mz_miguelzacca — abre em nova aba">
+            <span class="link-item__icon"><img src="/assets/link-icons/instagram.png" width="32" height="32" alt="" /></span>
+            <span class="link-item__content"><strong>Instagram pessoal</strong><span>Rotina, ideias e o que estou construindo.</span><span class="link-item__url">@mz_miguelzacca</span></span>
+            <span class="link-item__action" aria-hidden="true">Abrir <span>↗</span></span>
+          </a>
+          <a class="link-item" href="https://www.instagram.com/conectei.imob/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da Conectei @conectei.imob — abre em nova aba">
+            <span class="link-item__icon"><img src="/assets/link-icons/instagram.png" width="32" height="32" alt="" /></span>
+            <span class="link-item__content"><strong>Instagram Conectei</strong><span>Novidades da plataforma imobiliária.</span><span class="link-item__url">@conectei.imob</span></span>
+            <span class="link-item__action" aria-hidden="true">Abrir <span>↗</span></span>
+          </a>
         </div>
-        <div class="more__content">
-          <div class="more__symbol" aria-hidden="true">
-            <span></span><span></span><span></span><span></span>
-          </div>
-          <div>
-            <h2 id="more-title">
-              Nem todo trabalho<br /><em>pode ser mostrado.</em>
-            </h2>
-            <p>
-              Há outros projetos e colaborações além desta lista. Por
-              compromissos contratuais de confidencialidade ou por segurança,
-              seus nomes, links e detalhes não podem ser divulgados
-              publicamente.
-            </p>
-            <a class="text-link" href="/#contato"
-              >Vamos conversar <span aria-hidden="true">↗</span></a
-            >
-          </div>
-        </div>
-      </section>
+      </nav>
     </main>
 
     <footer class="site-footer wrap">
-      <a class="footer-name" href="/"
-        >Voltar ao portfólio <span aria-hidden="true">↗</span></a
-      >
-      <div class="footer-bottom">
-        <p>Produto · experiência · engenharia</p>
-        <a href="#inicio">Voltar ao topo ↑</a>
-        <p>© <span data-year>2026</span></p>
-      </div>
+      <span>© Miguel Zacca</span>
+      <a href="/#contato">Entrar em contato <span aria-hidden="true">↗</span></a>
     </footer>
   </body>
 </html>
