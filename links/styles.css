@@ -85,6 +85,7 @@ h1 em { color: #697650; font: italic 400 1.07em/1 "Instrument Serif", Georgia, s
 .link-item__content { display: flex; flex-direction: column; align-items: start; min-width: 0; }
 .link-item__content strong { font-size: 17px; font-weight: 700; letter-spacing: -.025em; line-height: 1.3; }
 .link-item__content > span:not(.link-item__url) { margin-top: 2px; color: var(--muted); font-size: 11px; }
+.link-item__content > span.link-item__disclaimer { margin-top: 6px; color: #47594b; font-weight: 600; }
 .link-item__url {
   max-width: 100%; margin-top: 7px; color: #426150;
   font-size: 11px; font-weight: 700; overflow-wrap: anywhere;
