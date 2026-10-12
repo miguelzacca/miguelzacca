@@ -184,7 +184,7 @@ Interface, aplicação, dados e serviços têm papéis diferentes. O desafio é 
 
 #### linhas de código efetivo.
 
-Mais de 1 milhão de linhas em um produto completo — da interface à operação, com plataforma, dados, serviços, testes e entrega.
+Mais de 1 milhão de linhas em **2.000+ arquivos de código operacional**. Um produto completo, da interface à operação: plataforma, dados, serviços, testes e entrega.
 
 Volume informado pelo autor · outubro de 2026
 Dependências e arquivos gerados não incluídos.

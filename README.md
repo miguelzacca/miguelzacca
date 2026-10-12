@@ -65,7 +65,7 @@ Ela pode ser usada por um corretor autônomo ou compartilhada por uma imobiliár
       <sub>Produto, plataforma, testes e entrega</sub>
     </td>
     <td align="center" width="33%">
-      <strong>1.700+ arquivos</strong><br>
+      <strong>2.000+ arquivos de código operacional</strong><br>
       <sub>Organizados por domínios de negócio</sub>
     </td>
     <td align="center" width="33%">

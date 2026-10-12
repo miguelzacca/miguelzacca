@@ -8,7 +8,7 @@ Papel quente, verde tinta, metal usinado e relações desenhadas. A identidade d
 2. **Problema, público e papel:** uma rotina imobiliária fragmentada, corretores e equipes, criação do produto da experiência à operação.
 3. **Três decisões:** começar e retomar uma pesquisa; organizar a rotina; interpretar uma estimativa com faixa e confiança. Cada explicação acompanha uma captura existente, real e com dados demonstrativos.
 4. **Continuidade e estado:** pesquisa, abordagem, relacionamento, decisão, operação e publicação; revisão humana; plataforma em operação. Sem resultados comerciais ou métricas de adoção inventados.
-5. **Engenharia:** 1M+ linhas de código efetivo informadas pelo autor, com data e escopo. Mapa de interface, aplicação, dados e serviços. A escala é contexto; as decisões sustentam o case.
+5. **Engenharia:** 1M+ linhas de código efetivo e 2.000+ arquivos de código operacional informados pelo autor, com data e escopo. Mapa de interface, aplicação, dados e serviços. A escala é contexto; as decisões sustentam o case.
 6. **Capacidades, pessoa e contato:** capacidades ligadas a evidências, trabalho atual sem trajetória inventada, WhatsApp Business, e-mail e Instagrams autorizados.
 
 ## Uma escultura, sete formações
