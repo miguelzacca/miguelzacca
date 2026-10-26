@@ -287,7 +287,7 @@ test("without JavaScript the title, facts, navigation and product remain availab
   expect(values.every((value) => Number(value.replace(/[^\d]/g, "")) > 0)).toBe(
     true,
   );
-  await expect(page.locator(".scale-number")).toHaveText("750mil+");
+  await expect(page.locator(".scale-number")).toHaveText("1M+");
   await expect(page.locator("[data-detail]")).toHaveCount(4);
   for (const detail of await page.locator("[data-detail]").all()) {
     await expect(detail).toBeVisible();

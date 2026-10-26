@@ -22,7 +22,7 @@ A apresentação pública de Miguel inclui seu portfólio de ex-hacker. A chamad
 - [Conteúdo completo para agentes](https://miguelzacca.dev/llms-full.txt)
 - [Dados estruturados JSON-LD](https://miguelzacca.dev/profile.jsonld)
 
-Atualização deste perfil: 2026-09-13.
+Atualização deste perfil: 2026-10-12.
 <!-- END GENERATED PROFILE -->
 
 ---
@@ -61,11 +61,11 @@ Ela pode ser usada por um corretor autônomo ou compartilhada por uma imobiliár
 <table align="center">
   <tr>
     <td align="center" width="33%">
-      <strong>750K+ linhas efetivas</strong><br>
+      <strong>1M+ linhas de código efetivo</strong><br>
       <sub>Produto, plataforma, testes e entrega</sub>
     </td>
     <td align="center" width="33%">
-      <strong>1.700+ arquivos</strong><br>
+      <strong>2.000+ arquivos de código operacional</strong><br>
       <sub>Organizados por domínios de negócio</sub>
     </td>
     <td align="center" width="33%">
@@ -75,7 +75,7 @@ Ela pode ser usada por um corretor autônomo ou compartilhada por uma imobiliár
   </tr>
 </table>
 
-<p align="center"><sub>Snapshot do produto em produção · setembro de 2026 · dependências e arquivos gerados não incluídos</sub></p>
+<p align="center"><sub>Escala do produto em produção · outubro de 2026 · dependências e arquivos gerados não incluídos</sub></p>
 
 > [!IMPORTANT]
 > Este README apresenta a superfície pública do produto. Fontes de dados, critérios proprietários, regras de negócio, mecanismos antifraude, contratos com fornecedores, credenciais, endpoints privados e detalhes operacionais sensíveis são intencionalmente omitidos.

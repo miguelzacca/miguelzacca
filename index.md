@@ -4,7 +4,7 @@
 
 URL canônica: https://miguelzacca.dev/
 Idioma: pt-BR
-Última revisão do perfil: 2026-09-13
+Última revisão do perfil: 2026-10-12
 
 ## Quem é Miguel Zacca?
 
@@ -180,13 +180,13 @@ _Muitas decisões._
 
 Interface, aplicação, dados e serviços têm papéis diferentes. O desafio é manter a continuidade da experiência sem misturar essas responsabilidades.
 
-750 mil+
+1M +
 
-#### linhas efetivas de código.
+#### linhas de código efetivo.
 
-Produto, plataforma, testes e entrega. Uma construção que vai da interface à operação.
+Mais de 1 milhão de linhas em **2.000+ arquivos de código operacional**. Um produto completo, da interface à operação: plataforma, dados, serviços, testes e entrega.
 
-Volume informado pelo autor · setembro de 2026
+Volume informado pelo autor · outubro de 2026
 Dependências e arquivos gerados não incluídos.
 
 MAPA DE RESPONSABILIDADES

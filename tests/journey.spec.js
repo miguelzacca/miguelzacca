@@ -126,7 +126,7 @@ test("blocked choreography keeps the full case and direct contact available", as
   await page.goto("/");
   await expect(page.locator("h1")).toBeVisible();
   await expect(page.locator(".story-figure")).toHaveCount(3);
-  await expect(page.locator(".scale-number")).toHaveText("750mil+");
+  await expect(page.locator(".scale-number")).toHaveText("1M+");
   await expect(
     page.locator('#contato a[href="mailto:contato@conecteimob.com.br"]'),
   ).toBeVisible();
